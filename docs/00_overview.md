@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repo is the standalone codebase for the public-facing `hire-mark-cre.com` website.
+This repo is the standalone codebase for the public-facing `hire-mark.net` website.
 
 It is designed to market and eventually commercialize:
 
@@ -15,7 +15,8 @@ It is designed to market and eventually commercialize:
 - Stack: Vite + React
 - Current page set: one polished homepage / coming-soon landing page
 - Deployment target: Vercel
-- Live domain: `hire-mark-cre.com`
+- Primary domain: `hire-mark.net`
+- Redirect domains: `www.hire-mark.net`, `hire-mark-cre.com`, `www.hire-mark-cre.com`
 
 ## Canonical Read Order
 

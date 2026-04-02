@@ -1,0 +1,71 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.hire-mark.net"
+        }
+      ],
+      "destination": "https://hire-mark.net/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.hire-mark.net"
+        }
+      ],
+      "destination": "https://hire-mark.net/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "hire-mark-cre.com"
+        }
+      ],
+      "destination": "https://hire-mark.net/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "hire-mark-cre.com"
+        }
+      ],
+      "destination": "https://hire-mark.net/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.hire-mark-cre.com"
+        }
+      ],
+      "destination": "https://hire-mark.net/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.hire-mark-cre.com"
+        }
+      ],
+      "destination": "https://hire-mark.net/:path*",
+      "permanent": true
+    }
+  ]
+}

@@ -4,7 +4,8 @@
 
 - Vite build
 - Vercel hosting
-- Custom domain: `hire-mark-cre.com`
+- Primary domain: `hire-mark.net`
+- Redirect domains: `www.hire-mark.net`, `hire-mark-cre.com`, `www.hire-mark-cre.com`
 
 ## Local Verification
 
@@ -17,7 +18,8 @@ npm run build
 
 - Keep `.vercel/` out of git.
 - Treat the repo root as the Vercel project root.
-- Verify both `hire-mark-cre.com` and `www.hire-mark-cre.com` after domain changes.
+- Keep host-based redirect rules in `vercel.json` aligned with the active primary domain.
+- Verify `hire-mark.net` serves the site and the other attached domains 308-redirect to it after domain changes.
 
 ## Manual Checks
 
