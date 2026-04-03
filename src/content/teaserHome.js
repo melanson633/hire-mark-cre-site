@@ -1,9 +1,8 @@
 export const teaserHome = {
-  status: "Launching soon",
-  date: "April 2026",
-  title: "A quieter operating system for CRE finance.",
+  status: "Coming Soon",
+  title: "Modern CRE Accounting and Finance",
   description:
-    "Excel models, workflow infrastructure, and operator-grade research for teams that care how the work actually moves.",
+    "A curated collection of high-leverage AI tools, dynamic Excel templates, reusable AI prompts, automations, and targeted research for CRE.",
   primaryCta: {
     label: "Request early access",
     href: "mailto:melanson633@gmail.com?subject=Early%20Access%20Request%20-%20hire-mark.net",

@@ -58,7 +58,7 @@ function ArtifactMemo({ lines }) {
 }
 
 function TeaserPage() {
-  useDocumentTitle("Launching Soon", teaserHome.description);
+  useDocumentTitle("Coming Soon", teaserHome.description);
 
   return (
     <div className="teaser-page">
@@ -66,7 +66,6 @@ function TeaserPage() {
         <div className="teaser-copy">
           <p className="teaser-status">
             <span>{teaserHome.status}</span>
-            <span>{teaserHome.date}</span>
           </p>
           <h1>{teaserHome.title}</h1>
           <p className="teaser-description">{teaserHome.description}</p>
