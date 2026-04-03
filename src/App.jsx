@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
+import TeaserPage from "./pages/TeaserPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import PromptsPage from "./pages/PromptsPage";
@@ -13,7 +14,9 @@ const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
-      { path: "/", element: <HomePage /> },
+      { path: "/", element: <TeaserPage /> },
+      { path: "/home", element: <HomePage /> },
+      { path: "/home-preview", element: <HomePage /> },
       { path: "/projects", element: <ProjectsPage /> },
       { path: "/projects/:slug", element: <ProjectDetailPage /> },
       { path: "/prompts", element: <PromptsPage /> },
