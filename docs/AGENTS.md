@@ -8,6 +8,7 @@ Keep strategy, deployment notes, decisions, and archived drafts separate from pr
 
 - `00_overview.md` for current-state repo context
 - `10_site_strategy.md` for positioning and page goals
+- `11_teaser_variation_directions.md` for active teaser-page visual directions and comparison concepts
 - `20_content_pipeline.md` for cross-repo content sourcing rules
 - `30_deployment.md` for local deploy and domain notes
 - `40_decisions.md` for short architectural or product decisions

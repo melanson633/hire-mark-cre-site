@@ -1,13 +1,14 @@
 export const newsletterContent = {
+  mode: "inert",
   panelLabel: "Early access and newsletter",
   title: "The Finance x Tech Briefing",
   body:
     "Join the first wave for launch updates, sample drops, and short research notes on CRE finance systems and practical automation.",
   placeholderNote:
-    "Coming-soon mode: this is still a front-end placeholder. Connect a real email provider before sharing the live signup widely.",
-  successTitle: "Interest captured.",
-  successBody:
-    "This is a placeholder signup flow for now. Wire it to ConvertKit, Beehiiv, or Buttondown when you are ready to collect real emails.",
+    "Newsletter signups are not active yet. The form is intentionally disabled until a real provider is wired.",
+  inertTitle: "Signup is not live yet.",
+  inertBody:
+    "This page is intentionally in coming-soon mode. No email addresses are captured from this site right now.",
   inputPlaceholder: "Email for research updates",
-  buttonLabel: "Join the list",
+  buttonLabel: "Signup coming soon",
 };

@@ -1,7 +1,7 @@
-import { creAnalysis } from "./cre-analysis";
-import { leaseExtraction } from "./lease-extraction";
-import { loanExtraction } from "./loan-extraction";
-import { agreementProcessing } from "./agreement-processing";
+import { creAnalysis } from "./cre-analysis.js";
+import { leaseExtraction } from "./lease-extraction.js";
+import { loanExtraction } from "./loan-extraction.js";
+import { agreementProcessing } from "./agreement-processing.js";
 
 export const allPrompts = [
   ...creAnalysis,

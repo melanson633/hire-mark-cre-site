@@ -647,6 +647,19 @@ input {
   background: rgba(85, 160, 121, 0.12);
 }
 
+.signup-inert {
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(232, 130, 57, 0.35);
+  background: rgba(232, 130, 57, 0.08);
+}
+
+.signup-inert .button-secondary {
+  display: inline-block;
+  margin-top: 14px;
+}
+
 .signup-title {
   color: #8ad4b4;
   font-weight: 700;
@@ -813,6 +826,37 @@ input {
   display: inline-block;
   margin-top: 20px;
   text-decoration: none;
+}
+
+/* ── Error Boundary ── */
+
+.error-boundary {
+  width: min(680px, calc(100% - 40px));
+  margin: 84px auto;
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(232, 130, 57, 0.35);
+  background: rgba(21, 30, 43, 0.94);
+  box-shadow: var(--shadow);
+}
+
+.error-boundary-eyebrow {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+.error-boundary h1 {
+  margin: 0 0 12px;
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+}
+
+.error-boundary p {
+  margin: 0 0 18px;
+  color: var(--text-soft);
 }
 
 @media (max-width: 720px) {

@@ -11,6 +11,7 @@
 
 ```powershell
 npm install
+npm run verify
 npm run build
 ```
 
@@ -25,4 +26,5 @@ npm run build
 
 - homepage renders on desktop and mobile
 - contact links work
-- newsletter placeholder still communicates that real email capture is not wired yet
+- newsletter page clearly states signups are not live (no fake success state)
+- domain redirects still send `www.hire-mark.net`, `hire-mark-cre.com`, and `www.hire-mark-cre.com` to `hire-mark.net`

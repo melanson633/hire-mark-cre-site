@@ -1,6 +1,7 @@
 import RevealSection from '../components/RevealSection';
 import NewsletterForm from '../components/NewsletterForm';
 import { newsletterContent } from '../content/newsletter';
+import { siteMeta } from '../content/siteMeta';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 
 export default function NewsletterPage() {
@@ -12,7 +13,7 @@ export default function NewsletterPage() {
       title={newsletterContent.title}
       intro={newsletterContent.body}
     >
-      <NewsletterForm content={newsletterContent} />
+      <NewsletterForm content={newsletterContent} contactEmail={siteMeta.contact.email} />
       <p className="text-muted">{newsletterContent.placeholderNote}</p>
     </RevealSection>
   );

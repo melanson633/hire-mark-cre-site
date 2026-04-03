@@ -7,22 +7,41 @@ Public website for Mark Melanson's CRE finance, Excel, AI tooling, and research 
 - `AGENTS.md`
 - `docs/00_overview.md`
 - `docs/10_site_strategy.md`
+- `docs/11_teaser_variation_directions.md` for active teaser redesign concepts and test variations
+- `docs/50_harness_contract.md`
+- `docs/60_harness_execution_plan.md`
 
 ## Commands
 
 ```powershell
 npm install
 npm run dev
+npm run verify
 npm run build
 npm run preview
 ```
+
+`npm run verify` is the canonical harness gate. It runs lint, production build, content validation, and browser smoke checks.
+
+## Route Graph
+
+- `/` teaser / launch shell
+- `/home` content-rich homepage
+- `/home-preview` homepage alias
+- `/projects`
+- `/projects/:slug`
+- `/prompts`
+- `/about`
+- `/newsletter` (explicitly inert until a real provider is wired)
+- `/tools`
+- `*` 404
 
 ## Structure
 
 ```text
 docs/           repo strategy, decisions, deployment notes, archive
 public/         static public assets
-scripts/        helper scripts if needed later
+scripts/        verification scripts (content validation + smoke)
 src/content/    structured publishable content
 src/pages/      page-level assembly
 src/sections/   homepage sections

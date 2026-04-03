@@ -13,7 +13,17 @@ It is designed to market and eventually commercialize:
 ## Current State
 
 - Stack: Vite + React
-- Current page set: one polished homepage / coming-soon landing page
+- Current route graph:
+  - `/` teaser / launch shell
+  - `/home` content-rich homepage
+  - `/home-preview` homepage alias
+  - `/projects`
+  - `/projects/:slug`
+  - `/prompts`
+  - `/about`
+  - `/newsletter` (explicitly inert until provider wiring)
+  - `/tools`
+  - `*` 404
 - Deployment target: Vercel
 - Primary domain: `hire-mark.net`
 - Redirect domains: `www.hire-mark.net`, `hire-mark-cre.com`, `www.hire-mark-cre.com`
@@ -23,8 +33,11 @@ It is designed to market and eventually commercialize:
 1. `../AGENTS.md`
 2. `AGENTS.md`
 3. `10_site_strategy.md`
-4. `../src/content/README.md`
-5. Only then the specific content, section, or deployment files needed
+4. `11_teaser_variation_directions.md` when working on `/` teaser redesigns or visual-system test builds
+5. `50_harness_contract.md`
+6. `60_harness_execution_plan.md`
+7. `../src/content/README.md`
+8. Only then the specific content, section, or deployment files needed
 
 ## Source Context
 
