@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { teaserHome } from "../content/teaserHome";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import "../styles/teaser.css";
@@ -60,6 +61,23 @@ function ArtifactMemo({ lines }) {
 function TeaserPage() {
   useDocumentTitle("Coming Soon", teaserHome.description);
 
+  const lanesRef = useRef(null);
+  useEffect(() => {
+    const el = lanesRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("revealed");
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <div className="teaser-page">
       <section className="teaser-hero">
@@ -88,7 +106,7 @@ function TeaserPage() {
         </div>
       </section>
 
-      <section className="teaser-lanes" aria-label="Launch themes">
+      <section ref={lanesRef} className="teaser-lanes" aria-label="Launch themes">
         {teaserHome.lanes.map((lane) => (
           <article key={lane.label} className="teaser-lane">
             <p>{lane.label}</p>
