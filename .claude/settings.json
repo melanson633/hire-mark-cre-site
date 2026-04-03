@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /mnt/c/Users/melan/Documents/hire-mark-cre-site && npm run build 2>/dev/null || echo '{\"systemMessage\": \"Build failed — run npm run build to see errors.\"}'",
+            "timeout": 60,
+            "statusMessage": "Building..."
+          }
+        ]
+      }
+    ]
+  }
+}

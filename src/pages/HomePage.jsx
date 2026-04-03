@@ -1,4 +1,3 @@
-import { siteMeta } from "../content/siteMeta";
 import {
   contactSection,
   hero,
@@ -8,6 +7,8 @@ import {
   stats,
   toolsSection,
 } from "../content/home";
+import useDocumentTitle from "../hooks/useDocumentTitle";
+import { siteMeta } from "../content/siteMeta";
 import { newsletterContent } from "../content/newsletter";
 import { workSection } from "../content/caseStudies";
 import { researchSection } from "../content/research";
@@ -21,36 +22,21 @@ import ToolsSection from "../sections/ToolsSection";
 import WorkSection from "../sections/WorkSection";
 
 function HomePage() {
+  useDocumentTitle(null);
   return (
-    <div className="page-shell">
-      <header className="site-header">
-        <a className="wordmark" href="#top">
-          <span className="wordmark-main">{siteMeta.wordmark.main}</span>
-          <span className="wordmark-accent">{siteMeta.wordmark.accent}</span>
-        </a>
-        <nav className="site-nav" aria-label="Primary">
-          {siteMeta.navigation.map((item) => (
-            <a key={item.href} href={item.href}>
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </header>
-
-      <main id="top">
-        <HeroSection launchStrip={launchStrip} hero={hero} />
-        <StatsSection stats={stats} />
-        <LaunchSection content={launchSection} />
-        <PositioningSection content={positioningSection} />
-        <WorkSection content={workSection} />
-        <ResearchSection
-          content={researchSection}
-          newsletterContent={newsletterContent}
-        />
-        <ToolsSection content={toolsSection} />
-        <ContactSection content={contactSection} contact={siteMeta.contact} />
-      </main>
-    </div>
+    <>
+      <HeroSection launchStrip={launchStrip} hero={hero} />
+      <StatsSection stats={stats} />
+      <LaunchSection content={launchSection} />
+      <PositioningSection content={positioningSection} />
+      <WorkSection content={workSection} />
+      <ResearchSection
+        content={researchSection}
+        newsletterContent={newsletterContent}
+      />
+      <ToolsSection content={toolsSection} />
+      <ContactSection content={contactSection} contact={siteMeta.contact} />
+    </>
   );
 }
 

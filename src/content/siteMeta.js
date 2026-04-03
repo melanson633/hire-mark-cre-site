@@ -7,9 +7,12 @@ export const siteMeta = {
     accent: "melanson",
   },
   navigation: [
+    { label: "Projects", href: "/projects" },
+    { label: "Prompts", href: "/prompts" },
+    { label: "Tools", href: "/tools" },
+    { label: "About", href: "/about" },
     { label: "Work", href: "#work" },
     { label: "Research", href: "#research" },
-    { label: "Tools", href: "#tools" },
     { label: "Contact", href: "#contact" },
   ],
   contact: {
