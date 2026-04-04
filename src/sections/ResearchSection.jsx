@@ -1,7 +1,7 @@
 import NewsletterForm from "../components/NewsletterForm";
 import RevealSection from "../components/RevealSection";
 
-function ResearchSection({ content, newsletterContent }) {
+function ResearchSection({ content, newsletterContent, contactEmail }) {
   return (
     <RevealSection
       id="research"
@@ -22,7 +22,7 @@ function ResearchSection({ content, newsletterContent }) {
           <p className="panel-label">{newsletterContent.panelLabel}</p>
           <h3>{newsletterContent.title}</h3>
           <p>{newsletterContent.body}</p>
-          <NewsletterForm content={newsletterContent} />
+          <NewsletterForm content={newsletterContent} contactEmail={contactEmail} />
           <p className="small-note">{newsletterContent.placeholderNote}</p>
         </div>
       </div>

@@ -1,97 +1,135 @@
 export const stats = [
-  { value: "70+", label: "properties operated across a complex CRE portfolio" },
-  { value: "$800M", label: "assets supported through finance operations" },
-  { value: "20x", label: "billing cycle reduction through field workflow software" },
+  { value: "70+", label: "assets watched across a complex CRE portfolio" },
+  { value: "$800M", label: "value supported through finance operations" },
+  { value: "20x", label: "billing-cycle compression from workflow software" },
 ];
 
 export const launchStrip = {
-  text: "Launching in April 2026:",
-  detail: " curated Excel models, finance workflow tools, and CRE research.",
+  text: "Launch trajectory:",
+  detail: " operator-grade templates, routed workflows, and CRE systems research.",
   cta: { label: "Get launch updates", href: "#newsletter" },
 };
 
 export const hero = {
-  eyebrow: "Finance operator. Builder. CRE systems thinker.",
-  title:
-    "A new home for practical CRE finance tools, AI workflows, and operator-focused research.",
+  eyebrow: "CRE finance operator. Reporting-systems builder. Practical AI implementer.",
+  title: "A differentiated operating layer for CRE accounting and finance.",
   intro:
-    "Built from real operating experience across complex portfolios, this site will showcase Excel models, AI tools, and research designed to help finance and real estate teams move faster with less friction.",
-  primaryCta: { label: "See what is launching first", href: "#launch" },
-  secondaryCta: { label: "Join the early access list", href: "#newsletter" },
+    "I build leverage into live finance operations: cleaner models, tighter workflow handoffs, and research that improves operator judgment instead of adding noise.",
+  primaryCta: { label: "Review operator proof", href: "#work" },
+  secondaryCta: { label: "Get launch updates", href: "#newsletter" },
   footnote:
-    "Initial focus: Excel templates, reporting systems, document workflows, and concise CRE finance research.",
-  panelLabel: "What this becomes",
-  panelItems: [
-    "A proof-driven portfolio instead of a generic personal site",
-    "Examples of templates, dashboards, and workflow tools",
-    "A newsletter and research surface for future audience building",
-    "A foundation for commercial products as the catalog expands",
+    "Built for operators, hiring managers, and advisory conversations without collapsing into a single generic CTA.",
+  panelLabel: "Audience routing / fastest entry paths",
+  panelRoutes: [
+    {
+      audience: "Operators",
+      detail: "Inspect templates and workflow surfaces",
+      href: "#launch",
+      cta: "Go to lanes",
+    },
+    {
+      audience: "Hiring managers",
+      detail: "Evaluate shipped systems and judgment",
+      href: "#work",
+      cta: "Go to proof",
+    },
+    {
+      audience: "Launch updates",
+      detail: "Get research notes and release drops",
+      href: "#newsletter",
+      cta: "Get updates",
+    },
+  ],
+  panelSignals: [
+    "Debt stack + covenant visibility",
+    "Variance review + close-clock control",
+    "Lender-facing reporting outputs",
+  ],
+  audienceRoutes: [
+    { label: "Operators", href: "#launch" },
+    { label: "Hiring managers", href: "#work" },
+    { label: "Launch updates", href: "#newsletter" },
   ],
 };
 
 export const launchSection = {
-  eyebrow: "Coming First",
-  title: "Enough substance for a credible coming-soon launch.",
+  eyebrow: "Launch Lanes",
+  title: "Three distinct artifact classes: templates, workflows, and research.",
   intro:
-    "The goal for the first public version is simple: show the direction, prove the taste level, and capture people who want to see what ships next.",
+    "The release surface is intentionally narrow. Each lane has a different structural job and a different evidence format.",
   items: [
     {
-      label: "Excel templates",
-      text: "Operator-grade models for budgeting, debt tracking, dashboarding, and recurring reporting.",
+      kind: "template",
+      label: "Templates",
+      text: "Model sheets for recurring reporting, covenant tracking, and budget controls.",
+      detail: "Built with explicit inputs, checks, and lender-facing outputs.",
+      signals: ["DSCR + LTV monitoring", "Debt stack rollforwards", "Audit-friendly tabs"],
+      href: "/projects#templates",
+      cta: "Inspect template surfaces",
     },
     {
-      label: "AI utilities",
-      text: "Small tools that reduce repetitive finance and document work instead of adding more software overhead.",
+      kind: "workflow",
+      label: "Workflows",
+      text: "Routed process maps for extraction, reconciliation, and close throughput.",
+      detail: "Focused on owners, handoffs, and exception states that reduce status chasing.",
+      signals: ["Close-clock checkpoints", "Variance flag queues", "Owner-state routing"],
+      href: "/projects",
+      cta: "Inspect workflow systems",
     },
     {
-      label: "CRE research",
-      text: "Short practical notes on reporting, automation, and systems that matter inside actual finance teams.",
+      kind: "research",
+      label: "Research",
+      text: "Operator memos on reporting design, controls, and practical AI leverage.",
+      detail: "Short, domain-specific notes tuned for finance operators, not generic productivity advice.",
+      signals: ["Operator memo excerpts", "Control logic reviews", "Reusable prompt patterns"],
+      href: "#research",
+      cta: "Inspect research lane",
     },
   ],
 };
 
 export const positioningSection = {
   eyebrow: "Positioning",
-  title: "The useful overlap is finance depth plus real technical execution.",
+  title: "A differentiated operating layer for CRE accounting and finance.",
   intro:
-    "Most finance sites show credentials. Most technical portfolios show experiments. This should show operational judgment backed by systems that survive real work.",
+    "This is not a generic consultant site and not a SaaS pitch. The signal is finance-system craftsmanship with proof that holds up in real operating workflows.",
   cards: [
     {
       title: "What this site is for",
       body:
-        "A home base for your work: examples of models and tools, a newsletter signup, and a place to sell or validate commercial products over time.",
+        "A proof-led home for CRE finance systems work: templates, workflow tooling, and research that can compound into focused products.",
     },
     {
       title: "Who it speaks to",
       body:
-        "CRE operators, founders, finance leaders, and small teams who want better reporting, cleaner workflows, and more leverage from their data and documents.",
+        "CRE operators, finance leaders, hiring managers, and technical teams who need cleaner reporting logic and more leverage from existing data.",
     },
     {
-      title: "What it should avoid",
+      title: "What it avoids",
       body:
-        "Looking like a generic resume site. The sharper angle is operator credibility plus shipped systems, with room for products and research.",
+        "Resume-dump framing, generic SaaS claims, and feature promises without operator-grade evidence.",
     },
   ],
 };
 
 export const toolsSection = {
   eyebrow: "Future Products",
-  title: "Leave room for commercial tools without making the first version bloated.",
+  title: "Productize proven systems without losing operator discipline.",
   intro:
-    "This section is intentionally simple. It signals direction while leaving space to discover what people actually want.",
+    "Product scope stays anchored to finance pain points and measurable workflow improvement, not platform sprawl.",
   ideas: [
-    "Template packs for budgets, dashboards, and reporting",
-    "Small utility apps for document extraction or monthly close workflows",
-    "Paid research notes or operator briefings for CRE teams",
+    "Template packs for debt, budgets, recurring reporting, and covenant control",
+    "Small utility apps for extraction, reconciliation, and monthly close support",
+    "Paid operator briefings for teams improving reporting architecture",
   ],
 };
 
 export const contactSection = {
   eyebrow: "Contact",
-  title: "This page should open real conversations before the full catalog exists.",
+  title: "Start with the right conversation.",
   intro:
-    "The first version only needs one job: make it obvious what you are building and how the right people can reach you.",
+    "Best early conversations are concrete: reporting pain points, systems priorities, and where immediate leverage is possible.",
   heading: "Reach out",
   body:
-    "Best fit conversations: CRE finance operations, reporting infrastructure, Excel model design, AI workflow ideas, and practical collaboration around tools or research.",
+    "Best fit conversations: CRE finance operations, reporting infrastructure, Excel model design, AI workflow implementation, and hiring for systems-level execution.",
 };

@@ -85,12 +85,24 @@ function TeaserPage() {
           <p className="teaser-status">
             <span>{teaserHome.status}</span>
           </p>
+          <div className="teaser-proof" aria-label="Early proof points">
+            {teaserHome.proofPoints.map((point) => (
+              <p key={point}>{point}</p>
+            ))}
+          </div>
           <h1>{teaserHome.title}</h1>
           <p className="teaser-description">{teaserHome.description}</p>
           <div className="teaser-actions">
             <a className="teaser-button" href={teaserHome.primaryCta.href}>
               {teaserHome.primaryCta.label}
             </a>
+            <a className="teaser-button teaser-button-secondary" href={teaserHome.secondaryCta.href}>
+              {teaserHome.secondaryCta.label}
+            </a>
+            <p className="teaser-tertiary-route">
+              {teaserHome.tertiaryRoute.text}{" "}
+              <a href={teaserHome.tertiaryRoute.href}>{teaserHome.tertiaryRoute.label}</a>
+            </p>
             <p className="teaser-note">{teaserHome.note}</p>
           </div>
         </div>
@@ -100,17 +112,39 @@ function TeaserPage() {
             <span>{teaserHome.artifactKicker}</span>
             <p>{teaserHome.artifactHeader}</p>
           </div>
+          <div className="artifact-node-strip" aria-hidden="true">
+            {teaserHome.artifactNodes.map((node) => (
+              <span key={node}>{node}</span>
+            ))}
+          </div>
           <ArtifactTable rows={teaserHome.spreadsheet.rows} />
           <ArtifactDashboard metrics={teaserHome.dashboard.metrics} />
           <ArtifactMemo lines={teaserHome.memo.lines} />
+          <div className="artifact-join artifact-join-one" aria-hidden="true" />
+          <div className="artifact-join artifact-join-two" aria-hidden="true" />
         </div>
+      </section>
+
+      <section className="teaser-routing" aria-label="Audience routing">
+        {teaserHome.audienceRoutes.map((route) => (
+          <article key={route.label} className="teaser-route-card">
+            <p>{route.ref}</p>
+            <h2>{route.title}</h2>
+            <span>{route.detail}</span>
+            <strong>{route.label}</strong>
+            <a href={route.href}>{route.cta}</a>
+          </article>
+        ))}
       </section>
 
       <section ref={lanesRef} className="teaser-lanes" aria-label="Launch themes">
         {teaserHome.lanes.map((lane) => (
-          <article key={lane.label} className="teaser-lane">
+          <article key={lane.label} className={`teaser-lane teaser-lane-${lane.kind}`}>
             <p>{lane.label}</p>
             <h2>{lane.text}</h2>
+            <span>{lane.detail}</span>
+            <em>{lane.surfaceLabel}</em>
+            <a href={lane.href}>{lane.cta}</a>
           </article>
         ))}
       </section>

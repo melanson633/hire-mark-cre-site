@@ -10,6 +10,25 @@ It is designed to market and eventually commercialize:
 - AI-enabled CRE workflow tools
 - Operator-focused research and newsletter content
 
+## Current Routing
+
+Use these docs as the source of truth for the current state:
+
+1. `../AGENTS.md`
+2. `AGENTS.md`
+3. `00_overview.md`
+4. `10_site_strategy.md`
+5. `11_teaser_variation_directions.md`
+6. `docs/archive/ui-context/README.md` and dated snapshot folders only when tracing prior design context
+
+Current decision split:
+
+- Broad site positioning lives in `10_site_strategy.md`
+- Teaser-specific active direction lives in `11_teaser_variation_directions.md`
+- Frozen source snapshots from the April 4, 2026 design pass live in `docs/archive/ui-context/2026-04-04/`
+- The active teaser branch is the dark editorial / ledger atmosphere direction
+- The alternate working-paper / review-room branch stays archived unless this doc is updated
+
 ## Current State
 
 - Stack: Vite + React

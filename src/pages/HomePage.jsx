@@ -27,12 +27,13 @@ function HomePage() {
     <>
       <HeroSection launchStrip={launchStrip} hero={hero} />
       <StatsSection stats={stats} />
+      <WorkSection content={workSection} />
       <LaunchSection content={launchSection} />
       <PositioningSection content={positioningSection} />
-      <WorkSection content={workSection} />
       <ResearchSection
         content={researchSection}
         newsletterContent={newsletterContent}
+        contactEmail={siteMeta.contact.email}
       />
       <ToolsSection content={toolsSection} />
       <ContactSection content={contactSection} contact={siteMeta.contact} />

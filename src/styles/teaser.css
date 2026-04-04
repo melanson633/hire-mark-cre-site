@@ -89,6 +89,23 @@
   color: rgba(243, 239, 231, 0.64);
 }
 
+.teaser-proof {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 22px;
+}
+
+.teaser-proof p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(243, 239, 231, 0.84);
+  border: 1px solid rgba(138, 176, 230, 0.18);
+  border-radius: 12px;
+  background: rgba(14, 20, 31, 0.65);
+  padding: 10px 12px;
+}
+
 .teaser-copy h1 {
   margin: 0;
   font-family: "Instrument Serif", serif;
@@ -112,7 +129,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 12px;
   margin-top: 30px;
 }
 
@@ -131,15 +148,39 @@
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
+.teaser-button-secondary {
+  background: rgba(14, 20, 31, 0.9);
+  color: rgba(243, 239, 231, 0.92);
+  border: 1px solid rgba(138, 176, 230, 0.26);
+  box-shadow: none;
+}
+
 .teaser-button:hover {
   transform: translateY(-1px);
   box-shadow: 0 24px 48px rgba(232, 130, 57, 0.3);
+}
+
+.teaser-button-secondary:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.teaser-tertiary-route {
+  margin: 2px 0 0;
+  font-size: 0.92rem;
+  color: rgba(243, 239, 231, 0.7);
+}
+
+.teaser-tertiary-route a {
+  color: #f3efe7;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232, 130, 57, 0.55);
 }
 
 .teaser-note {
   margin: 0;
   color: rgba(157, 167, 180, 0.92);
   letter-spacing: 0.03em;
+  font-size: 0.9rem;
 }
 
 .teaser-artifacts {
@@ -166,6 +207,28 @@
   margin: 10px 0 0;
   color: rgba(243, 239, 231, 0.78);
   font-size: 0.98rem;
+}
+
+.artifact-node-strip {
+  position: absolute;
+  top: 96px;
+  left: 38px;
+  right: 20px;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.artifact-node-strip span {
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(138, 176, 230, 0.24);
+  background: rgba(10, 15, 24, 0.74);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(243, 239, 231, 0.72);
 }
 
 .teaser-surface {
@@ -330,6 +393,28 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+.artifact-join {
+  position: absolute;
+  z-index: 2;
+  border: 1px dashed rgba(138, 176, 230, 0.3);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.artifact-join-one {
+  top: 300px;
+  left: 40%;
+  width: 130px;
+  height: 58px;
+}
+
+.artifact-join-two {
+  top: 430px;
+  left: 47%;
+  width: 156px;
+  height: 62px;
+}
+
 .memo-lines {
   position: relative;
   z-index: 1;
@@ -353,10 +438,71 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  margin-top: 8px;
+  margin-top: 18px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.teaser-routing {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.teaser-route-card {
+  min-height: 208px;
+  padding: 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(138, 176, 230, 0.16);
+  background:
+    linear-gradient(180deg, rgba(138, 176, 230, 0.08), transparent 42%),
+    linear-gradient(180deg, rgba(19, 27, 40, 0.94), rgba(12, 18, 29, 0.84));
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.24);
+}
+
+.teaser-route-card p {
+  margin: 0;
+  color: rgba(138, 176, 230, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+}
+
+.teaser-route-card h2 {
+  margin: 16px 0 0;
+  color: rgba(243, 239, 231, 0.92);
+  font-family: "Instrument Serif", serif;
+  font-size: 1.8rem;
+  line-height: 1.08;
+  font-weight: 400;
+}
+
+.teaser-route-card span {
+  display: block;
+  margin-top: 14px;
+  color: rgba(243, 239, 231, 0.72);
+  line-height: 1.6;
+}
+
+.teaser-route-card strong {
+  display: block;
+  margin-top: 14px;
+  color: rgba(138, 176, 230, 0.94);
+  font-size: 0.79rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.teaser-route-card a {
+  display: inline-flex;
+  margin-top: 18px;
+  text-decoration: none;
+  color: #f3efe7;
+  border-bottom: 1px solid rgba(232, 130, 57, 0.55);
+  font-size: 0.86rem;
+  letter-spacing: 0.03em;
 }
 
 .teaser-lanes.revealed {
@@ -395,6 +541,51 @@
   font-size: 2rem;
   font-weight: 400;
   line-height: 1.12;
+}
+
+.teaser-lane span {
+  display: block;
+  margin-top: 14px;
+  color: rgba(243, 239, 231, 0.72);
+  line-height: 1.65;
+}
+
+.teaser-lane em {
+  display: inline-flex;
+  margin-top: 14px;
+  font-style: normal;
+  color: rgba(138, 176, 230, 0.86);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+}
+
+.teaser-lane a {
+  display: inline-flex;
+  margin-top: 14px;
+  text-decoration: none;
+  color: #f3efe7;
+  border-bottom: 1px solid rgba(232, 130, 57, 0.55);
+  font-size: 0.86rem;
+  letter-spacing: 0.03em;
+}
+
+.teaser-lane-template {
+  background:
+    linear-gradient(180deg, rgba(236, 149, 81, 0.1), transparent 52%),
+    linear-gradient(180deg, rgba(19, 27, 40, 0.94), rgba(12, 18, 29, 0.84));
+}
+
+.teaser-lane-workflow {
+  background:
+    linear-gradient(180deg, rgba(138, 176, 230, 0.13), transparent 52%),
+    linear-gradient(180deg, rgba(17, 25, 37, 0.94), rgba(11, 17, 28, 0.84));
+}
+
+.teaser-lane-research {
+  background:
+    linear-gradient(180deg, rgba(213, 196, 170, 0.12), transparent 52%),
+    linear-gradient(180deg, rgba(18, 25, 37, 0.94), rgba(12, 18, 28, 0.84));
 }
 
 .teaser-footer {
@@ -457,7 +648,24 @@
     width: 100%;
   }
 
+  .artifact-node-strip {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+
+  .artifact-join {
+    display: none;
+  }
+
   .teaser-lanes {
+    grid-template-columns: 1fr;
+  }
+
+  .teaser-routing {
     grid-template-columns: 1fr;
   }
 }
@@ -478,6 +686,18 @@
   .teaser-description {
     font-size: 1rem;
     line-height: 1.7;
+  }
+
+  .teaser-actions {
+    width: 100%;
+  }
+
+  .teaser-button {
+    width: 100%;
+  }
+
+  .teaser-tertiary-route {
+    font-size: 0.88rem;
   }
 
   .teaser-artifacts {
@@ -580,12 +800,24 @@
     font-size: 1.3rem;
   }
 
+  .teaser-note {
+    font-size: 0.84rem;
+  }
+
   .teaser-lane {
     padding: 20px 18px 24px;
   }
 
   .teaser-lane h2 {
     font-size: 1.6rem;
+  }
+
+  .teaser-route-card {
+    padding: 20px 18px 24px;
+  }
+
+  .teaser-route-card h2 {
+    font-size: 1.5rem;
   }
 }
 

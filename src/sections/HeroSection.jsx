@@ -22,13 +22,29 @@ function HeroSection({ launchStrip, hero }) {
               {hero.secondaryCta.label}
             </a>
           </div>
+          <div className="hero-route-links" aria-label="Audience paths">
+            {hero.audienceRoutes.map((route) => (
+              <a key={route.label} href={route.href}>
+                {route.label}
+              </a>
+            ))}
+          </div>
           <p className="hero-footnote">{hero.footnote}</p>
         </div>
         <aside className="hero-panel">
           <p className="panel-label">{hero.panelLabel}</p>
-          <ul>
-            {hero.panelItems.map((item) => (
-              <li key={item}>{item}</li>
+          <div className="hero-panel-routes">
+            {hero.panelRoutes?.map((route) => (
+              <article key={route.audience} className="hero-panel-route">
+                <h3>{route.audience}</h3>
+                <p>{route.detail}</p>
+                <a href={route.href}>{route.cta}</a>
+              </article>
+            ))}
+          </div>
+          <ul className="hero-panel-signals">
+            {hero.panelSignals?.map((signal) => (
+              <li key={signal}>{signal}</li>
             ))}
           </ul>
         </aside>

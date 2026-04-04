@@ -19,6 +19,20 @@ Read this before:
 - replacing `src/styles/teaser.css`
 - introducing a new visual system intended to influence `/home` and other routes
 
+## Current Active Direction
+
+As of 2026-04-04, the active teaser branch is the dark editorial / ledger atmosphere direction.
+
+The current reference set for that branch lives in:
+
+- `docs/archive/ui-context/2026-04-04/hire-mark-cre-teaser-mobile-ledger-atmosphere.png`
+- `docs/archive/ui-context/2026-04-04/hire-mark-ui-brand-positioning-brief.md`
+- `docs/archive/ui-context/2026-04-04/hire-mark-ui-teaser-handoff-current-state.md`
+
+The working-paper / review-room branch is kept as a comparison path and should not be treated as current unless this file is updated:
+
+- `docs/archive/ui-context/2026-04-04/hire-mark-cre-teaser-mobile-working-paper.png`
+
 ## Build Intent
 
 - The teaser page should feel premium, modern, and conceptually strong.
@@ -303,3 +317,8 @@ It carries the premium, modern, concept-driven energy found in the reference set
 - Use teaser-specific styling to establish a broader visual system only if it can scale across the rest of the site.
 - Avoid falling back to a default SaaS hero with a screenshot and feature grid.
 - If multiple concepts are implemented, label them clearly in docs or branch notes as teaser variation tests.
+
+## Archive Location
+
+Frozen source snapshots for this analysis live in `docs/archive/ui-context/2026-04-04/`.
+Use those files for provenance only. Treat this document as the current teaser decision surface.
