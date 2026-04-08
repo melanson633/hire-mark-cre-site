@@ -11,6 +11,7 @@ Keep strategy, deployment notes, decisions, and archived drafts separate from pr
 - `11_teaser_variation_directions.md` for active teaser-page visual directions and comparison concepts
 - `20_content_pipeline.md` for cross-repo content sourcing rules
 - `30_deployment.md` for local deploy and domain notes
+- `35_cre_finance_content_research.md` for CRE audience content research (topic tiers, formats, SEO, LinkedIn, conversion drivers, site gaps)
 - `40_decisions.md` for short architectural or product decisions
 
 ## Working Rules
