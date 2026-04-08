@@ -39,6 +39,10 @@ Primary domain: `hire-mark.net`. Redirects configured in `vercel.json` for www a
 
 For positioning, content pipeline, and deployment details: `@docs/10_site_strategy.md`, `@docs/20_content_pipeline.md`, `@docs/30_deployment.md`.
 
+## Content Research
+
+`@docs/35_cre_finance_content_research.md` — distilled research on what CRE finance/accounting professionals engage with most (topic tiers, format matrix, SEO keywords, LinkedIn playbook, conversion drivers, site-specific gaps). Reference this when creating or prioritizing content.
+
 ## Rules
 
 - Run `npm run build` before declaring work complete.
