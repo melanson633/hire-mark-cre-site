@@ -13,11 +13,9 @@ const skillPackDownload = "/downloads/cowork-metaprompt.zip";
 const primaryCtaLabel = "Get the free launch pack";
 
 const landingCopy = {
-  title: "Find and fix the workflows quietly draining your bottom line",
-  description:
-    "Practical AI automation for small and mid-size businesses. We audit your highest-friction workflow, build the fix, and keep it running.",
-  readiness:
-    "No sales talk. We streamline the workflow, prove the outcome, and expand from there.",
+  title: "Automate the workflows draining your bottom line",
+  positioning:
+    "Practical AI automation for small and mid-size businesses: we audit the workflow, build the fix, prove the outcome, and keep it running.",
   ctaTitle: "Private launch pack access",
   ctaBody:
     "Enter your email to get the launch pack and first-look access to AI audits, workflow builds, and managed-agent openings as they roll out.",
@@ -245,7 +243,7 @@ function TeaserPage() {
   const pulseTimeoutRef = useRef(null);
   const [signupPulse, setSignupPulse] = useState(false);
 
-  useDocumentTitle("markbuilds.ai", landingCopy.description);
+  useDocumentTitle("markbuilds.ai", landingCopy.positioning);
 
   useEffect(
     () => {
@@ -343,15 +341,13 @@ function TeaserPage() {
             alt="markbuilds.ai"
           />
         </a>
-        <p className="landing-nav-status">Coming soon</p>
       </header>
 
       <section className="teaser-hero landing-reveal">
         <div className="landing-hero-copy">
           <p className="landing-kicker">Practical AI automation for SMBs</p>
           <h1>{landingCopy.title}</h1>
-          <p className="landing-description">{landingCopy.description}</p>
-          <p className="landing-readiness">{landingCopy.readiness}</p>
+          <p className="landing-positioning">{landingCopy.positioning}</p>
           <div className="landing-pack-strip" aria-label="Free launch pack includes">
             {packItems.map((item) =>
               item.action === "signup" ? (
@@ -478,10 +474,6 @@ function TeaserPage() {
 
       <footer className="landing-footer" aria-label="Footer">
         <img src="/brand/markbuilds-logo-header.svg" alt="markbuilds.ai" />
-        <nav aria-label="Footer navigation">
-          <span>Full site coming soon</span>
-          <a href={`mailto:${siteMeta.contact.email}`}>Contact</a>
-        </nav>
       </footer>
     </div>
   );

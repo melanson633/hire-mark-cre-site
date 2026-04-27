@@ -45,7 +45,7 @@
   width: min(1180px, 100%);
   min-height: 72px;
   margin: 0 auto;
-  padding: 12px 14px 12px 20px;
+  padding: 12px 0;
   border: 1px solid rgba(17, 17, 17, 0.08);
   border-radius: 12px;
   background: rgba(251, 251, 250, 0.86);
@@ -64,24 +64,6 @@
   display: flex;
   align-items: center;
   gap: clamp(12px, 2vw, 22px);
-}
-
-.landing-nav-status {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
-  padding: 5px 10px;
-  border: 1px solid rgba(169, 79, 55, 0.2);
-  border-radius: 9999px;
-  background: var(--landing-terracotta-soft);
-  color: var(--landing-terracotta);
-  font-family: "Geist Mono", "SF Mono", "JetBrains Mono", monospace;
-  font-size: 0.72rem;
-  font-weight: 780;
-  letter-spacing: 0.055em;
-  line-height: 1;
-  text-transform: uppercase;
-  white-space: nowrap;
 }
 
 .landing-nav a,
@@ -220,6 +202,14 @@
   text-transform: uppercase;
 }
 
+.teaser-hero .landing-kicker,
+.landing-service-model > .landing-section-heading .landing-kicker,
+.landing-proof-section > .landing-section-heading .landing-kicker {
+  min-height: 38px;
+  padding: 7px 12px;
+  font-size: 20.5px;
+}
+
 .landing-panel-label {
   background: var(--landing-yellow);
   color: var(--landing-yellow-text);
@@ -231,23 +221,14 @@
   padding-bottom: 22px;
   color: var(--landing-ink);
   font-family: "Instrument Serif", "Newsreader", "Playfair Display", serif;
-  font-size: clamp(3.9rem, 7.2vw, 6.7rem);
+  font-size: 70px;
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 0.88;
   text-wrap: balance;
 }
 
-.landing-description {
-  max-width: 720px;
-  margin-top: 0;
-  padding-bottom: 24px;
-  color: var(--landing-text);
-  font-size: clamp(1.08rem, 1.8vw, 1.28rem);
-  line-height: 1.62;
-}
-
-.landing-readiness {
+.landing-positioning {
   width: fit-content;
   max-width: 690px;
   margin-top: 0;
@@ -256,7 +237,7 @@
   border-radius: 8px;
   background: linear-gradient(135deg, rgba(255, 240, 230, 0.96), rgba(255, 250, 241, 0.96));
   color: #7d3726;
-  font-size: 0.94rem;
+  font-size: 18.5px;
   font-weight: 820;
   line-height: 1.5;
   box-shadow: inset 4px 0 0 rgba(169, 79, 55, 0.32);
@@ -266,7 +247,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .landing-pack-card {
@@ -604,6 +585,9 @@
   grid-template-columns: minmax(0, 0.66fr) minmax(0, 1.12fr);
   gap: clamp(28px, 5vw, 82px);
   align-items: start;
+  min-height: 840px;
+  padding-top: 76px;
+  padding-bottom: 56px;
 }
 
 .landing-section-heading {
@@ -618,7 +602,7 @@
 .landing-proof-section .landing-section-heading > p:not(.landing-kicker) {
   margin-top: 18px;
   color: var(--landing-muted);
-  font-size: 1rem;
+  font-size: 15px;
   line-height: 1.7;
 }
 
@@ -627,7 +611,7 @@
   max-width: 820px;
   color: var(--landing-ink);
   font-family: "Instrument Serif", "Newsreader", "Playfair Display", serif;
-  font-size: clamp(2.5rem, 5vw, 4.6rem);
+  font-size: 55px;
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 0.98;
@@ -667,6 +651,8 @@
 .landing-card-lead {
   grid-column: span 2;
   grid-row: auto;
+  min-height: 175px;
+  max-height: 175px;
   border-left: 5px solid var(--landing-terracotta);
   background: linear-gradient(135deg, #fff7ef 0%, #ffffff 58%);
 }
@@ -687,14 +673,14 @@
 .landing-card h3,
 .landing-proof-card h3 {
   color: var(--landing-ink);
-  font-size: clamp(1.18rem, 1.8vw, 1.5rem);
+  font-size: 22px;
   line-height: 1.18;
 }
 
 .landing-offer-grid .landing-card-lead h3 {
   color: #7d3726;
   font-family: "Instrument Serif", "Newsreader", "Playfair Display", serif;
-  font-size: clamp(2.45rem, 4.3vw, 4.25rem);
+  font-size: 52.5px;
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -705,6 +691,7 @@
   display: block;
   margin-top: 14px;
   color: var(--landing-muted);
+  font-size: 15px;
   line-height: 1.65;
 }
 
@@ -721,6 +708,9 @@
 .landing-proof-section {
   display: grid;
   gap: 24px;
+  min-height: 550px;
+  padding-top: 74px;
+  padding-bottom: 44px;
 }
 
 .landing-proof-grid {
@@ -736,7 +726,8 @@
 
 .landing-proof-card {
   display: grid;
-  min-height: 230px;
+  min-height: 220px;
+  height: 220px;
   padding: clamp(22px, 3vw, 34px);
   border-width: 0 1px 0 0;
   border-radius: 0;
@@ -756,7 +747,7 @@
   background: var(--landing-blue);
   color: var(--landing-blue-text);
   font-family: "Geist Mono", "SF Mono", "JetBrains Mono", monospace;
-  font-size: 0.68rem;
+  font-size: 16px;
   font-weight: 760;
   letter-spacing: 0.05em;
   line-height: 1.2;
@@ -773,6 +764,8 @@
   grid-template-columns: minmax(0, 0.86fr) minmax(360px, 1fr);
   gap: 14px;
   align-items: stretch;
+  min-height: 460px;
+  padding-top: 60px;
   padding-bottom: 24px;
 }
 
@@ -789,6 +782,20 @@
 .landing-audience,
 .landing-final-cta {
   padding: clamp(22px, 3vw, 34px);
+  min-height: 335px;
+}
+
+.landing-audience {
+  border-color: rgba(169, 79, 55, 0.24);
+  background: linear-gradient(135deg, #fffaf4 0%, #ffffff 64%);
+  box-shadow: inset 4px 0 0 rgba(169, 79, 55, 0.24);
+}
+
+.landing-audience .landing-kicker,
+.landing-final-cta .landing-panel-label {
+  font-size: 16px;
+  min-height: 34px;
+  padding: 6px 10px;
 }
 
 .landing-audience ul {
@@ -813,6 +820,7 @@
 
 .landing-final-cta h2 {
   max-width: 600px;
+  font-size: 55px;
 }
 
 .landing-footer {
@@ -823,7 +831,7 @@
   margin: 22px auto 0;
   padding-top: 22px;
   border-top: 1px solid rgba(17, 17, 17, 0.08);
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: 20px;
 }
@@ -832,19 +840,6 @@
   display: block;
   width: 168px;
   height: auto;
-}
-
-.landing-footer nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 14px;
-}
-
-.landing-footer span {
-  color: var(--landing-muted);
-  font-size: 0.86rem;
-  font-weight: 720;
 }
 
 .landing-reveal {
@@ -869,6 +864,14 @@
     min-height: auto;
   }
 
+  .landing-service-model,
+  .landing-proof-section,
+  .landing-bottom {
+    min-height: auto;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
   .landing-visual {
     grid-template-columns: minmax(220px, 0.82fr) minmax(0, 0.72fr);
     align-items: stretch;
@@ -889,11 +892,16 @@
     grid-row: auto;
   }
 
+  .landing-card-lead {
+    max-height: none;
+  }
+
   .landing-proof-grid {
     grid-template-columns: 1fr;
   }
 
   .landing-proof-card {
+    height: auto;
     border-width: 0 0 1px;
   }
 
@@ -938,12 +946,20 @@
     max-width: 12ch;
   }
 
+  .teaser-hero .landing-kicker,
+  .landing-service-model > .landing-section-heading .landing-kicker,
+  .landing-proof-section > .landing-section-heading .landing-kicker {
+    min-height: 30px;
+    padding: 6px 9px;
+    font-size: 0.78rem;
+  }
+
   .landing-nav {
     top: 8px;
     min-height: 64px;
     align-items: center;
     gap: 10px;
-    padding: 10px 12px;
+    padding: 10px 0;
   }
 
   .landing-logo {
@@ -961,18 +977,9 @@
     font-size: 0.8rem;
   }
 
-  .landing-nav-status {
-    font-size: 0.64rem;
-    min-height: 28px;
-    padding: 4px 8px;
-  }
-
-  .landing-description {
-    padding-bottom: 22px;
-  }
-
-  .landing-readiness {
+  .landing-positioning {
     margin-top: 0;
+    font-size: 1rem;
   }
 
   .landing-pack-strip {
@@ -1022,10 +1029,6 @@
   .landing-footer {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .landing-footer nav {
-    justify-content: flex-start;
   }
 }
 
