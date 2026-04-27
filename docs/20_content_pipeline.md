@@ -30,6 +30,10 @@ Examples:
 - No wholesale raw evidence folders copied into this repo
 - If a fact is uncertain, keep it out until confirmed
 
+## Content Research Reference
+
+`docs/35_cre_finance_content_research.md` contains distilled audience research: what CRE finance professionals engage with, topic rankings, format recommendations, SEO keywords, LinkedIn playbook, and site-specific content gaps. Consult when prioritizing new content or evaluating topic ideas.
+
 ## Current Canonical Content Paths
 
 - `src/content/siteMeta.js`

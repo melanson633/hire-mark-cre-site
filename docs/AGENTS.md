@@ -12,6 +12,7 @@ Keep strategy, deployment notes, decisions, and archived drafts separate from pr
 - `20_content_pipeline.md` for cross-repo content sourcing rules
 - `source-context/` for minimal copied upstream context and artifact routing notes
 - `30_deployment.md` for local deploy and domain notes
+- `35_cre_finance_content_research.md` for CRE audience content research (topic tiers, formats, SEO, LinkedIn, conversion drivers, site gaps)
 - `40_decisions.md` for short architectural or product decisions
 
 ## Working Rules
