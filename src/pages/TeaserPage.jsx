@@ -184,7 +184,7 @@ function TeaserPage() {
   const revealRoot = useRef(null);
   const heroSignupRef = useRef(null);
 
-  useDocumentTitle("SMB AI Automation Consulting", landingCopy.description);
+  useDocumentTitle("markbuilds.ai", landingCopy.description);
 
   const patternCards = useMemo(
     () => [
@@ -242,13 +242,10 @@ function TeaserPage() {
         <div>
           <img
             className="landing-logo"
-            src="/brand/hiremark-ai-logo-header.png"
+            src="/brand/markbuilds-logo-header.png"
             alt="markbuilds.ai"
           />
         </div>
-        <button type="button" onClick={focusSignup}>
-          Get the free pack
-        </button>
       </header>
 
       <section className="teaser-hero landing-reveal">
