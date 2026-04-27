@@ -13,14 +13,14 @@ const skillPackDownload = "/downloads/cowork-metaprompt.zip";
 const primaryCtaLabel = "Get the free launch pack";
 
 const landingCopy = {
-  title: "Turn busywork into systems.",
+  title: "Automate the work your team repeats.",
   description:
-    "Hands-on AI automation consulting for small-business teams with recurring reporting, document intake, field notes, and spreadsheet review loops.",
+    "Hands-on AI automation consulting for small and mid-size businesses with recurring intake, reporting, document review, field notes, and spreadsheet-heavy workflows.",
   readiness:
-    "Launch pack available now for operators who want practical AI leverage before another large platform.",
+    "Start with one high-friction workflow and turn it into a measurable process your team can trust every week.",
   ctaTitle: primaryCtaLabel,
   ctaBody:
-    "Start with one useful skill pack. Deeper prompt and workflow notes follow.",
+    "Get the starter workflow pack, then use it to identify the first process worth automating.",
 };
 
 const offerCards = [
@@ -46,17 +46,17 @@ const offerCards = [
 
 const packItems = [
   {
-    title: "Cowork-Metaprompt skill",
-    body: "Rewrite raw prompts into Claude-best-practice form.",
+    title: "Workflow audit",
+    body: "Find the recurring work, handoffs, and exceptions worth automating first.",
     action: "signup",
   },
   {
-    title: "Prompt library",
-    body: "Document, spreadsheet, and workflow prompts follow the pack.",
+    title: "AI review loops",
+    body: "Speed document, spreadsheet, and reporting checks without removing judgment.",
   },
   {
-    title: "Weekly notes",
-    body: "Practical small-business AI automation notes as they ship.",
+    title: "Team handoff",
+    body: "Prompts, checklists, validation steps, and habits your team can keep running.",
   },
 ];
 
@@ -295,6 +295,12 @@ function TeaserPage() {
       if (!root) return undefined;
 
       const motionImages = gsap.utils.toArray(".landing-motion-image", root);
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReducedMotion) {
+        gsap.set(motionImages, { clearProps: "all" });
+        return undefined;
+      }
+
       motionImages.forEach((image) => {
         gsap.fromTo(
           image,

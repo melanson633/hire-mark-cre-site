@@ -266,10 +266,11 @@
 }
 
 .landing-pack-card {
+  position: relative;
   display: grid;
   gap: 6px;
   min-height: 48px;
-  padding: 10px 12px;
+  padding: 10px 34px 10px 12px;
   border: 1px solid var(--landing-border);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.72);
@@ -280,6 +281,19 @@
   appearance: none;
   cursor: pointer;
   transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.landing-pack-card::after {
+  content: "->";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: var(--landing-terracotta);
+  font-family: "Geist Mono", "SF Mono", "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  font-weight: 760;
+  letter-spacing: 0;
+  line-height: 1.2;
 }
 
 .landing-pack-card:hover {
@@ -873,9 +887,35 @@
   }
 }
 
+@media (max-width: 840px) {
+  .landing-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-image-frame {
+    aspect-ratio: 16 / 11;
+  }
+
+  .landing-image-strip {
+    align-self: stretch;
+  }
+}
+
 @media (max-width: 720px) {
   .teaser-page {
     padding: 18px 14px 34px;
+  }
+
+  .teaser-hero {
+    padding-bottom: 46px;
+  }
+
+  .landing-section {
+    padding: 64px 0;
+  }
+
+  .teaser-hero + .landing-section {
+    padding-top: 64px;
   }
 
   .teaser-hero h1 {
@@ -933,10 +973,6 @@
     width: 100%;
   }
 
-  .landing-image-frame {
-    aspect-ratio: 16 / 11;
-  }
-
   .landing-image-strip {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -945,6 +981,19 @@
   .landing-download-button,
   .landing-secondary-link {
     width: 100%;
+    min-height: 48px;
+  }
+
+  .landing-form-recovery a,
+  .landing-install-details summary,
+  .landing-footer a {
+    min-height: 44px;
+  }
+
+  .landing-install-details summary,
+  .landing-footer a {
+    display: inline-flex;
+    align-items: center;
   }
 
   .landing-footer {
@@ -955,20 +1004,30 @@
   .landing-footer nav {
     justify-content: flex-start;
   }
-
 }
 
 @media (prefers-reduced-motion: reduce) {
   .landing-reveal,
   .landing-card,
   .landing-pack-card,
+  .landing-image-frame,
+  .landing-image-frame img,
   .landing-proof-card,
-  .landing-signup button {
+  .landing-signup button,
+  .landing-download-button,
+  .landing-secondary-link,
+  .landing-primary-button {
     transition: none;
   }
 
   .landing-reveal {
     opacity: 1;
+    transform: none;
+  }
+
+  .landing-image-frame:hover img,
+  .landing-card:hover,
+  .landing-pack-card:hover {
     transform: none;
   }
 }
