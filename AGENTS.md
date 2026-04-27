@@ -13,6 +13,8 @@ This repo is for website code and publishable site content only.
 - `docs/10_site_strategy.md` for positioning and page intent
 - `docs/20_content_pipeline.md` for how source material is pulled in from the cousin workspace
 - `src/content` for current publishable copy and structured site content
+- `docs/source-context` for minimal copied upstream context and routing notes
+- `public` for web-addressable artifact exports and static assets
 
 ## Cousin Repo Context
 
@@ -25,6 +27,8 @@ Do not create runtime dependencies, imports, symlinks, or build steps that requi
 If content from `Job_Search` is needed, distill and copy the approved public version into this repo.
 
 Do not modify `Job_Search` from this repo unless explicitly asked.
+
+Copied source context belongs in `docs/source-context/`. Publishable HTML, PDF, image, and workbook exports belong in `public/`. Raw evidence folders such as `00_user_context/` should not be copied wholesale.
 
 ## Read Order
 
@@ -42,6 +46,12 @@ When possible, read in this order:
 - Keep publishable content in `src/content` instead of scattering copy throughout JSX.
 - Keep docs short and path-scoped so agents can load only what they need.
 - Delete stale placeholder sections and dead code instead of accumulating clutter.
+
+## Cross-OS Dev
+
+Shared `node_modules` on OneDrive across Windows (Codex) and WSL2 (Claude Code). If Vite errors with `Cannot find module @rollup/rollup-<platform>` or `@esbuild/<platform>`, install the matching binary with `--no-save` and retry — do not delete or reinstall `node_modules`:
+- WSL2: `npm install --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64`
+- Windows: `npm install --no-save @rollup/rollup-win32-x64-msvc @esbuild/win32-x64`
 
 ## Validation
 

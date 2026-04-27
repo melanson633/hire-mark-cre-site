@@ -41,6 +41,8 @@ npm run preview
 ```text
 docs/           repo strategy, decisions, deployment notes, archive
 public/         static public assets
+public/case-studies/ public-safe case-study HTML/PDF exports
+public/research/ published research packages and LinkedIn document assets
 scripts/        verification scripts (content validation + smoke)
 src/content/    structured publishable content
 src/pages/      page-level assembly
@@ -61,3 +63,5 @@ src/styles/     global styling
 Source material may come from the cousin workspace at `C:\Users\melan\Documents\Job_Search`.
 
 That workspace is for raw professional materials. This repo holds only the distilled, public-safe version.
+
+Copied routing context from that workspace lives under `docs/source-context/`; web-addressable copied artifacts live under `public/`.

@@ -23,6 +23,6 @@ export const about = {
     },
   ],
   contact: {
-    text: "I'm open to full-time roles in CRE operations, asset management, or finance — as well as consulting engagements where AI and automation can move the needle. If something here resonates, reach out.",
+    text: "I take on AI-automation consulting engagements — workflow audits, cross-system reconciliation builds, and field-team digitization with audit trail. I am also open to selective full-time roles in CRE operations or finance. If something here resonates, reach out.",
   },
 };

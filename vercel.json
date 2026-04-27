@@ -9,10 +9,10 @@
       "has": [
         {
           "type": "host",
-          "value": "www.hire-mark.net"
+          "value": "www.markbuilds.ai"
         }
       ],
-      "destination": "https://hire-mark.net/",
+      "destination": "https://markbuilds.ai/",
       "permanent": true
     },
     {
@@ -20,54 +20,10 @@
       "has": [
         {
           "type": "host",
-          "value": "www.hire-mark.net"
+          "value": "www.markbuilds.ai"
         }
       ],
-      "destination": "https://hire-mark.net/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "hire-mark-cre.com"
-        }
-      ],
-      "destination": "https://hire-mark.net/",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "hire-mark-cre.com"
-        }
-      ],
-      "destination": "https://hire-mark.net/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.hire-mark-cre.com"
-        }
-      ],
-      "destination": "https://hire-mark.net/",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.hire-mark-cre.com"
-        }
-      ],
-      "destination": "https://hire-mark.net/:path*",
+      "destination": "https://markbuilds.ai/:path*",
       "permanent": true
     }
   ]

@@ -29,11 +29,13 @@ Fonts loaded via Google Fonts in `index.html`: Instrument Serif, Manrope, Space 
 
 Vercel auto-deploys on push to master. No CI/CD pipeline — Vercel handles builds.
 
-Primary domain: `hire-mark.net`. Redirects configured in `vercel.json` for www and hire-mark-cre.com variants.
+Primary domain: `markbuilds.ai`. Redirect configured in `vercel.json` for `www.markbuilds.ai` → apex.
 
 ## Cousin Repo
 
-`C:\Users\melan\Documents\Job_Search` is a read-only source for career facts and draft materials. No runtime dependencies, imports, or symlinks to it. Distill and copy approved content into this repo.
+`C:\Users\melan\OneDrive\Documents\Job_Search` is a read-only source for career facts and draft materials. No runtime dependencies, imports, or symlinks to it. Distill and copy approved content into this repo.
+
+The active subfolder is `C:\Users\melan\OneDrive\Documents\Job_Search\01_master_profile\ai_side_hustle` — the upstream offer-development brain (capability patterns, offer matrix, GTM playbooks, lead-DB scripts). Treat it as upstream context only; site edits happen in this repo.
 
 ## Strategy Docs
 
@@ -45,3 +47,4 @@ For positioning, content pipeline, and deployment details: `@docs/10_site_strate
 - Keep the site deployable as a standalone repo.
 - Prefer simple Vite/React patterns over framework sprawl.
 - Delete stale code instead of accumulating clutter.
+- On Vite/rollup/esbuild platform-binary errors (`Cannot find module @rollup/rollup-<platform>` etc.), see `AGENTS.md` > Cross-OS Dev for the one-liner fix. Do not reinstall `node_modules`.

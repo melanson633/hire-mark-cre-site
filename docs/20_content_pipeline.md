@@ -17,14 +17,17 @@ Examples:
 
 1. Read the relevant source material from `Job_Search`
 2. Distill only the public-safe facts and claims
-3. Copy that approved version into `src/content`
-4. Update the sections or pages that consume it
+3. Copy minimal routing context into `docs/source-context/` when future agents need provenance
+4. Copy web-addressable artifacts into `public/`
+5. Copy approved publishable claims and metadata into `src/content`
+6. Update the sections or pages that consume it
 
 ## Hard Rules
 
 - No runtime imports from `Job_Search`
 - No symlinks or shared build dependencies
 - No sensitive or private notes copied into public site content
+- No wholesale raw evidence folders copied into this repo
 - If a fact is uncertain, keep it out until confirmed
 
 ## Current Canonical Content Paths
@@ -33,3 +36,7 @@ Examples:
 - `src/content/home.js`
 - `src/content/caseStudies/`
 - `src/content/research/`
+- `docs/source-context/`
+- `public/case-studies/`
+- `public/research/`
+- `public/newsletters/`

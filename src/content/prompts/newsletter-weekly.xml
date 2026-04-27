@@ -1,0 +1,123 @@
+<task>
+Create a completed single-file HTML newsletter containing a weekly newsletter-style commercial real estate news update.
+
+Use the Skill `design-taste-frontend` for layout, visual hierarchy, typography, spacing, and overall presentation quality. Treat that skill as active guidance for the HTML/CSS output, but do not let it expand scope beyond a clean, compact, highly skimmable newsletter.
+</task>
+
+<primary_objective>
+Produce a clean, compact, highly skimmable weekly CRE update focused on the Greater Boston and broader New England market for a broad commercial real estate audience.
+</primary_objective>
+
+<voice_and_tone>
+- Neutral-analytical. No hype, no marketing language, no first-person.
+- Treat the reader as an informed CRE professional — define acronyms only when non-standard.
+- Favor concrete numbers (SF, $, cap rate, bps) over adjectives.
+</voice_and_tone>
+
+<critical_date_window_instruction>
+Do not guess what "last 7 days" means.
+Before researching:
+1. Determine the current local execution date.
+2. Resolve:
+   - END_DATE = current local date
+   - START_DATE = END_DATE minus 7 calendar days
+3. Treat the window as inclusive: include only source material published on or after START_DATE and on or before END_DATE.
+4. Display the resolved covered date range near the top of the newsletter.
+5. Use live/current web research when the environment supports a choice between cached and live search.
+</critical_date_window_instruction>
+
+<scope_and_source_rules>
+- Use only source material published within the resolved inclusive date window.
+- Cover only commercial real estate news relevant to Greater Boston and New England.
+- Geography priority: Greater Boston first; other New England metros (Providence, Hartford, Portland ME, Manchester NH, Worcester, Springfield) included when the story is material.
+- National or otherwise unrelated stories are excluded unless they have a clear, direct, and material impact on the Greater Boston or New England CRE market.
+- Use any relevant source type, including local business journals, regional newspapers, trade publications, and brokerage or market reports.
+- Avoid paywalled sources when comparable non-paywalled coverage exists.
+- Do not duplicate the same development across multiple items; consolidate overlapping coverage into a single item.
+- Include an inline citation at the end of each item using source name and publication date, and hyperlink the source when practical.
+- Include a final sources section at the end of the document.
+</scope_and_source_rules>
+
+<anti_patterns>
+- Do not use vendor press releases as the sole source for an item.
+- Do not include national macro takes (Fed rate cuts, 10-year yield moves) unless paired with a specific local CRE consequence reported in-window.
+- Do not include broker-sponsored "market outlook" blog posts dressed as reporting.
+- Do not pad with generic trend commentary not tied to a specific in-window story.
+</anti_patterns>
+
+<content_requirements>
+- Include 8 to 12 distinct, non-duplicative items when enough qualifying stories exist.
+- Maintain broad CRE coverage where possible across office, industrial, multifamily, retail, mixed-use, investment sales, leasing, development, zoning, capital markets, major tenants, and notable local market shifts.
+- Market commentary or trend synthesis is allowed only when it is clearly supported by the week's reporting and materially relevant to the local market.
+- If fewer than 8 valid items are available within the time window and geography constraints, include only the qualifying items and explicitly state that coverage was limited by those constraints.
+</content_requirements>
+
+<deliverable>
+Produce a completed standalone HTML file, not a .docx.
+The HTML must be ready to open locally in a browser with no build step required.
+</deliverable>
+
+<document_structure>
+- Clear title including "Hire Mark Weekly CRE Brief" or equivalent brand line
+- Covered date range near the top using the resolved START_DATE and END_DATE
+- Extremely concise opening summary of the week's main topics and takeaways
+- Newsletter-style itemized coverage organized for fast scanning
+- Final sources section
+- Footer: "Curated by Mark Melanson — markbuilds.ai" with link
+</document_structure>
+
+<for_each_item_include>
+- headline or topic
+- publication date
+- source name
+- concise summary (2-4 sentences)
+- why it matters to the Greater Boston or New England CRE market (1 sentence)
+- inline citation at the end of the item
+</for_each_item_include>
+
+<html_css_requirements>
+- Output a single self-contained HTML file.
+- Use semantic HTML.
+- Use embedded CSS in a `<style>` block.
+- Optimize for both screen reading and clean browser print-to-PDF output.
+- Use a narrow, professional content width (max ~720px) with strong visual hierarchy.
+- Keep the layout compact and highly scannable.
+- Make headers and subheaders clearly visually distinct.
+- Use restrained styling only; avoid decorative clutter, gimmicks, or excessive visual treatment.
+- Do not require external frameworks, build tools, or remote assets unless absolutely necessary.
+- Include a print rule that surfaces link URLs:
+  `@media print { a[href]::after { content: " (" attr(href) ")"; font-size: 0.85em; color: #555; } }`
+- Prefer a polished editorial/newsletter feel over a generic app UI.
+</html_css_requirements>
+
+<images>
+- Prefer no images unless they materially improve the update.
+- If images are included, use only a small number of high-value images.
+- Do not include decorative or weakly relevant images.
+- Do not waste time hunting images for marginal benefit.
+</images>
+
+<execution_guidance>
+- Work efficiently and stay within scope.
+- Prefer the best available qualifying stories over exhaustively searching for edge-case additions.
+- Do not loop on paywalled, inaccessible, duplicative, or weakly relevant sources.
+- Stop once the HTML document is complete and the acceptance criteria are met.
+- If blocked, state the blocker precisely and produce the best complete bounded output possible rather than continuing to churn.
+</execution_guidance>
+
+<acceptance_criteria>
+- Every included item is sourced from the resolved inclusive date window.
+- Every included item is relevant to Greater Boston or New England commercial real estate.
+- The document contains 8 to 12 non-duplicative items when available.
+- The opening summary is extremely concise.
+- Inline citations appear at the end of each item.
+- The layout is clean, compact, polished, and highly skimmable.
+- The final deliverable is a completed standalone HTML file.
+</acceptance_criteria>
+
+<output_requirements>
+- Return the final HTML as the primary deliverable.
+- Save the file to `public/newsletters/weekly-cre-YYYY-MM-DD.html`, where YYYY-MM-DD is the resolved END_DATE.
+- Do not overwrite existing archived issues; each run produces a new dated file.
+- Do not return planning notes unless they are necessary to explain a blocker.
+</output_requirements>

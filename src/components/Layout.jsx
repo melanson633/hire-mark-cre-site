@@ -18,23 +18,32 @@ function Layout() {
   const isTeaserHome = location.pathname === "/";
   const isTeaserShell = isTeaserHome;
 
+  if (isTeaserShell) {
+    return (
+      <div className="teaser-layout">
+        <ScrollToTop />
+        <main id="top">
+          <Outlet />
+        </main>
+      </div>
+    );
+  }
+
   return (
-    <div className={isTeaserShell ? "page-shell teaser-layout" : "page-shell"}>
-      <header className={isTeaserShell ? "site-header teaser-header" : "site-header"}>
+    <div className="page-shell">
+      <header className="site-header">
         <Link className="wordmark" to="/">
           <span className="wordmark-main">{siteMeta.wordmark.main}</span>
           <span className="wordmark-accent">{siteMeta.wordmark.accent}</span>
         </Link>
-        {isTeaserShell ? null : (
-          <nav className="site-nav" aria-label="Primary">
-            {siteMeta.navigation.map((item) => {
-              const isHash = item.href.startsWith("#");
-              if (isHash && !isContentHome) return null;
-              const isActive = item.href.startsWith("/") && location.pathname.startsWith(item.href);
-              return <NavLink key={item.href} item={item} isActive={isActive} />;
-            })}
-          </nav>
-        )}
+        <nav className="site-nav" aria-label="Primary">
+          {siteMeta.navigation.map((item) => {
+            const isHash = item.href.startsWith("#");
+            if (isHash && !isContentHome) return null;
+            const isActive = item.href.startsWith("/") && location.pathname.startsWith(item.href);
+            return <NavLink key={item.href} item={item} isActive={isActive} />;
+          })}
+        </nav>
       </header>
 
       <ScrollToTop />

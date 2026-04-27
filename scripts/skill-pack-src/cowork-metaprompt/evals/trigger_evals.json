@@ -1,0 +1,73 @@
+{
+  "skill": "cowork-metaprompt",
+  "purpose": "Validate that the SKILL.md description triggers correctly. Each query is a realistic user message; expected = whether the cowork-metaprompt skill should fire.",
+  "evals": [
+    {
+      "id": 1,
+      "expected": "trigger",
+      "category": "explicit-rewrite-request",
+      "prompt": "Here's a prompt I'm using in Cowork — can you rewrite it so the agent handles it better? 'help me clean up my downloads folder'"
+    },
+    {
+      "id": 2,
+      "expected": "trigger",
+      "category": "codex-port",
+      "prompt": "I have this prompt I've been using in ChatGPT for code review. I want to port it to Claude Code — what should I change?\n\n<pastes a 30-line system prompt>"
+    },
+    {
+      "id": 3,
+      "expected": "trigger",
+      "category": "phrasing-question",
+      "prompt": "How should I phrase a Cowork request so the agent uses my Slack MCP instead of falling back to clicking around? I keep getting it to use computer use when I don't want it to."
+    },
+    {
+      "id": 4,
+      "expected": "trigger",
+      "category": "metaprompt-language",
+      "prompt": "Can you do some metaprompting on this for me — I want it tighter and I want it to actually verify the output before claiming success: 'summarize my Q3 OKR progress'"
+    },
+    {
+      "id": 5,
+      "expected": "trigger",
+      "category": "underspecified-improvement-of-a-prompt",
+      "prompt": "improve this prompt: 'find interesting things in my notes'"
+    },
+    {
+      "id": 6,
+      "expected": "no-trigger",
+      "category": "code-improvement",
+      "prompt": "Can you tighten and optimize this Python function? It's too slow on large inputs.\n\ndef foo(xs):\n    return [x for x in xs if some_check(x)]"
+    },
+    {
+      "id": 7,
+      "expected": "no-trigger",
+      "category": "writing-improvement",
+      "prompt": "Improve this paragraph for my landing page — make it punchier and remove the passive voice."
+    },
+    {
+      "id": 8,
+      "expected": "no-trigger",
+      "category": "email-rewrite",
+      "prompt": "Rewrite this email so it sounds less stiff but still professional — I'm replying to my manager about the deadline slip."
+    },
+    {
+      "id": 9,
+      "expected": "no-trigger",
+      "category": "skill-authoring",
+      "prompt": "Help me build a Cowork skill that summarizes my weekly Slack DMs into a digest. Walk me through the SKILL.md and reference file structure."
+    },
+    {
+      "id": 10,
+      "expected": "no-trigger",
+      "category": "executing-the-underlying-task",
+      "prompt": "Run this for me: search my Google Drive for the Q3 board deck, summarize the appendix, and save the summary as a Word doc in my selected folder."
+    }
+  ],
+  "notes": [
+    "Queries 1–5 should fire cowork-metaprompt because each is explicitly about transforming or phrasing a prompt for Cowork or Claude Code.",
+    "Query 5 is intentionally borderline — 'improve this prompt' uses the generic verb but binds it to 'this prompt', which is the calibration the description is built around. Should fire.",
+    "Queries 6–8 are the most common failure mode for over-pushy descriptions: they use 'tighten / improve / rewrite' against non-prompt artifacts (code, writing, email). Negative-trigger guidance in the description should prevent these.",
+    "Query 9 is skill-authoring — explicitly excluded by the description's 'Do NOT use to author other skills' clause.",
+    "Query 10 is task-execution — the description's 'Do NOT use to execute the underlying task' clause should prevent firing here even though it mentions Cowork primitives (Drive, workspace folder, .docx)."
+  ]
+}

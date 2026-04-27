@@ -1,6 +1,7 @@
 import { excelModelStudies } from "./excel-models";
 import { aiToolStudies } from "./ai-tools";
 import { operationsStudies } from "./cre-research";
+export { importedCaseStudyArtifacts } from "./imported-artifacts";
 
 export const workSection = {
   eyebrow: "Selected Work",

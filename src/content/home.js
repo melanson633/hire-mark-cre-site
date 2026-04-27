@@ -1,7 +1,7 @@
 export const stats = [
-  { value: "70+", label: "assets watched across a complex CRE portfolio" },
-  { value: "$800M", label: "value supported through finance operations" },
-  { value: "20x", label: "billing-cycle compression from workflow software" },
+  { value: "$800K", label: "capital-call decision unlocked by a single AI-built cash-flow model" },
+  { value: "$103K", label: "annual overhead removed by one ETL automation" },
+  { value: "20x", label: "billing-cycle compression after a workflow rebuild" },
 ];
 
 export const launchStrip = {
@@ -18,7 +18,7 @@ export const hero = {
   primaryCta: { label: "Review operator proof", href: "#work" },
   secondaryCta: { label: "Get launch updates", href: "#newsletter" },
   footnote:
-    "Built for operators, hiring managers, and advisory conversations without collapsing into a single generic CTA.",
+    "Built for operators and decision-makers who want a concrete workflow review before committing to scope.",
   panelLabel: "Audience routing / fastest entry paths",
   panelRoutes: [
     {
@@ -28,10 +28,10 @@ export const hero = {
       cta: "Go to lanes",
     },
     {
-      audience: "Hiring managers",
-      detail: "Evaluate shipped systems and judgment",
-      href: "#work",
-      cta: "Go to proof",
+      audience: "Workflow audit",
+      detail: "Get a 30-min review of your highest-leverage fix",
+      href: "#contact",
+      cta: "Start the audit",
     },
     {
       audience: "Launch updates",
@@ -47,7 +47,7 @@ export const hero = {
   ],
   audienceRoutes: [
     { label: "Operators", href: "#launch" },
-    { label: "Hiring managers", href: "#work" },
+    { label: "Workflow audit", href: "#contact" },
     { label: "Launch updates", href: "#newsletter" },
   ],
 };
@@ -102,7 +102,7 @@ export const positioningSection = {
     {
       title: "Who it speaks to",
       body:
-        "CRE operators, finance leaders, hiring managers, and technical teams who need cleaner reporting logic and more leverage from existing data.",
+        "Operators and finance leaders who need cleaner reporting logic, tighter cross-system handoffs, and more leverage from data they already have.",
     },
     {
       title: "What it avoids",
@@ -113,23 +113,23 @@ export const positioningSection = {
 };
 
 export const toolsSection = {
-  eyebrow: "Future Products",
-  title: "Productize proven systems without losing operator discipline.",
+  eyebrow: "Engagements",
+  title: "Three engagement shapes — from short audits to embedded retainers.",
   intro:
-    "Product scope stays anchored to finance pain points and measurable workflow improvement, not platform sprawl.",
+    "Scope stays anchored to a measurable workflow improvement, not platform sprawl. Pick the smallest shape that closes the gap.",
   ideas: [
-    "Template packs for debt, budgets, recurring reporting, and covenant control",
-    "Small utility apps for extraction, reconciliation, and monthly close support",
-    "Paid operator briefings for teams improving reporting architecture",
+    "Workflow audit — short, fixed-scope review of one painful workflow with a friction-removal recommendation set",
+    "Build engagement — design and ship the automation, ETL, or branded deliverable end-to-end with audit trail",
+    "Retainer — operate the system once it is live; monitoring, refinement, and adjacent builds",
   ],
 };
 
 export const contactSection = {
   eyebrow: "Contact",
-  title: "Start with the right conversation.",
+  title: "Start with a workflow.",
   intro:
-    "Best early conversations are concrete: reporting pain points, systems priorities, and where immediate leverage is possible.",
+    "Tell me about a workflow that is hurting — manual reconciliation, document chaos, field-team paper, brittle handoffs. I will send back a 30-minute review of where the highest-leverage fix lives.",
   heading: "Reach out",
   body:
-    "Best fit conversations: CRE finance operations, reporting infrastructure, Excel model design, AI workflow implementation, and hiring for systems-level execution.",
+    "Best fit: a single workflow with measurable cost in time or dollars, an owner who wants it fixed, and access to one or two data sources to ground the review.",
 };

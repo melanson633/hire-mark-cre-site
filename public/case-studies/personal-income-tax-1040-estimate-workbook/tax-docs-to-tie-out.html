@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>1040 Estimate Skill — Tax Forms to Workbook in Ten Minutes</title>
+<style>
+  :root{
+    --navy:#103A5C;
+    --navy-ink:#0B2A44;
+    --terra:#B85C3D;
+    --terra-ink:#8A4329;
+    --terra-soft:#F4E3DA;
+    --graphite:#1B1E23;
+    --white:#FFFFFF;
+    --off-white:#F7F8F8;
+    --light-rule:#D8DDE2;
+    --muted:#5D6670;
+  }
+
+  @page { size: Letter; margin: 0.5in; }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family: Inter, Arial, sans-serif;
+    color: var(--graphite);
+    background: var(--white);
+    font-size: 10.25pt;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page{ width: 7.5in; margin: 0 auto; padding: 0; }
+
+  /* HEADER */
+  .doc-header{
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 8px; margin-bottom: 12px;
+  }
+  .mono{
+    width:38px; height:38px; border-radius:8px;
+    background:var(--navy); color:var(--white);
+    font-weight:700; font-size:15pt;
+    display:flex; align-items:center; justify-content:center;
+    letter-spacing:0.02em;
+  }
+  .doc-header .meta{
+    text-align:right; font-size:8.25pt; color:var(--muted);
+    letter-spacing:0.12em; text-transform:uppercase; font-weight:600;
+  }
+  .doc-header .meta strong{ color:var(--navy); font-weight:700; }
+
+  .eyebrow{
+    color: var(--terra); font-size: 8pt; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px;
+  }
+
+  h1{
+    font-size: 18pt; line-height: 1.18; font-weight: 700;
+    color: var(--navy-ink); margin: 0 0 6px 0; letter-spacing:-0.005em;
+  }
+  .subtitle{
+    font-size: 10pt; color: var(--graphite);
+    margin: 0 0 10px 0; max-width: 7in;
+  }
+  .rule{ width: 3.2rem; height: 3px; background: var(--terra); border-radius: 999px; margin: 0 0 14px 0; }
+
+  .meta-row{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    background: var(--off-white); border: 1px solid var(--light-rule);
+    padding: 8px 12px; margin: 0 0 14px 0;
+  }
+  .meta-row .cell .k{
+    font-size: 7.5pt; color: var(--navy);
+    letter-spacing:0.12em; text-transform:uppercase; font-weight:700; margin-bottom:2px;
+  }
+  .meta-row .cell .v{ font-size: 9pt; color: var(--graphite); line-height: 1.35; }
+
+  h2{
+    font-size: 11pt; font-weight: 700;
+    color: var(--navy-ink); margin: 14px 0 6px 0;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--light-rule); padding-bottom: 3px;
+  }
+  h2 .accent{ color: var(--terra); }
+  h3{
+    font-size: 9.75pt; font-weight: 700;
+    color: var(--navy-ink); margin: 10px 0 4px 0;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  p{ margin: 4px 0 8px 0; }
+  ul{ margin: 4px 0 8px 0; padding-left: 18px; }
+  li{ margin-bottom: 3px; }
+
+  /* ==== Vertical Before / After diagram ==== */
+  .ba-vert{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 6px 0 14px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .ba-col{
+    background: var(--white);
+    border: 1px solid var(--light-rule);
+    display:flex; flex-direction:column;
+  }
+  .ba-head{
+    padding: 8px 12px;
+    font-weight:700; font-size: 9pt;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .ba-head .count{ font-size: 8pt; opacity: 0.85; letter-spacing: 0.08em; }
+  .ba-col.before .ba-head{ background: var(--graphite); color: var(--white); }
+  .ba-col.after  .ba-head{ background: var(--terra); color: var(--white); }
+
+  .ba-steps{ padding: 8px 12px 4px 12px; flex: 1 1 auto; }
+  .ba-step{
+    position: relative;
+    padding: 4px 0 4px 24px;
+    border-bottom: 1px dashed var(--light-rule);
+    font-size: 8.75pt; line-height: 1.3;
+  }
+  .ba-step:last-of-type{ border-bottom: 0; }
+  .ba-step .n{
+    position:absolute; left:0; top:4px;
+    width:17px; height:17px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 7pt; font-weight:700;
+  }
+  .ba-col.before .ba-step .n{ background: var(--graphite); color: var(--white); }
+  .ba-col.after  .ba-step .n{ background: var(--terra); color: var(--white); }
+  .ba-step .label{ font-weight:700; color: var(--navy-ink); display:block; font-size: 8.75pt; }
+  .ba-step .det{ color: var(--muted); font-size: 8pt; }
+
+  .ba-total{
+    padding: 8px 12px; border-top: 2px solid var(--light-rule);
+    display:flex; justify-content:space-between; align-items:baseline;
+    background: var(--off-white);
+  }
+  .ba-total .t-k{
+    font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 700; color: var(--muted);
+  }
+  .ba-total .t-v{
+    font-size: 14pt; font-weight: 700; color: var(--navy-ink);
+    line-height: 1;
+  }
+  .ba-col.after .ba-total .t-v{ color: var(--terra); }
+
+  .ba-delta{
+    grid-column: 1 / -1;
+    display:flex; justify-content:center; align-items:center; gap: 14px;
+    padding: 8px 12px;
+    background: var(--terra-soft);
+    border: 1px solid var(--terra);
+    border-radius: 4px;
+    margin-top: 4px;
+    font-size: 9pt;
+  }
+  .ba-delta .d-k{
+    color: var(--terra-ink); font-weight:700;
+    letter-spacing: 0.1em; text-transform: uppercase; font-size: 8pt;
+  }
+  .ba-delta .d-v{ color: var(--navy-ink); font-weight: 700; font-size: 11pt; }
+
+  /* ==== Impact hero (compact, page 1) ==== */
+  .impact-lite{
+    display:grid;
+    grid-template-columns: 1.3fr 2.2fr;
+    gap: 12px;
+    background: var(--navy); color: var(--white);
+    padding: 10px 14px;
+    margin: 4px 0 8px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .impact-lite .big{
+    font-size: 24pt; font-weight: 700;
+    line-height: 1; letter-spacing: -0.01em;
+    color: var(--white);
+  }
+  .impact-lite .big .sub{
+    display:block; font-size: 7.75pt;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 600; opacity: 0.85; margin-top: 6px; color: var(--white);
+  }
+  .impact-lite .stats{
+    display:grid; grid-template-columns: repeat(2, 1fr);
+    gap: 6px 18px; align-content:center;
+  }
+  .impact-lite .stat .v{
+    font-size: 14pt; font-weight: 700; color: var(--white);
+    line-height: 1;
+  }
+  .impact-lite .stat .k{
+    font-size: 7.5pt; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 600;
+    opacity: 0.85; margin-top: 3px;
+  }
+
+  /* ==== Impact callout (detail page) ==== */
+  .impact{
+    background: var(--navy); color: var(--white);
+    padding: 12px 16px;
+    display:grid; grid-template-columns: 1.1fr 2fr;
+    gap: 16px; margin: 6px 0 12px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .impact .big{ font-size: 24pt; font-weight: 700; line-height: 1; letter-spacing: -0.01em; }
+  .impact .lbl{
+    font-size: 7.75pt; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 600; opacity: 0.85; margin-top: 6px;
+  }
+  .impact ul{ margin:0; padding-left: 16px; font-size: 9pt; }
+  .impact li{ margin-bottom: 3px; }
+  .impact li::marker{ color: var(--terra-soft); }
+
+  /* ==== Image figure ==== */
+  figure{ margin: 8px 0 10px 0; break-inside: avoid; page-break-inside: avoid; }
+  figure img{
+    max-width: 100%; height: auto; display:block;
+    border: 1px solid var(--light-rule); background: var(--white);
+  }
+  figcaption{
+    font-size: 8.25pt; color: var(--muted);
+    margin-top: 5px; line-height: 1.4;
+    break-before: avoid; page-break-before: avoid;
+  }
+  figcaption .tag{
+    color: var(--terra); font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-right: 6px;
+  }
+  figcaption .tag.navy{ color: var(--navy); }
+
+  /* Side-by-side figures */
+  .fig-pair{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 6px 0 10px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .fig-pair figure{ margin: 0; break-inside: avoid; }
+  .fig-pair figure img{ width: 100%; max-height: 3.2in; object-fit: contain; }
+
+  /* 3-up rates trio */
+  .rates-trio{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 6px 0 6px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .rates-trio figure{ margin: 0; break-inside: avoid; }
+  .rates-trio figure img{ width: 100%; max-height: 2.4in; object-fit: contain; }
+
+  /* ==== AI in the Build section ==== */
+  .ai-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 6px 0 10px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .ai-card{
+    border: 1px solid var(--light-rule);
+    border-top: 3px solid var(--terra);
+    padding: 10px 12px;
+    background: var(--white);
+  }
+  .ai-card .tool{
+    font-size: 7.75pt; color: var(--terra);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 4px;
+  }
+  .ai-card .title{
+    font-size: 10pt; font-weight: 700;
+    color: var(--navy-ink); margin-bottom: 4px;
+  }
+  .ai-card .body{ font-size: 8.75pt; line-height: 1.4; color: var(--graphite); }
+
+  /* Metrics row */
+  .metrics{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    margin: 2px 0 10px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .metrics .m{
+    border: 1px solid var(--light-rule);
+    border-left: 3px solid var(--terra);
+    padding: 9px 12px; background: var(--white);
+  }
+  .metrics .m .v{ font-size: 15pt; font-weight: 700; color: var(--navy-ink); line-height: 1; }
+  .metrics .m .k{
+    font-size: 7.5pt; color: var(--muted);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600; margin-top: 5px;
+  }
+
+  /* break helpers */
+  figure, .impact, .impact-lite, .metrics, .ba-vert, .ai-grid, .fig-pair{
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  h2, h3 { break-after: avoid; page-break-after: avoid; }
+  p { orphans: 3; widows: 3; }
+  .new-page { break-before: page; page-break-before: always; }
+
+  /* Footer */
+  .doc-footer{
+    margin-top: 20px; padding-top: 8px;
+    border-top: 1px solid var(--light-rule);
+    display:flex; justify-content:space-between;
+    font-size: 7.75pt; color: var(--muted);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  .small{ font-size: 8.5pt; color: var(--muted); }
+  .callout{
+    background: var(--terra-soft);
+    border-left: 3px solid var(--terra);
+    padding: 8px 12px;
+    margin: 6px 0 10px 0;
+    font-size: 9pt; color: var(--navy-ink);
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .callout strong{ color: var(--terra-ink); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============ PAGE 1: HOOK + BA + IMPACT ============ -->
+<header class="doc-header">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="mono">MM</div>
+    <div>
+      <div style="font-size:7.75pt;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;color:var(--navy);">AI Case Study</div>
+      <div style="font-size:8.25pt;color:var(--muted);">Mark Melanson &middot; Finance &amp; Operations</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div><strong>Case 03</strong></div>
+    <div>Codex Skill &middot; 1040 Estimate Workbook &middot; TY2025</div>
+  </div>
+</header>
+
+<div class="eyebrow">Implementation Proof &middot; Solo Tax Practice</div>
+<h1>1040 Estimate Skill: Turning Raw Tax Documents Into a Live, Tie-Out-Ready Workbook</h1>
+<div class="rule"></div>
+<p class="subtitle">A reusable Claude Code / Codex Skill that spawns subagents to parse client tax forms, populate a locked-in 6-sheet Excel estimate template, and flag every open item preventing an accurate calculation. Built for a solo TY2025 practice; ran on 20+ clients as the first step of every 1040 engagement.</p>
+
+<div class="meta-row">
+  <div class="cell"><div class="k">Role</div><div class="v">Designed, built, tested, deployed &amp; used live in solo practice</div></div>
+  <div class="cell"><div class="k">Users</div><div class="v">Solo preparer (me); 20+ 1040 clients; ~10 extensions</div></div>
+  <div class="cell"><div class="k">Scope</div><div class="v">Federal TY2025; 4 filing statuses; W-2, 1099s, K-1, Sch C/D/E</div></div>
+  <div class="cell"><div class="k">Stack</div><div class="v">Claude Code &amp; Codex &middot; Shortcut.ai CLI &middot; Excel template lock-in</div></div>
+</div>
+
+<h2>Before <span class="accent">&rsaquo;</span> After</h2>
+<div class="ba-vert">
+  <div class="ba-col before">
+    <div class="ba-head"><span>Before</span><span class="count">6 steps</span></div>
+    <div class="ba-steps">
+      <div class="ba-step"><span class="n">1</span><span class="label">Gather client forms ad-hoc</span><span class="det">No consistent structure for what was received, missing, or ambiguous.</span></div>
+      <div class="ba-step"><span class="n">2</span><span class="label">Hand-key values into a scratch sheet</span><span class="det">Per-client setup; no reusable layout or constants.</span></div>
+      <div class="ba-step"><span class="n">3</span><span class="label">Rough calc or duplicate entry into tax software</span><span class="det">Estimate built in the same tool used for the final return.</span></div>
+      <div class="ba-step"><span class="n">4</span><span class="label">Scenario testing by editing + reverting</span><span class="det">Sch C / Sch E changes tested inside tax software, then rolled back.</span></div>
+      <div class="ba-step"><span class="n">5</span><span class="label">Open items tracked in notes / email</span><span class="det">No single list of what is blocking the estimate.</span></div>
+      <div class="ba-step"><span class="n">6</span><span class="label">Compile estimate &amp; follow up with client</span><span class="det">Communication built by hand per client each time.</span></div>
+    </div>
+    <div class="ba-total"><span class="t-k">Per-Client Cost</span><span class="t-v">~30&ndash;45 min</span></div>
+  </div>
+
+  <div class="ba-col after">
+    <div class="ba-head"><span>After</span><span class="count">4 steps</span></div>
+    <div class="ba-steps">
+      <div class="ba-step"><span class="n">1</span><span class="label">Drop client docs into the client folder</span><span class="det">W-2s, 1099s, K-1s, 1098, prior-year return, pay stubs.</span></div>
+      <div class="ba-step"><span class="n">2</span><span class="label">Run the Skill &mdash; subagents extract &amp; populate</span><span class="det">Per-form extraction in parallel; values land in the right cells; live formulas recalc.</span></div>
+      <div class="ba-step"><span class="n">3</span><span class="label">Review tie-outs &amp; resolve flagged items</span><span class="det">MATCH / MISMATCH / UNVERIFIED / MANUAL per field; follow-up list on Estimate and Summary.</span></div>
+      <div class="ba-step"><span class="n">4</span><span class="label">Deliver estimate, drive client follow-up</span><span class="det">Safe-harbor gap &amp; marginal-rate analysis drive the conversation and extension payment amount.</span></div>
+    </div>
+    <div class="ba-total"><span class="t-k">Per-Client Cost</span><span class="t-v">~10 min</span></div>
+  </div>
+
+  <div class="ba-delta">
+    <span class="d-k">Net delta</span>
+    <span class="d-v">~70% faster per client &middot; 2 fewer steps &middot; consistent tie-out discipline across 20+ clients</span>
+  </div>
+</div>
+
+<div class="impact-lite">
+  <div>
+    <div class="big">~10 min<span class="sub">Per Client, Forms to Live Estimate</span></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="v">20+</div><div class="k">1040 Clients, TY2025</div></div>
+    <div class="stat"><div class="v">6</div><div class="k">Sheet Model (Est / SchC / D / E / Rates / Sum)</div></div>
+    <div class="stat"><div class="v">4</div><div class="k">Filing Statuses Supported</div></div>
+    <div class="stat"><div class="v">1st</div><div class="k">Step Of Every 1040 Engagement</div></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2: WHAT I BUILT + HERO ============ -->
+
+<h2>What I Built</h2>
+<ul>
+  <li><strong>Claude Code / Codex Skill</strong> (<em>build-1040-estimate-workbook</em>) that orchestrates subagents across client tax forms, consolidates extracted values, populates the template, and records unresolved items &mdash; modular and reusable across any client file mix.</li>
+  <li><strong>Locked-in 6-sheet Excel template</strong>: <em>Estimate</em>, <em>SchC</em>, <em>SchD</em>, <em>SchE</em>, <em>Rates</em>, and <em>Summary</em>. Live formulas (nothing hardcoded), manual-override cells for ambiguous items, and embedded TY2025 constants.</li>
+  <li><strong>Tie-out discipline</strong> per populated field: field name, workbook amount, source filename, source amount, status (<em>MATCH</em> / <em>MISMATCH</em> / <em>UNVERIFIED</em> / <em>MANUAL</em>), and a short note &mdash; so every number is traceable back to its source.</li>
+  <li><strong>Advisor summary &amp; analytics</strong> on-page: refund-or-balance-due, safe-harbor gap, effective marginal rate (ordinary vs. LTCG), and an explicit <em>Unresolved / Follow-Up Items</em> list.</li>
+</ul>
+
+<figure>
+  <img src="assets/summary_cover.png" alt="Federal Tax Estimate summary cover page showing TY2025, filing status, estimated refund / tax due of -$1,860, income and tax totals, effective tax rate, and an Items Pending Before Filing list. Personal names redacted." style="max-height:4.2in; width:100%; object-fit:contain;">
+  <figcaption><span class="tag">Hero output</span>Summary cover &mdash; the page the client sees: headline refund / tax due, income and tax totals, effective rate, and an explicit list of items pending before filing. Personal names redacted; workflow numbers preserved.</figcaption>
+</figure>
+
+<!-- ============ PAGE 3: IMPLEMENTATION + TIE-OUT ============ -->
+
+<h2>Implementation <span class="accent">&mdash; Inputs, Logic, Controls</span></h2>
+<h3>Inputs</h3>
+<p>W-2s, 1099-INT / DIV / MISC / NEC / K, K-1s, 1098 mortgage, prior-year return, and pay stubs (used by a W-2 sidebar when year-end wages must be estimated). User-entered assumptions fill manual-override cells when a source is ambiguous or missing.</p>
+<h3>Processing Logic</h3>
+<p>The Skill spawns subagents to parallelize document extraction by form type. Extracted values are consolidated before the workbook is touched, then the template is populated only in designated manual-input cells. Schedules C, D, and E are populated only when the client actually has those items. Live formulas on <em>Estimate</em>, <em>Summary</em>, and <em>Rates</em> do all computation &mdash; nothing is ever hardcoded.</p>
+<h3>Outputs &amp; Controls</h3>
+<p>A 6-sheet workbook with a refund / balance-due headline, safe-harbor analysis, marginal-rate analysis, and an explicit unresolved-items list. Every populated field is tie-out-validated (<em>MATCH / MISMATCH / UNVERIFIED / MANUAL</em>); the preparer signs off before any number is shared with a client.</p>
+
+<div class="fig-pair">
+  <figure>
+    <img src="assets/estimate_page1.png" alt="Estimate sheet page 1 with income line items and an Advisor Summary sidebar (total income, AGI, taxable income, tax, withholding, refund-or-tax-due, safe-harbor gap, marginal rate).">
+    <figcaption><span class="tag">Live model</span>Estimate sheet &mdash; income lines feed an Advisor Summary sidebar via live formulas.</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/estimate_page2_followups.png" alt="Estimate sheet continuation showing Result, Safe Harbor Analysis, Marginal Rate Analysis, and a numbered Unresolved / Follow-Up Items list covering Schedule C expenses, a Sun Life 1099-MISC, itemized vs. standard, Form 2441 child care credit, a 1099-K gross amount, an inactive realty entity, and a minor-child UTMA 1099-INT.">
+    <figcaption><span class="tag">Tie-out + follow-ups</span>Safe-harbor &amp; marginal-rate, then the on-sheet unresolved-items list that drives the next client email.</figcaption>
+  </figure>
+</div>
+
+<!-- ============ PAGE 4: AI IN THE BUILD + SCENARIO MODEL ============ -->
+
+<h2>AI <span class="accent">in the Build</span></h2>
+<p>AI is used as leverage at three specific seams. Durable calculation logic sits in live Excel formulas and a locked-in template; AI accelerates authoring, extraction, and review.</p>
+<div class="ai-grid">
+  <div class="ai-card">
+    <div class="tool">Claude Code &amp; Codex</div>
+    <div class="title">Skill authoring &amp; subagent orchestration</div>
+    <div class="body">Prompt-engineered the Skill to be modular and reusable &mdash; same result regardless of the client-provided file mix. Subagents parallelize per-form extraction and consolidate before touching the workbook.</div>
+  </div>
+  <div class="ai-card">
+    <div class="tool">Shortcut.ai CLI</div>
+    <div class="title">Optional doc-extraction path</div>
+    <div class="body">Used only when it meaningfully reduces manual extraction; otherwise the Skill prefers a local structured pass for a more reliable result. Judgment to pick the least-fragile path per client.</div>
+  </div>
+  <div class="ai-card">
+    <div class="tool">Excel Template Lock-In</div>
+    <div class="title">Reusable, dynamic, easily updatable</div>
+    <div class="body">TY2025 brackets, standard deductions, SS/NIIT/Additional-Medicare thresholds, QBI, CTC, and safe-harbor factors hard-wired into a <em>Rates</em> sheet feeding the rest of the model. Swap constants, not formulas.</div>
+  </div>
+</div>
+
+<div class="callout"><strong>Personal AI capability on display:</strong> custom Skill authoring, subagent orchestration for parallel document parsing, deliberate use of AI for leverage (extraction &amp; review) with deterministic math in the workbook &mdash; AI for speed, formulas for audit integrity.</div>
+
+<h2>Scenario Modeling <span class="accent">&mdash; Dynamic Schedule C &amp; E</span></h2>
+<figure>
+  <img src="assets/schedule_c_detail.png" alt="Schedule C detail sheet showing three self-employment businesses with TY2024 Actual vs. TY2025 Estimate columns by line item. Personal names redacted in subheader bars." style="max-height:3.4in; width:100%; object-fit:contain;">
+  <figcaption><span class="tag">Scenario surface</span>Schedule C detail &mdash; side-by-side TY2024 Actual vs. TY2025 Estimate by line item across multiple businesses. Changing an estimate cell ripples live through the Estimate sheet and Summary headline &mdash; no round-trips through tax software to test a scenario.</figcaption>
+</figure>
+
+<!-- ============ PAGE 5: DETAILED IMPACT + RELEVANCE + APPENDIX ============ -->
+
+<h2>Business Impact <span class="accent">&mdash; Detail</span></h2>
+<div class="impact">
+  <div>
+    <div class="big">~10 min</div>
+    <div class="lbl">Per-Client Forms-to-Estimate Cycle</div>
+  </div>
+  <div>
+    <ul>
+      <li>First step on every 1040 engagement once the Skill was locked in.</li>
+      <li>Ran on 20+ clients during TY2025; used directly to compute extension payments for ~10 extensions after accuracy was validated.</li>
+      <li>Dramatically faster review and client follow-up vs. prior ad-hoc approach.</li>
+      <li>Scenario impact (Sch C / Sch E changes) visible instantly in Estimate and Summary without round-tripping through tax software.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="metrics">
+  <div class="m"><div class="v">20+</div><div class="k">1040 Clients Handled</div></div>
+  <div class="m"><div class="v">~10 min</div><div class="k">Per Workbook Run</div></div>
+  <div class="m"><div class="v">6</div><div class="k">Sheet Live-Formula Model</div></div>
+  <div class="m"><div class="v">4</div><div class="k">Tie-Out Statuses Per Field</div></div>
+</div>
+
+<h3>Qualitative Impact</h3>
+<ul>
+  <li><strong>Cleaner review:</strong> every field carries a source filename and a tie-out status &mdash; defensible numbers, not guessed numbers.</li>
+  <li><strong>Faster issue surfacing:</strong> the on-sheet <em>Unresolved / Follow-Up</em> list drives the next client email automatically.</li>
+  <li><strong>Scenario speed:</strong> Sch C / Sch E changes reflow live through Estimate and Summary &mdash; no edit-and-revert cycles inside tax software.</li>
+  <li><strong>Consistent client communication:</strong> every client gets the same structured outputs (refund / tax due, safe-harbor gap, marginal rate, open items).</li>
+</ul>
+
+<h2>Transferable Relevance</h2>
+<ul>
+  <li><strong>AI fluency:</strong> authored a reusable Skill that produces consistent results regardless of input mix &mdash; prompt &amp; context engineering applied to a messy, document-heavy workflow.</li>
+  <li><strong>Reusable Excel template discipline:</strong> locked-in constants, live formulas, and manual-override cells turn a spreadsheet into a dynamic, easily-updatable model &mdash; not a one-off worksheet.</li>
+  <li><strong>Transferability:</strong> the same framework (subagent extraction &rarr; template population &rarr; tie-out validation) applies to any spreadsheet-dominant internal workflow where raw documents must land in a structured model.</li>
+  <li><strong>Implementation judgment:</strong> chose the least-fragile path per client (local structured extraction over raw multi-file LLM ingestion), kept calculations live, and gated delivery on preparer signoff.</li>
+</ul>
+
+<h2>Limitations &amp; Controls Acknowledged</h2>
+<ul>
+  <li>Federal only for TY2025; state tax logic, amended returns, and electronic filing are explicitly out of scope.</li>
+  <li>Ambiguous items are flagged, not auto-classified &mdash; Sch C expenses can fall back to prior-year baselines until current-year is confirmed; Form 2441 and situational credits are only modeled when source documents are present.</li>
+  <li>Preparer reviews and signs off before any number is shared with a client; the Skill produces a reviewable artifact, not a filed return.</li>
+</ul>
+
+<h2>Appendix <span class="accent">&mdash; TY2025 Rates Sheet</span></h2>
+<p class="small">The <em>Rates</em> sheet is the single source of constants feeding the rest of the model &mdash; standard deductions, ordinary brackets for all four filing statuses, LTCG / QD thresholds, SS wage base, NIIT &amp; Additional-Medicare thresholds, QBI, CTC, safe-harbor factors, and SE-tax inputs.</p>
+
+<div class="rates-trio">
+  <figure>
+    <img src="assets/rates_page1.png" alt="Rates sheet page 1: standard deductions and Single ordinary brackets.">
+    <figcaption><span class="tag">1/3</span>Standard deductions &amp; Single brackets.</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/rates_page2.png" alt="Rates sheet page 2: LTCG thresholds, SS wage base, NIIT, Additional Medicare, QBI, CTC, SE tax, safe harbor.">
+    <figcaption><span class="tag">2/3</span>LTCG thresholds &amp; other constants.</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/rates_page3.png" alt="Rates sheet page 3: MFJ/QSS, HOH, and MFS ordinary brackets.">
+    <figcaption><span class="tag">3/3</span>MFJ/QSS, HOH &amp; MFS brackets.</figcaption>
+  </figure>
+</div>
+<p class="small">Swap constants here in the next tax year &mdash; the rest of the model stays identical.</p>
+
+<footer class="doc-footer">
+  <div>Mark Melanson &middot; AI Case Study 03</div>
+  <div>Source-grounded &middot; Personal names redacted &middot; TY2025</div>
+</footer>
+
+</div>
+</body>
+</html>

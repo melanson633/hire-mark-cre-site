@@ -1,6 +1,9 @@
 node_modules/
 dist/
 .vercel/
+.tmp/
+tmp/
+output/
 .env
 .env.*
 !.env.example
@@ -8,3 +11,7 @@ dist/
 .DS_Store
 
 .vercel
+
+# Generated skill pack zip (rebuilt by scripts/build-skill-pack.mjs).
+# Source of truth lives in scripts/skill-pack-src/cowork-metaprompt/.
+public/downloads/cowork-metaprompt.zip

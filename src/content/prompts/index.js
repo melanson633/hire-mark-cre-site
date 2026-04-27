@@ -2,12 +2,14 @@ import { creAnalysis } from "./cre-analysis.js";
 import { leaseExtraction } from "./lease-extraction.js";
 import { loanExtraction } from "./loan-extraction.js";
 import { agreementProcessing } from "./agreement-processing.js";
+import { newsletterWeekly } from "./newsletter-weekly.js";
 
 export const allPrompts = [
   ...creAnalysis,
   ...leaseExtraction,
   ...loanExtraction,
   ...agreementProcessing,
+  ...newsletterWeekly,
 ];
 
 export const promptCategories = [

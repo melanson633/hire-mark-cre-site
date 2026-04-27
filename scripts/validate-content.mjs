@@ -1,11 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { allProjects } from "../src/content/projects/index.js";
-import { allPrompts } from "../src/content/prompts/index.js";
-import { allTemplates } from "../src/content/templates/index.js";
-import { newsletterContent } from "../src/content/newsletter.js";
-import { siteMeta } from "../src/content/siteMeta.js";
+import { createServer } from "vite";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,7 +20,7 @@ function assertUnique(values, label) {
   }
 }
 
-function validateDownloads() {
+function validateDownloads(allTemplates) {
   for (const template of allTemplates) {
     const fullPath = path.join(repoRoot, "public", "downloads", template.filename);
     if (!fs.existsSync(fullPath)) {
@@ -33,7 +29,7 @@ function validateDownloads() {
   }
 }
 
-function validateNewsletterContract() {
+function validateNewsletterContract(newsletterContent) {
   if (newsletterContent.mode !== "real" && newsletterContent.mode !== "inert") {
     fail("newsletterContent.mode must be 'real' or 'inert'.");
   }
@@ -44,21 +40,49 @@ function validateNewsletterContract() {
   }
 }
 
-function validateContactLinks() {
+function validateContactLinks(siteMeta) {
   if (!siteMeta.contact?.email) fail("siteMeta.contact.email is required.");
   if (!siteMeta.contact?.linkedin?.startsWith("https://")) {
     fail("siteMeta.contact.linkedin must be an https URL.");
   }
 }
 
-assertUnique(allProjects.map((project) => project.slug), "Project slugs");
-assertUnique(allPrompts.map((prompt) => prompt.id), "Prompt IDs");
-assertUnique(allTemplates.map((template) => template.slug), "Template slugs");
-assertUnique(allTemplates.map((template) => template.filename), "Template filenames");
-validateDownloads();
-validateNewsletterContract();
-validateContactLinks();
+const vite = await createServer({
+  appType: "custom",
+  logLevel: "error",
+  optimizeDeps: {
+    entries: [],
+    noDiscovery: true,
+  },
+  server: { middlewareMode: true },
+});
 
-console.log(
-  `Content validation passed: ${allProjects.length} projects, ${allPrompts.length} prompts, ${allTemplates.length} templates.`,
-);
+try {
+  const [
+    { allProjects },
+    { allPrompts },
+    { allTemplates },
+    { newsletterContent },
+    { siteMeta },
+  ] = await Promise.all([
+    vite.ssrLoadModule("/src/content/projects/index.js"),
+    vite.ssrLoadModule("/src/content/prompts/index.js"),
+    vite.ssrLoadModule("/src/content/templates/index.js"),
+    vite.ssrLoadModule("/src/content/newsletter.js"),
+    vite.ssrLoadModule("/src/content/siteMeta.js"),
+  ]);
+
+  assertUnique(allProjects.map((project) => project.slug), "Project slugs");
+  assertUnique(allPrompts.map((prompt) => prompt.id), "Prompt IDs");
+  assertUnique(allTemplates.map((template) => template.slug), "Template slugs");
+  assertUnique(allTemplates.map((template) => template.filename), "Template filenames");
+  validateDownloads(allTemplates);
+  validateNewsletterContract(newsletterContent);
+  validateContactLinks(siteMeta);
+
+  console.log(
+    `Content validation passed: ${allProjects.length} projects, ${allPrompts.length} prompts, ${allTemplates.length} templates.`,
+  );
+} finally {
+  await vite.close();
+}

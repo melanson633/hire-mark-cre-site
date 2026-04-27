@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>New England CRE Weekly — April 22, 2026</title>
+<meta name="description" content="Eight days of deals, approvals, and policy shifts across Greater Boston and New England — and what they mean for the rest of the year." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+/* ------------------------------------------------------------------
+   NEW ENGLAND CRE WEEKLY
+   Editorial companion to the LinkedIn carousel. Cream paper, serif
+   display, one italic red accent per headline. Three story tiers:
+   features, paired columns, brief hits. No uniform item grid.
+   ------------------------------------------------------------------ */
+
+:root {
+  --ink:         #141210;
+  --ink-soft:    #3a342e;
+  --ink-faint:   #6b6258;
+  --ink-whisper: #9b9286;
+  --rule:        #cfc8b7;
+  --rule-soft:   #e2dbc8;
+  --paper:       #f4efe2;
+  --paper-deep:  #ebe4d0;
+  --paper-fold:  #e3dcc6;
+  --accent:      #b83a28;
+  --accent-soft: #d85f46;
+
+  --serif:  "Fraunces", "Iowan Old Style", "Charter", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:   "Inter Tight", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:   ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17.5px;
+  line-height: 1.58;
+  font-feature-settings: "onum", "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle paper grain — almost imperceptible, adds depth without texture cliché */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08  0 0 0 0 0.06  0 0 0 0 0.04  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  z-index: 1;
+}
+
+.page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 56px 32px 96px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------------
+   MASTHEAD — asymmetric, not centered. Issue meta on left, title on
+   right. Double rule top & bottom in the classic newspaper manner.
+   ------------------------------------------------------------------ */
+
+.masthead {
+  display: grid;
+  grid-template-columns: 0.7fr 2fr;
+  gap: 32px;
+  align-items: end;
+  padding: 28px 0 22px;
+  border-top: 3px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  position: relative;
+  animation: rise 0.7s 0.05s cubic-bezier(.22,.61,.36,1) both;
+}
+
+.masthead::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ink);
+}
+
+.masthead .meta {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  line-height: 1.9;
+  padding-bottom: 4px;
+}
+
+.masthead .meta .row {
+  display: block;
+}
+
+.masthead .meta .row.accent {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.masthead .title {
+  padding-bottom: 2px;
+}
+
+.masthead h1 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(34px, 6.5vw, 52px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 0;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+
+.masthead h1 em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 700;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  letter-spacing: -0.015em;
+}
+
+.masthead .dateline {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.masthead .dateline .sep {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  background: var(--ink-soft);
+  border-radius: 50%;
+  margin: 0 10px;
+  vertical-align: 3px;
+}
+
+/* ------------------------------------------------------------------
+   THE BRIEF — opening summary with a proper drop cap.
+   ------------------------------------------------------------------ */
+
+.brief {
+  margin: 40px 0 0;
+  animation: rise 0.7s 0.18s cubic-bezier(.22,.61,.36,1) both;
+}
+
+.label {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 21px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 22px;
+  position: relative;
+  padding-left: 36px;
+}
+
+.label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 24px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.brief .lead {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.62;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+
+.brief .lead::first-letter {
+  font-family: var(--serif);
+  font-weight: 800;
+  font-size: 4.4em;
+  line-height: 0.82;
+  float: left;
+  margin: 0.05em 0.08em -0.05em 0;
+  color: var(--ink);
+  font-variation-settings: "opsz" 144, "SOFT" 20;
+}
+
+.brief .lead + .lead::first-letter {
+  all: unset;
+}
+
+/* ------------------------------------------------------------------
+   SECTION HEADS — small sans caps, rule beneath, fixed rhythm.
+   ------------------------------------------------------------------ */
+
+.section-head {
+  margin: 60px 0 22px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ink);
+  gap: 16px;
+  animation: rise 0.7s cubic-bezier(.22,.61,.36,1) both;
+}
+
+.section-head .kicker {
+  font-family: var(--sans);
+  font-size: 21px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.section-head .count {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------
+   THE WEEK IN NUMBERS — four stats, asymmetric 2x2. First row weights
+   differently from second row to break grid symmetry.
+   ------------------------------------------------------------------ */
+
+.numbers {
+  margin-top: 14px;
+  animation: rise 0.7s 0.28s cubic-bezier(.22,.61,.36,1) both;
+}
+
+.numbers .intro {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0 0 30px;
+  max-width: 42ch;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.stat {
+  padding: 26px 22px 26px 0;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.stat:nth-child(2n) { border-right: 0; padding-left: 22px; padding-right: 0; }
+.stat:nth-child(n+3) { border-bottom: 0; padding-top: 26px; }
+.stat:nth-child(n+3) { padding-bottom: 4px; }
+
+.stat .fig {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(52px, 9vw, 76px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+
+.stat .fig .unit {
+  font-size: 0.38em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin-left: 4px;
+  text-transform: uppercase;
+  font-variation-settings: "opsz" 14;
+}
+
+.stat .fig .plus {
+  color: var(--accent);
+  margin-right: 2px;
+}
+
+.stat .cat {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 14px 0 10px;
+}
+
+.stat .desc {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.48;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 32ch;
+}
+
+/* ------------------------------------------------------------------
+   THREE PATTERNS — italic display, Roman-numeral list with a strict
+   editorial grid. No cards; hairline rules only.
+   ------------------------------------------------------------------ */
+
+.patterns {
+  margin-top: 4px;
+  animation: rise 0.7s 0.36s cubic-bezier(.22,.61,.36,1) both;
+}
+
+.display {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(36px, 5.4vw, 46px);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  margin: 0 0 34px;
+  color: var(--ink);
+  max-width: 18ch;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+
+.display em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 700;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+
+.pattern {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.pattern:last-child { border-bottom: 1px solid var(--rule); }
+
+.pattern .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--accent);
+  padding-top: 4px;
+  letter-spacing: -0.01em;
+}
+
+.pattern .body {
+  font-family: var(--serif);
+  font-size: 17.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.pattern .body b {
+  color: var(--ink);
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+/* ------------------------------------------------------------------
+   FEATURES — the three top stories, each gets the full editorial
+   treatment. No numbering. Larger headline, body, pullquote, why.
+   ------------------------------------------------------------------ */
+
+.feature {
+  padding: 44px 0 36px;
+  border-top: 1px solid var(--rule);
+}
+
+.feature:first-of-type { border-top: 3px solid var(--ink); }
+
+.feature .cat {
+  font-family: var(--sans);
+  font-size: 20px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+.feature h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4.2vw, 36px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+  color: var(--ink);
+  max-width: 22ch;
+  font-variation-settings: "opsz" 72, "SOFT" 30;
+}
+
+.feature p {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+}
+
+.feature .pullquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.32;
+  color: var(--accent);
+  margin: 22px 0 22px;
+  padding: 0 0 0 18px;
+  border-left: 2px solid var(--accent);
+  letter-spacing: -0.008em;
+  max-width: 28ch;
+  font-variation-settings: "opsz" 72, "SOFT" 100;
+}
+
+.why {
+  margin-top: 22px;
+  padding: 16px 18px 16px 20px;
+  background: var(--paper-deep);
+  border-left: 3px solid var(--ink);
+}
+
+.why .why-label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.why p {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.52;
+  color: var(--ink);
+}
+
+.cite {
+  margin-top: 18px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+}
+
+.cite .cite-label {
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.cite a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ink-whisper);
+  transition: color 0.2s, border-bottom-color 0.2s;
+}
+
+.cite a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ------------------------------------------------------------------
+   PAIR — two stories under one shared display headline, linked by a
+   single "why it matters." Used for thematic groupings (suburbs,
+   policy). Breaks the single-column rhythm.
+   ------------------------------------------------------------------ */
+
+.pair {
+  padding: 44px 0 36px;
+  border-top: 1px solid var(--rule);
+}
+
+.pair .header-row {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 24px;
+  align-items: end;
+  margin-bottom: 30px;
+}
+
+.pair .cat {
+  font-family: var(--sans);
+  font-size: 20px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+.pair h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4.2vw, 36px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--ink);
+  font-variation-settings: "opsz" 72, "SOFT" 30;
+}
+
+.pair h2 em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 700;
+  font-variation-settings: "opsz" 72, "SOFT" 100;
+}
+
+.pair-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.pair-item {
+  padding: 22px 24px 22px 0;
+}
+
+.pair-item + .pair-item {
+  border-left: 1px solid var(--rule);
+  padding-left: 24px;
+  padding-right: 0;
+}
+
+.pair-item .meta {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 500;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pair-item .meta .loc {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.pair-item h3 {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.008em;
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-variation-settings: "opsz" 48, "SOFT" 30;
+}
+
+.pair-item p {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.52;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ------------------------------------------------------------------
+   BRIEF HITS — denser list for smaller-impact items. Tiny numeral
+   in the margin, one-line meta, short headline, one-line body.
+   ------------------------------------------------------------------ */
+
+.hits {
+  margin-top: 4px;
+}
+
+.hit {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule-soft);
+  align-items: baseline;
+}
+
+.hit:first-of-type { border-top: 1px solid var(--ink); }
+.hit:last-of-type { border-bottom: 1px solid var(--ink); }
+
+.hit .n {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  padding-top: 5px;
+}
+
+.hit .meta {
+  font-family: var(--sans);
+  font-size: 9.5px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+
+.hit h3 {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-variation-settings: "opsz" 36, "SOFT" 30;
+}
+
+.hit p {
+  font-family: var(--serif);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+}
+
+.hit .src {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+}
+
+.hit .src a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ink-whisper);
+  transition: color 0.2s, border-bottom-color 0.2s;
+}
+
+.hit .src a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* ------------------------------------------------------------------
+   WATCHING — forward-looking section, numbered with lead+italic gloss.
+   ------------------------------------------------------------------ */
+
+.watching {
+  margin-top: 4px;
+}
+
+.signal {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 20px;
+  padding: 20px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.signal:last-child { border-bottom: 1px solid var(--rule); }
+
+.signal .n {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  padding-top: 4px;
+}
+
+.signal .body {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.48;
+  color: var(--ink);
+}
+
+.signal .body b {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.signal .gloss {
+  display: block;
+  font-style: italic;
+  color: var(--ink-faint);
+  font-size: 15.5px;
+  margin-top: 4px;
+  font-variation-settings: "opsz" 48, "SOFT" 100;
+}
+
+/* ------------------------------------------------------------------
+   SOURCES — small, demoted, but accessible. Inline list, not cards.
+   ------------------------------------------------------------------ */
+
+.sources {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ink);
+}
+
+.sources h3 {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+
+.sources ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: src;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  column-count: 2;
+  column-gap: 32px;
+  column-rule: 1px solid var(--rule-soft);
+}
+
+.sources li {
+  counter-increment: src;
+  padding: 4px 0 8px 26px;
+  line-height: 1.42;
+  position: relative;
+  break-inside: avoid;
+  font-family: var(--serif);
+}
+
+.sources li::before {
+  content: counter(src, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 4px;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sources a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  transition: color 0.2s, border-bottom-color 0.2s;
+}
+
+.sources a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* ------------------------------------------------------------------
+   COLOPHON — closer for the briefing.
+   ------------------------------------------------------------------ */
+
+.colophon {
+  margin-top: 56px;
+  padding-top: 36px;
+  text-align: center;
+  border-top: 1px solid var(--rule);
+}
+
+.endmark {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.endmark .em { color: var(--accent); }
+
+.close-line {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.35;
+  color: var(--ink);
+  max-width: 34ch;
+  margin: 0 auto 28px;
+  font-variation-settings: "opsz" 60, "SOFT" 30;
+}
+
+.close-line em {
+  font-style: italic;
+  color: var(--accent);
+  font-variation-settings: "opsz" 60, "SOFT" 100;
+}
+
+.close-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+.close-cta:hover {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+.close-cta .arr {
+  font-family: var(--serif);
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.colophon .legal {
+  margin-top: 36px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  line-height: 1.7;
+}
+
+/* ------------------------------------------------------------------
+   MOTION — one orchestrated page-load stagger. No scattered hovers.
+   ------------------------------------------------------------------ */
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   RESPONSIVE — collapse grids before they break.
+   ------------------------------------------------------------------ */
+
+@media (max-width: 680px) {
+  .page { padding: 36px 22px 72px; }
+
+  .masthead {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat,
+  .stat:nth-child(2n) {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 22px 0;
+  }
+
+  .stat:nth-child(n+3) { border-bottom: 0; }
+  .stats-grid .stat:last-child { border-bottom: 0; }
+
+  .pair .header-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .pair-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pair-item + .pair-item {
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+    padding-left: 0;
+    padding-top: 22px;
+  }
+
+  .pair-item {
+    padding-right: 0;
+  }
+
+  .sources ol {
+    column-count: 1;
+  }
+
+  .hit { grid-template-columns: 28px 1fr; gap: 10px; }
+  .signal { grid-template-columns: 34px 1fr; gap: 12px; }
+
+  .section-head { flex-wrap: wrap; }
+}
+
+/* ------------------------------------------------------------------
+   PRINT — behave like a real editorial page on paper.
+   ------------------------------------------------------------------ */
+
+@media print {
+  :root {
+    --paper:      #ffffff;
+    --paper-deep: #f4f2ec;
+  }
+  body::before { display: none; }
+  body { font-size: 10.5pt; background: #fff; }
+  .page { max-width: 100%; padding: 0.5in 0.6in; }
+  .masthead,
+  .feature,
+  .pair,
+  .why,
+  .sources { break-inside: avoid; page-break-inside: avoid; }
+  .cite a,
+  .sources a { border: 0; color: #000; }
+  .colophon .legal { color: #555; }
+}
+</style>
+</head>
+
+<body>
+
+<article class="page">
+
+  <!-- ============ MASTHEAD ============ -->
+
+  <header class="masthead">
+    <div class="meta">
+      <span class="row accent">Weekly Briefing</span>
+      <span class="row">April 22, 2026</span>
+    </div>
+    <div class="title">
+      <h1>New England<br />CRE <em>Weekly</em>.</h1>
+      <span class="dateline">
+        <span>Covering April 14 – April 21, 2026</span>
+        <span class="sep"></span>
+        <span>11 items · One read</span>
+      </span>
+    </div>
+  </header>
+
+  <!-- ============ THE BRIEF ============ -->
+
+  <section class="brief">
+    <span class="label">The Brief</span>
+    <p class="lead">Boston's planning machinery came back on this week. The Planning Department cleared 1.7 million square feet in one Thursday meeting, Samuels closed a $360M CMBS refi on Lyrik Back Bay, and JLL showed Q1 industrial demand up 83% year-over-year. Suburbs and Route 495 did the leasing. Somerville and Lexington are suddenly competing for the density story.</p>
+    <p class="lead">Underneath the deal flow, the real conversation has shifted. Rates are no longer the variable every sponsor is underwriting against. Parking minimums, a statewide rent-control ballot in November, and municipal soft costs are. Capital is already moving because of it.</p>
+  </section>
+
+  <!-- ============ THE WEEK IN NUMBERS ============ -->
+
+  <div class="section-head">
+    <span class="kicker">The Week In Numbers</span>
+    <span class="count">§ 01 of 05</span>
+  </div>
+
+  <section class="numbers">
+    <p class="intro">Four figures define the week. None of them are small — and all four point in the same direction.</p>
+
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="fig">$360<span class="unit">M</span></div>
+        <div class="cat">Capital Markets</div>
+        <p class="desc">Samuels &amp; Associates' CMBS refinance of Lyrik Back Bay — the largest Boston office refi since 2022.</p>
+      </div>
+      <div class="stat">
+        <div class="fig">1.7<span class="unit">M&nbsp;SF</span></div>
+        <div class="cat">Development</div>
+        <p class="desc">Cleared by the Boston Planning Department in a single Thursday meeting: Longwood, Charlestown, Harvard ERC, West Roxbury.</p>
+      </div>
+      <div class="stat">
+        <div class="fig"><span class="plus">+</span>83<span class="unit">%</span></div>
+        <div class="cat">Industrial Demand</div>
+        <p class="desc">Greater Boston's Q1 year-over-year jump, per JLL — driven by six deals over 100,000 SF.</p>
+      </div>
+      <div class="stat">
+        <div class="fig">600</div>
+        <div class="cat">Multifamily Units</div>
+        <p class="desc">The high end of two competing bids for a single four-acre transit-oriented site in Somerville.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THREE PATTERNS ============ -->
+
+  <div class="section-head">
+    <span class="kicker">This Week's Take</span>
+    <span class="count">§ 02 of 05</span>
+  </div>
+
+  <section class="patterns">
+    <h2 class="display">Three <em>patterns</em> under the headlines.</h2>
+
+    <div class="pattern">
+      <div class="num">I.</div>
+      <div class="body"><b>The thaw is real — and bifurcating.</b> Capital is returning, but only to trophy assets, and only in the asset classes the market has already re-priced. Class B in secondary locations still can't finance at meaningful scale.</div>
+    </div>
+
+    <div class="pattern">
+      <div class="num">II.</div>
+      <div class="body"><b>Entitlement velocity is quietly back.</b> One BPD meeting cleared more square footage this week than some months of 2025. The multi-year planning backlog is starting to move.</div>
+    </div>
+
+    <div class="pattern">
+      <div class="num">III.</div>
+      <div class="body"><b>Policy is now the dominant underwriting variable.</b> Parking minimums, the November rent-control ballot, and municipal soft costs are driving more capital-allocation decisions than interest rates are.</div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+
+  <div class="section-head">
+    <span class="kicker">The Stories</span>
+    <span class="count">§ 03 of 05</span>
+  </div>
+
+  <!-- Feature 1 -->
+  <article class="feature">
+    <div class="cat">Capital Markets · Office</div>
+    <h2>Samuels lands a $360M refi on Lyrik — and CMBS quietly reopens for trophy office.</h2>
+    <p>Samuels &amp; Associates and joint-venture partner Jiaming Investment America closed a $360 million CMBS loan on the Lyrik office tower in Back Bay. Proceeds refinance roughly $323 million of construction debt and closing costs, and return $17 million of equity to the sponsors. Lyrik is 93.4% leased, anchored by CarGurus and Lego.</p>
+
+    <blockquote class="pullquote">Largest Boston office refi since 2022. CMBS is open again — but only for Class A with a modern amenity stack.</blockquote>
+
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>A clean comp for every downtown sponsor sitting on maturing construction debt. It also sharpens the bifurcation: trophy office finances and trades. Commodity Class B in secondary locations still does not.</p>
+    </div>
+
+    <div class="cite">
+      <span class="cite-label">Source</span>
+      <a href="https://www.bisnow.com/boston/news/office/samuels-lands-360m-refinance-loan-back-bay-office-complex-134159">Bisnow Boston — April 16, 2026</a>
+    </div>
+  </article>
+
+  <!-- Feature 2 -->
+  <article class="feature">
+    <div class="cat">Development · Approvals</div>
+    <h2>Boston cleared 1.7 million square feet in a single Thursday meeting.</h2>
+    <p>The Planning Department board approved four projects at its April 17 hearing: the first phase of Skanska and Simmons University's Longwood Place (1M SF, 227 housing units, 9,000 SF of commercial, two acres of open space); New England Development's 240-unit building at 201 Rutherford Ave. in Charlestown — the first piece of a replacement for Bunker Hill Mall; Harvard's ERC District plan in Allston; a 28-unit infill project in West Roxbury; and a bank-to-apartments conversion in South Boston.</p>
+
+    <blockquote class="pullquote">More pipeline cleared in one night than the city moved through in most months of 2025.</blockquote>
+
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>Entitlement velocity has been the missing link in Boston's housing math for three years. If April's pace holds into summer, the downtown zoning reforms and MBTA Communities Act finally start showing up as real supply.</p>
+    </div>
+
+    <div class="cite">
+      <span class="cite-label">Source</span>
+      <a href="https://www.bisnow.com/boston/news/deal-sheet/longwood-charlestown-housing-projects-secure-bpda-approval-the-boston-deal-sheet-134208">Bisnow Boston — April 20, 2026</a>
+    </div>
+  </article>
+
+  <!-- Feature 3 -->
+  <article class="feature">
+    <div class="cat">Industrial · Market Data</div>
+    <h2>Q1 industrial demand jumped 83%. The big tenants are back.</h2>
+    <p>Per JLL, Q1 leasing volume rose 73% and total demand rose 83% against Q1 2025, driven by six deals over 100,000 SF — a high bar for a smaller metro industrial market. SupplyOne signed 210,000 SF at 586 Manley St. in West Bridgewater. JLL's Michael Ciummei said the large distributors and Amazon-adjacent occupiers are "in more of a decision-making mode" after years on the sidelines, and pandemic-era spec supply is finally being absorbed.</p>
+
+    <blockquote class="pullquote">SupplyOne took 210,000 SF. VMD added 180,000 SF of build-to-suits in Middleborough. It's back.</blockquote>
+
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>If it holds, Greater Boston's industrial vacancy peaked in late 2025. Owners of recently delivered speculative product on Routes 495 and 146 get paid first — and South Shore build-to-suit demand shows where the next wave actually lands.</p>
+    </div>
+
+    <div class="cite">
+      <span class="cite-label">Source</span>
+      <a href="https://www.bisnow.com/boston/news/industrial/greater-boston-industrial-market-demand-large-tenants-134186">Bisnow Boston — April 19, 2026</a>
+    </div>
+  </article>
+
+  <!-- ============ PAIR: SUBURBS ============ -->
+
+  <section class="pair">
+    <div class="header-row">
+      <div>
+        <div class="cat">Multifamily · Suburban</div>
+        <h2>The <em>suburbs</em> are finally saying yes.</h2>
+      </div>
+    </div>
+
+    <div class="pair-grid">
+      <div class="pair-item">
+        <div class="meta"><span class="loc">Lexington</span><span>·</span><span>April 17</span></div>
+        <h3>Pulte wins approval for 150 units at the former tennis club.</h3>
+        <p>Atlanta-based Pulte cleared the Lexington Planning Board for Fieldside at Lexington — 150 apartments replacing the Lexington Tennis Club at 475 Bedford St. The club vacates at the end of May.</p>
+      </div>
+      <div class="pair-item">
+        <div class="meta"><span class="loc">Somerville</span><span>·</span><span>April 21</span></div>
+        <h3>Two developers, one site, a 260-unit spread.</h3>
+        <p>On a four-acre parcel at 90 Washington St., North River Leerink pitched up to 600 apartments with a 14-story tower. Wood Partners countered with a 7-story, 343,725 SF building and a 398-car garage.</p>
+      </div>
+    </div>
+
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>Route 128 suburbs and Green Line Extension corridors are now producing real, national-merchant-builder pipeline — the first time since the MBTA Communities Act took effect. The Somerville bid spread is the live test of how aggressively the density push will go.</p>
+    </div>
+
+    <div class="cite">
+      <span class="cite-label">Sources</span>
+      <a href="https://www.bizjournals.com/boston/news/2026/04/17/former-boston-sports-club-approved-for-150-homes.html">Boston Business Journal — April 17, 2026</a>; <a href="https://bankerandtradesman.com/developers-seek-to-build-housing-at-former-somerville-shopping-center/">Banker &amp; Tradesman — April 21, 2026</a>
+    </div>
+  </section>
+
+  <!-- ============ PAIR: POLICY ============ -->
+
+  <section class="pair">
+    <div class="header-row">
+      <div>
+        <div class="cat">Policy Watch</div>
+        <h2>Two live votes will reshape every Boston <em>pro forma</em>.</h2>
+      </div>
+    </div>
+
+    <div class="pair-grid">
+      <div class="pair-item">
+        <div class="meta"><span class="loc">City</span><span>·</span><span>April 15</span></div>
+        <h3>Councilors push to eliminate parking minimums.</h3>
+        <p>Citing collapsing housing starts and a looming budget crunch, two councilors want to drop residential parking requirements citywide — extending reforms already on the books for affordable and compact-living housing.</p>
+      </div>
+      <div class="pair-item">
+        <div class="meta"><span class="loc">State</span><span>·</span><span>November</span></div>
+        <h3>Statewide rent-control ballot looms.</h3>
+        <p>The November 2026 ballot question is already shifting acquisition strategy for Massachusetts multifamily sponsors — pulling capital toward New Hampshire and widening MA value-add cap rates in real time.</p>
+      </div>
+    </div>
+
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>Parking minimums are among the most binding cost inputs in Boston multifamily underwriting. Rent control is the single biggest rate-of-return variable for MA-focused sponsors. Both decisions move inside the same 90-day window.</p>
+    </div>
+
+    <div class="cite">
+      <span class="cite-label">Sources</span>
+      <a href="https://www.bisnow.com/boston/news/multifamily/boston-city-councilors-float-eliminating-parking-minimums-134144">Bisnow Boston — April 15, 2026</a>; <a href="https://bankerandtradesman.com/">Banker &amp; Tradesman — April 19, 2026</a>
+    </div>
+  </section>
+
+  <!-- ============ FEATURE: CAPITAL STRATEGY ============ -->
+
+  <article class="feature">
+    <div class="cat">Capital Strategy</div>
+    <h2>MA sponsors are quietly shopping across the NH line.</h2>
+    <p>Per reporting in <em>Banker &amp; Tradesman</em>, Arrowpoint Properties CEO David Lamattina said the firm is looking toward Southern New Hampshire for multifamily acquisitions, citing the November rent-control ballot as a defining risk to Massachusetts underwriting. The publication reported that Arrowpoint has sold select Lowell value-add positions and bought in NH in recent months.</p>
+
+    <blockquote class="pullquote">They are not the only ones. Several MA-focused sponsors have widened pipelines into NH, RI, and southern Maine.</blockquote>
+
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>If the ballot polls competitively this summer, expect more sponsors to move. Massachusetts cap rates on value-add product widen further before the vote — not after.</p>
+    </div>
+
+    <div class="cite">
+      <span class="cite-label">Source</span>
+      <a href="https://bankerandtradesman.com/">Banker &amp; Tradesman — April 19, 2026</a>
+    </div>
+  </article>
+
+  <!-- ============ BRIEF HITS ============ -->
+
+  <div class="section-head">
+    <span class="kicker">Also This Week</span>
+    <span class="count">§ 04 of 05</span>
+  </div>
+
+  <section class="hits">
+
+    <div class="hit">
+      <div class="n">07</div>
+      <div>
+        <div class="meta">Office Leasing · Financial District</div>
+        <h3>AI firm Lovable takes 6,000 SF at DivcoWest's One Lincoln.</h3>
+        <p>A small footprint, but another AI-adjacent name joining HarbourVest, Sherin &amp; Lodgen, and WeWork. Downtown's recovery keeps being written by small- and mid-sized tech.</p>
+        <div class="src"><a href="https://www.bisnow.com/boston/news/deal-sheet/longwood-charlestown-housing-projects-secure-bpda-approval-the-boston-deal-sheet-134208">Bisnow Deal Sheet — April 20, 2026</a></div>
+      </div>
+    </div>
+
+    <div class="hit">
+      <div class="n">08</div>
+      <div>
+        <div class="meta">Industrial · Build-to-Suit · Middleborough</div>
+        <h3>VMD Cos. signs 180K SF of build-to-suits at Canopy Drive.</h3>
+        <p>Rexa takes 110,000 SF for manufacturing; Indus takes 70,000 SF for paving operations. CBRE (Byrne, Frisch, Clancy, Lynch, McKenzie) represented VMD. The South Shore and Route 44 corridor is where the next wave of demand is landing.</p>
+        <div class="src"><a href="https://www.bisnow.com/boston/news/deal-sheet/longwood-charlestown-housing-projects-secure-bpda-approval-the-boston-deal-sheet-134208">Bisnow Deal Sheet — April 20, 2026</a></div>
+      </div>
+    </div>
+
+    <div class="hit">
+      <div class="n">09</div>
+      <div>
+        <div class="meta">Investment Sales · Stoughton</div>
+        <h3>Reclamation Partners buys a 33,619 SF industrial at 1023 Turnpike St.</h3>
+        <p>Small, clean, single-tenant, net-leased industrial — exactly the kind of deal that had stalled in 2024. Private capital continues to lead Greater Boston volume, and credit-tenant industrial is re-pricing to a bid that closes.</p>
+        <div class="src"><a href="https://www.prnewswire.com/news-releases/reclamation-partners-acquires-33-619-square-foot-light-industrial-facility-in-boston-ma-302744845.html">Reclamation Partners / PR Newswire</a></div>
+      </div>
+    </div>
+
+    <div class="hit">
+      <div class="n">10</div>
+      <div>
+        <div class="meta">Higher Ed · Student Housing</div>
+        <h3>Hampshire's closure has Boston schools looking to rein in real-estate costs.</h3>
+        <p>Smaller private colleges are consolidating footprints, selling non-core buildings, and sharing dorms. Meanwhile the BPD is approving new purpose-built housing for Simmons, Wentworth, Northeastern. The gap between the well-capitalized and the enrollment-pressured widens every quarter.</p>
+        <div class="src"><a href="https://www.bisnow.com/boston/news/student-housing/as-another-small-college-closes-boston-schools-look-to-rein-in-costs-134126">Bisnow Boston — April 14, 2026</a></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ WATCHING ============ -->
+
+  <div class="section-head">
+    <span class="kicker">Looking Ahead</span>
+    <span class="count">§ 05 of 05</span>
+  </div>
+
+  <section class="watching">
+    <h2 class="display">Four <em>signals</em> worth tracking.</h2>
+
+    <div class="signal">
+      <div class="n">01</div>
+      <div class="body"><b>Rent-control polling and coalition activity around the Massachusetts ballot question.</b><span class="gloss">Where sentiment lands in May dictates Q3 acquisition behavior.</span></div>
+    </div>
+
+    <div class="signal">
+      <div class="n">02</div>
+      <div class="body"><b>Follow-on CMBS pricing on other Boston trophy refis.</b><span class="gloss">Samuels set the comp. Does anyone else clear it?</span></div>
+    </div>
+
+    <div class="signal">
+      <div class="n">03</div>
+      <div class="body"><b>Q1 life-science vacancy prints from Colliers, JLL, and CBRE.</b><span class="gloss">The one sector that hasn't meaningfully turned.</span></div>
+    </div>
+
+    <div class="signal">
+      <div class="n">04</div>
+      <div class="body"><b>More Green Line Extension suburb RFP responses after the Somerville spread.</b><span class="gloss">Density expectations for transit-oriented sites are being reset in real time.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ SOURCES ============ -->
+
+  <aside class="sources">
+    <h3>Sources &amp; Further Reading</h3>
+    <ol>
+      <li><a href="https://www.bisnow.com/boston/news/deal-sheet/longwood-charlestown-housing-projects-secure-bpda-approval-the-boston-deal-sheet-134208">Bisnow Boston — BPD OKs Longwood, Charlestown Housing Projects: The Boston Deal Sheet (April 20, 2026)</a></li>
+      <li><a href="https://www.bisnow.com/boston/news/industrial/greater-boston-industrial-market-demand-large-tenants-134186">Bisnow Boston — Greater Boston Industrial Demand Jumped 83% In The First Quarter (April 19, 2026)</a></li>
+      <li><a href="https://www.bisnow.com/boston/news/office/samuels-lands-360m-refinance-loan-back-bay-office-complex-134159">Bisnow Boston — Samuels Lands $360M Refinance Loan For Back Bay Office Complex (April 16, 2026)</a></li>
+      <li><a href="https://www.bisnow.com/boston/news/multifamily/boston-city-councilors-float-eliminating-parking-minimums-134144">Bisnow Boston — Boston City Council Members Float Eliminating Parking Minimums For All Housing Development (April 15, 2026)</a></li>
+      <li><a href="https://www.bisnow.com/boston/news/student-housing/as-another-small-college-closes-boston-schools-look-to-rein-in-costs-134126">Bisnow Boston — As Hampshire College Announces Closure, Boston-Area Schools Seek To Do More With Less (April 14, 2026)</a></li>
+      <li><a href="https://www.bizjournals.com/boston/news/2026/04/17/former-boston-sports-club-approved-for-150-homes.html">Boston Business Journal — Former Boston Sports Club site approved for 150 homes (April 17, 2026)</a></li>
+      <li><a href="https://bankerandtradesman.com/developers-seek-to-build-housing-at-former-somerville-shopping-center/">Banker &amp; Tradesman — Developers Seek to Build Housing at Former Somerville Shopping Center (April 21, 2026)</a></li>
+      <li><a href="https://bankerandtradesman.com/">Banker &amp; Tradesman — A Multifamily Investment Strategy That Points North / Arrowpoint (April 19, 2026)</a></li>
+      <li><a href="https://bostonrealestatetimes.com/focus-partners-wealth-expands-to-andover-with-nearly-8000-sf-new-office-lease/">Boston Real Estate Times — Focus Partners Wealth Expands to Andover With Nearly 8,000 SF New Office Lease (April 15, 2026)</a></li>
+      <li><a href="https://www.prnewswire.com/news-releases/reclamation-partners-acquires-33-619-square-foot-light-industrial-facility-in-boston-ma-302744845.html">PR Newswire — Reclamation Partners Stoughton industrial acquisition</a></li>
+      <li><a href="https://www.bostonplans.org/news-calendar/news-updates/2026/04/16/planning-advances-affordable-housing-in-charlestow">Boston Planning Department — Planning advances affordable housing in Charlestown (April 16, 2026)</a></li>
+    </ol>
+  </aside>
+
+  <!-- ============ COLOPHON ============ -->
+
+  <footer class="colophon">
+    <p class="close-line">Eleven items. Eleven primary sources. <em>One read</em> on what it all means.</p>
+    <a class="close-cta" href="#"><span class="arr">→</span> New briefings every week</a>
+    <div class="legal">
+      New England CRE Weekly · Independently compiled · Coverage strictly limited to reporting published April 14&ndash;21, 2026.<br />
+      Source links above lead to the original reporting. This briefing is not investment advice.
+    </div>
+  </footer>
+
+</article>
+
+</body>
+</html>

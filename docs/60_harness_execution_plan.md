@@ -134,7 +134,7 @@ After the work is complete:
 1. Run `npm run verify`.
 2. Run `npm run build`.
 3. Open the app in a browser and confirm the primary routes render.
-4. Confirm `hire-mark.net` and the redirected domains behave as documented.
+4. Confirm `markbuilds.ai` and the `www` redirect behave as documented.
 
 ## Working Rule
 

@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>New England Construction Quarterly - Q1 2026</title>
+<meta name="description" content="Q1 2026 reset the New England construction map: Boston approvals at a decade low, tariff repricing, a New Hampshire permits boom, and a bifurcated lab market." />
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="New England Construction Quarterly — Q1 2026" />
+<meta property="og:description" content="The quarter when tariff math caught up, the lab boom ended, and New Hampshire started winning." />
+<meta property="og:site_name" content="Mark Melanson" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="New England Construction Quarterly — Q1 2026" />
+<meta name="twitter:description" content="The quarter when tariff math caught up, the lab boom ended, and New Hampshire started winning." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --ink:        #141210;
+  --ink-soft:   #3a342e;
+  --ink-faint:  #6b6258;
+  --rule:       #cfc8b7;
+  --rule-soft:  #e2dbc8;
+  --paper:      #f4efe2;
+  --paper-deep: #ebe4d0;
+  --accent:     #b83a28;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Fraunces", "Iowan Old Style", "Charter", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 17.5px;
+  line-height: 1.58;
+  -webkit-font-smoothing: antialiased;
+}
+.page { max-width: 780px; margin: 0 auto; padding: 56px 32px 96px; }
+
+/* --- Masthead --- */
+.masthead {
+  display: grid; grid-template-columns: 0.7fr 2fr; gap: 32px;
+  align-items: end; padding: 28px 0 22px;
+  border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink);
+}
+.masthead .meta {
+  font-family: "Inter Tight", "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.masthead .meta .row.accent { color: var(--accent); font-weight: 600; }
+.masthead h1 {
+  font-family: "Fraunces", Georgia, serif; font-weight: 700;
+  font-size: clamp(34px, 6.5vw, 52px); line-height: 0.98;
+  letter-spacing: -0.02em; margin: 0;
+}
+.masthead h1 em {
+  font-style: italic; color: var(--accent); font-weight: 700;
+}
+.masthead .dateline {
+  display: block; margin-top: 12px;
+  font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-soft); font-weight: 500;
+}
+
+/* --- Section heads --- */
+.section-head {
+  margin: 60px 0 22px; display: flex; align-items: baseline;
+  justify-content: space-between; padding-bottom: 8px;
+  border-bottom: 1px solid var(--ink);
+}
+.section-head .kicker {
+  font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 21px; letter-spacing: 0.28em; text-transform: uppercase;
+  font-weight: 600; color: var(--ink);
+}
+
+/* --- Numbers + Thesis (combined) --- */
+.numbers { margin-top: 40px; }
+.numbers .display {
+  font-weight: 700;
+  font-size: clamp(36px, 5.4vw, 46px);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  margin: 0 0 12px;
+  color: var(--ink);
+  max-width: 18ch;
+}
+.numbers .display em { font-style: italic; color: var(--accent); font-weight: 700; }
+.numbers .intro {
+  font-style: italic; font-size: 17px; line-height: 1.5;
+  color: var(--ink-soft); margin: 0 0 30px; max-width: 42ch;
+}
+.stats-grid {
+  display: grid; grid-template-columns: 1.1fr 1fr;
+  border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+}
+.stat {
+  padding: 30px 22px 28px 0;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.stat:nth-child(2n) { border-right: 0; padding-left: 22px; padding-right: 0; }
+.stat:nth-child(n+3) { border-bottom: 0; padding-top: 30px; padding-bottom: 8px; }
+.stat .chip {
+  font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.stat .fig {
+  font-weight: 700; font-size: clamp(52px, 9vw, 76px); line-height: 0.95;
+  letter-spacing: -0.03em; color: var(--ink);
+}
+.stat .fig .unit {
+  font-size: 0.38em; font-weight: 600; letter-spacing: 0.02em;
+  color: var(--accent); margin-left: 4px; text-transform: uppercase;
+}
+.stat .cat {
+  font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 12px 0 8px;
+}
+.stat .desc { font-size: 15px; line-height: 1.48; color: var(--ink-soft); margin: 0; max-width: 34ch; }
+
+/* --- Display headlines --- */
+.display {
+  font-weight: 700; font-size: clamp(36px, 5.4vw, 46px); line-height: 1.02;
+  letter-spacing: -0.022em; margin: 0 0 34px; color: var(--ink); max-width: 18ch;
+}
+.display em { font-style: italic; color: var(--accent); font-weight: 700; }
+
+/* --- Feature / Pair --- */
+.feature { padding: 44px 0 36px; border-top: 1px solid var(--rule); }
+.feature:first-of-type { border-top: 3px solid var(--ink); }
+.feature .cat {
+  font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 20px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin-bottom: 22px;
+}
+.feature h2 {
+  font-size: clamp(28px, 4.2vw, 36px); font-weight: 700; line-height: 1.08;
+  letter-spacing: -0.02em; margin: 0 0 18px; color: var(--ink); max-width: 22ch;
+}
+.feature h2 em { font-style: italic; color: var(--accent); font-weight: 700; }
+.feature p { font-size: 17px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 14px; }
+.feature .pullquote {
+  font-style: italic; font-weight: 500; font-size: 22px; line-height: 1.32;
+  color: var(--accent); margin: 22px 0; padding: 0 0 0 18px;
+  border-left: 2px solid var(--accent); max-width: 28ch;
+}
+.why {
+  margin-top: 22px; padding: 16px 18px 16px 20px;
+  background: var(--paper-deep); border-left: 3px solid var(--ink);
+}
+.why .why-label {
+  display: block; font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin-bottom: 6px;
+}
+.why p { margin: 0; font-size: 15.5px; line-height: 1.52; color: var(--ink); }
+.cite { margin-top: 18px; font-size: 11.5px; color: var(--ink-faint); }
+.cite .cite-label {
+  font-size: 9.5px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600; margin-right: 8px;
+}
+
+/* --- Hits --- */
+.hit {
+  display: grid; grid-template-columns: 38px 1fr; gap: 16px;
+  padding: 18px 0; border-top: 1px solid var(--rule-soft);
+}
+.hit:first-of-type { border-top: 1px solid var(--ink); }
+.hit:last-of-type { border-bottom: 1px solid var(--ink); }
+.hit .n {
+  font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 11px; letter-spacing: 0.14em; color: var(--accent); font-weight: 600; padding-top: 5px;
+}
+.hit .meta {
+  font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 9.5px; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--ink-faint); font-weight: 500; margin-bottom: 7px;
+}
+.hit h3 { font-size: 18px; font-weight: 700; line-height: 1.25; margin: 0 0 6px; color: var(--ink); }
+.hit p { font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); margin: 0 0 8px; }
+.hit .src { font-family: "Inter Tight", Arial, sans-serif; font-size: 10.5px; color: var(--ink-faint); }
+
+/* --- Signals --- */
+.signal {
+  display: grid; grid-template-columns: 44px 1fr; gap: 20px;
+  padding: 20px 0; border-top: 1px solid var(--rule);
+}
+.signal:last-child { border-bottom: 1px solid var(--rule); }
+.signal .n {
+  font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 11px; letter-spacing: 0.18em; color: var(--accent); font-weight: 600; padding-top: 4px;
+}
+.signal .body { font-size: 17px; line-height: 1.48; color: var(--ink); }
+.signal .body b { font-weight: 700; color: var(--ink); }
+.signal .gloss {
+  display: block; font-style: italic; color: var(--ink-faint);
+  font-size: 15.5px; margin-top: 4px;
+}
+
+/* --- Sources --- */
+.sources { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--ink); }
+.sources h3 {
+  font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 10.5px; letter-spacing: 0.28em; text-transform: uppercase;
+  font-weight: 600; color: var(--ink); margin: 0 0 16px;
+}
+.sources ol {
+  margin: 0; padding: 0; list-style: none; counter-reset: src;
+  font-size: 13.5px; color: var(--ink-soft);
+  column-count: 2; column-gap: 32px; column-rule: 1px solid var(--rule-soft);
+}
+.sources li { counter-increment: src; padding: 4px 0 8px 26px; line-height: 1.42; position: relative; break-inside: avoid; }
+.sources li::before {
+  content: counter(src, decimal-leading-zero);
+  position: absolute; left: 0; top: 4px;
+  font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 10px; letter-spacing: 0.1em; color: var(--accent); font-weight: 600;
+}
+
+/* --- Colophon --- */
+.colophon { margin-top: 56px; padding-top: 36px; text-align: center; border-top: 1px solid var(--rule); }
+.close-line {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(40px, 7vw, 60px);
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 12ch;
+  margin-left: auto; margin-right: auto;
+}
+.close-line em { font-style: italic; color: var(--accent); font-weight: 700; }
+.close-dek {
+  margin: 24px auto 0;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 40ch;
+}
+.close-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 34px;
+  padding: 12px 22px; border: 1px solid var(--accent); color: var(--accent);
+  text-decoration: none; font-family: "Inter Tight", Arial, sans-serif;
+  font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
+}
+.close-cta:hover { background: var(--accent); color: var(--paper); }
+
+/* --- Responsive --- */
+@media (max-width: 680px) {
+  .masthead { grid-template-columns: 1fr; gap: 18px; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .stat, .stat:nth-child(2n) { border-right: 0; border-bottom: 1px solid var(--rule); padding: 22px 0; }
+  .sources ol { column-count: 1; }
+}
+</style>
+</head>
+<body>
+<article class="page">
+
+  <header class="masthead">
+    <div class="meta">
+      <span class="row accent">Q1 2026 IN REVIEW</span>
+    </div>
+    <div class="title">
+      <h1>New England<br />Construction<br /><em>Quarterly</em></h1>
+      <span class="dateline">Compiled April 2026 · The quarter when tariff math caught up, the lab boom ended, and New Hampshire started winning.</span>
+    </div>
+  </header>
+
+  <div class="section-head">
+    <span class="kicker">Q1 In Numbers</span>
+  </div>
+  <section class="numbers">
+    <h2 class="display">Three <em>patterns</em> reset the map.</h2>
+    <p class="intro">Four figures, three shifts. Each number previews a pattern below.</p>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="chip">PATTERN I · MASSACHUSETTS</div>
+        <div class="fig">$4.8<span class="unit">B</span></div>
+        <div class="cat">Boston Approvals</div>
+        <p class="desc">Development approved by Boston's planning board in 2025, roughly half of 2024 and the lowest total in a decade.</p>
+      </div>
+      <div class="stat">
+        <div class="chip">PATTERN II · TARIFFS</div>
+        <div class="fig">12.6<span class="unit">%</span></div>
+        <div class="cat">Input Prices</div>
+        <p class="desc">Annualized nonresidential construction input price increase in the first two months of 2026.</p>
+      </div>
+      <div class="stat">
+        <div class="chip">PATTERN I · NEW HAMPSHIRE</div>
+        <div class="fig">5,822</div>
+        <div class="cat">NH Housing Permits</div>
+        <p class="desc">Units permitted in New Hampshire in 2025, a 20-year high reported during Q1.</p>
+      </div>
+      <div class="stat">
+        <div class="chip">PATTERN III · LIFE SCIENCES</div>
+        <div class="fig">~28<span class="unit">%</span></div>
+        <div class="cat">Boston Lab Vacancy</div>
+        <p class="desc">Metro life-sciences vacancy near year-end 2025, with roughly 17M SF available.</p>
+      </div>
+    </div>
+  </section>
+
+  <article class="feature">
+    <div class="cat">PATTERN I  ·  MASSACHUSETTS</div>
+    <h2>The approvals <em>collapse</em> became visible.</h2>
+    <p>Boston's planning board approved $4.8 billion of development in 2025, down roughly half from the prior year and the lowest total in a decade. Statewide, Boston Indicators reported Massachusetts building permits down 44% from the 2021 peak.</p>
+    <blockquote class="pullquote">The pipeline entering Q1 was already thin. The quarter did not produce a reversal.</blockquote>
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>Massachusetts-only builders should plan for 2026 volume below 2024, even in favored sectors. Financing costs did not reset, and policy layers are now part of the underwriting stack.</p>
+    </div>
+    <div class="cite">
+      <span class="cite-label">Source</span>
+      Boston Globe, WBUR, Boston Indicators, Banker &amp; Tradesman
+    </div>
+  </article>
+
+  <article class="feature">
+    <div class="cat">PATTERN I  ·  NEW HAMPSHIRE</div>
+    <h2>The permits <em>boom</em> moved north.</h2>
+    <p>New Hampshire municipalities issued permits for 5,822 housing units in 2025, the highest annual total in two decades. The state has added roughly 25,688 units since 2020, with growth concentrated in the Southern Tier and Seacoast.</p>
+    <blockquote class="pullquote">Twenty-three towns and cities accounted for 63% of permits while representing 43.5% of population.</blockquote>
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>This is present reallocation, not a future trend. GCs, A/E firms, and developers that can work across the MA-NH border are absorbing demand that once stayed south.</p>
+    </div>
+    <div class="cite">
+      <span class="cite-label">Source</span>
+      NHPR, Manchester Ink Link, Concord Monitor, Banker &amp; Tradesman
+    </div>
+  </article>
+
+  <article class="feature">
+    <div class="cat">PATTERN II  ·  TARIFFS</div>
+    <h2>Repricing became the <em>base case</em>.</h2>
+    <p>Nonresidential construction input prices rose at a 12.6% annualized rate in the first two months of 2026, per ENR's 1Q cost report. Steel, aluminum, and copper products carry 50% tariffs; derivatives carry 25%; softwood lumber sits at 10% with various derivatives at 25%.</p>
+    <blockquote class="pullquote">AGC found 70% of contractors affected by actual or proposed tariffs; 40% raised bid prices.</blockquote>
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>The February Supreme Court decision did not remove the main construction exposure. Escalation clauses, indexed resets, and early procurement on steel-heavy scopes are now table stakes.</p>
+    </div>
+    <div class="cite">
+      <span class="cite-label">Source</span>
+      ENR, AGC Tariff Resource Center, Utility Dive, AGC &amp; Sage
+    </div>
+  </article>
+
+  <article class="feature">
+    <div class="cat">PATTERN III  ·  LIFE SCIENCES</div>
+    <h2>The lab market <em>bifurcated</em>.</h2>
+    <p>Greater Boston life-sciences vacancy closed 2025 near 28%, with roughly 17M SF available. Cambridge held steadier at about 22%; suburban inventory hit 30.5%. In Somerville, 74 Middlesex Avenue remains entirely vacant after delivering 465,000 SF in early 2025.</p>
+    <blockquote class="pullquote">Roche tripled its Harvard Enterprise Research Campus (ERC) commitment to 100,000 SF while speculative inventory sat.</blockquote>
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>Lab work is clustering around anchor-let campuses and conversion projects. Net-new speculative lab is no longer the default growth market for construction teams.</p>
+    </div>
+    <div class="cite">
+      <span class="cite-label">Source</span>
+      Cambridge Day, Harvard Crimson, Bloomberg, Boston.gov
+    </div>
+  </article>
+
+  <article class="feature">
+    <div class="cat">INFRASTRUCTURE  ·  OFFSHORE WIND</div>
+    <h2>Vineyard Wind reached <em>completion</em>.</h2>
+    <p>On March 13, crews installed the final blades on Vineyard Wind 1's sixty-second turbine. The 800 MW project, fifteen miles south of Martha's Vineyard, became the first large-scale offshore wind project completed in the United States after a Q1 legal fight over a federal stop-work order.</p>
+    <blockquote class="pullquote">Sixty-two GE Haliade-X turbines and 186 blades are now in place.</blockquote>
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>For New England's energy and construction economies, the project proves a large offshore wind build can physically finish in the current federal environment. It does not prove the next project gets the same path.</p>
+    </div>
+    <div class="cite">
+      <span class="cite-label">Source</span>
+      WBUR, Vineyard Gazette, Martha's Vineyard Times, NWF
+    </div>
+  </article>
+
+  <article class="feature">
+    <div class="cat">INSTITUTIONAL  ·  HEALTHCARE</div>
+    <h2>Healthcare entered a <em>megacycle</em>.</h2>
+    <p>Dana-Farber and BIDMC began site-preparation deconstruction on a roughly $1.6B inpatient cancer hospital at One Joslin Place. In the same quarter, Mass General Brigham accepted a $35M gift toward the $1.9B, 2M SF Ragon Building on its Cambridge Street campus.</p>
+    <blockquote class="pullquote">Longwood and Cambridge Street are institutional-owner construction pipelines running through the end of the decade.</blockquote>
+    <div class="why">
+      <span class="why-label">Why it matters</span>
+      <p>Healthcare is one of the few sectors where large owners are committing fresh capital into a high-rate environment. For hospital-capable GCs, pipeline visibility is unusually long.</p>
+    </div>
+    <div class="cite">
+      <span class="cite-label">Source</span>
+      Dana-Farber / BIDMC, Boston Globe, MGH Giving
+    </div>
+  </article>
+
+  <div class="section-head">
+    <span class="kicker">Projects Moving</span>
+  </div>
+  <section class="hits">
+    <div class="hit">
+      <div class="n">01</div>
+      <div>
+        <div class="meta">ALLSTON  ·  MULTIFAMILY</div>
+        <h3>Mill Creek closed $95M for 240 units.</h3>
+        <p>Santander financed the Western Avenue project; 17% of units are income-restricted.</p>
+        <div class="src">Banker &amp; Tradesman</div>
+      </div>
+    </div>
+    <div class="hit">
+      <div class="n">02</div>
+      <div>
+        <div class="meta">SOUTH BOSTON  ·  MIXED USE</div>
+        <h3>HRP moved 776 Summer toward housing first.</h3>
+        <p>The 636-unit residential portion is ahead of 860,000 SF of approved office and lab.</p>
+        <div class="src">Banker &amp; Tradesman</div>
+      </div>
+    </div>
+    <div class="hit">
+      <div class="n">03</div>
+      <div>
+        <div class="meta">SOUTHERN NH  ·  INFRASTRUCTURE</div>
+        <h3>I-93 and Everett Turnpike work carry civil volume.</h3>
+        <p>Widening, bridge, tolling, and interchange work runs into 2027 and 2028.</p>
+        <div class="src">NHDOT Project Center</div>
+      </div>
+    </div>
+    <div class="hit">
+      <div class="n">04</div>
+      <div>
+        <div class="meta">MANCHESTER  ·  AFFORDABLE HOUSING</div>
+        <h3>Lincoln Avenue Capital is delivering 142 units.</h3>
+        <p>PC Construction is completing the former police department site as a two-building affordable project.</p>
+        <div class="src">Business NH Magazine</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-head">
+    <span class="kicker">Looking Ahead</span>
+  </div>
+  <section class="watching">
+    <h2 class="display">Four Q2 signals worth <em>watching</em>.</h2>
+    <div class="signal">
+      <div class="n">01</div>
+      <div class="body"><b>Section 122 tariff expiration in July.</b><span class="gloss">Whether it lapses, extends, or gets replaced will reset procurement strategy across active bids.</span></div>
+    </div>
+    <div class="signal">
+      <div class="n">02</div>
+      <div class="body"><b>HRP's 776 Summer vertical start.</b><span class="gloss">The site is the clearest Q2 test of housing-first repositioning in Boston.</span></div>
+    </div>
+    <div class="signal">
+      <div class="n">03</div>
+      <div class="body"><b>Longwood cancer hospital site logistics.</b><span class="gloss">Deconstruction runs through November before foundation and underground work begin.</span></div>
+    </div>
+    <div class="signal">
+      <div class="n">04</div>
+      <div class="body"><b>Vineyard Wind commissioning and follow-on projects.</b><span class="gloss">Construction is complete; the next test is whether Commonwealth and SouthCoast advance.</span></div>
+    </div>
+  </section>
+
+  <aside class="sources">
+    <h3>Sources &amp; Further Reading</h3>
+    <ol>
+      <li>Boston Globe - Boston planning approvals, Jan. 2, 2026</li>
+      <li>WBUR - MBTA Communities and Vineyard Wind coverage, Jan.-Mar. 2026</li>
+      <li>Boston Indicators / The Boston Foundation - Massachusetts permit data</li>
+      <li>Banker &amp; Tradesman - development, Rise, Arrowpoint, and project coverage</li>
+      <li>NHPR / NHDBEA - New Hampshire housing permits, Feb. 2, 2026</li>
+      <li>ENR 1Q 2026 Cost Report - nonresidential input prices</li>
+      <li>AGC Tariff Resource Center and AGC &amp; Sage 2026 Outlook</li>
+      <li>Cambridge Day / CBRE / Colliers - Boston lab vacancy context</li>
+      <li>Harvard Crimson and Bloomberg - Harvard ERC and Allston context</li>
+      <li>Dana-Farber / BIDMC, Boston Globe, and MGH Giving - healthcare projects</li>
+      <li>Business NH Magazine, Union Leader, and NHDOT Project Center - Southern NH projects</li>
+    </ol>
+  </aside>
+
+  <footer class="colophon">
+    <p class="close-line">Q1 moved <em>the map.</em></p>
+    <p class="close-dek">Capital is flowing to different places, on different terms. Q1 favored firms that adapt procurement, geography, and sector mix.</p>
+    <span class="close-cta">→ FOLLOW FOR THE Q2 REVIEW</span>
+  </footer>
+
+</article>
+</body>
+</html>

@@ -10,3 +10,5 @@ export const researchSection = {
     "Working examples of Excel, Python, and AI inside real asset workflows",
   ],
 };
+
+export { researchArtifacts } from "./artifacts";

@@ -2,7 +2,7 @@
 
 ## Positioning
 
-hire-mark.net should present Mark Melanson as a differentiated operating layer for CRE accounting and finance.
+markbuilds.ai should present Mark Melanson as a differentiated operating layer for CRE accounting and finance.
 
 Core positioning:
 **A differentiated operating layer for CRE accounting and finance.**

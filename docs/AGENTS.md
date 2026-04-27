@@ -10,6 +10,7 @@ Keep strategy, deployment notes, decisions, and archived drafts separate from pr
 - `10_site_strategy.md` for positioning and page goals
 - `11_teaser_variation_directions.md` for active teaser-page visual directions and comparison concepts
 - `20_content_pipeline.md` for cross-repo content sourcing rules
+- `source-context/` for minimal copied upstream context and artifact routing notes
 - `30_deployment.md` for local deploy and domain notes
 - `40_decisions.md` for short architectural or product decisions
 
@@ -19,3 +20,4 @@ Keep strategy, deployment notes, decisions, and archived drafts separate from pr
 - Prefer one canonical doc per topic.
 - Archive stale drafts in `archive/` rather than leaving them near current docs.
 - Do not duplicate publishable content here if the source of truth belongs in `src/content`.
+- Keep copied upstream context small, path-scoped, and clearly separated from public assets.

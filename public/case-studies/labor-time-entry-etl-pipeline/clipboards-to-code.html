@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Field-to-GL: Mobile Labor Capture + Intercompany Billing Pipeline</title>
+<style>
+  :root{
+    --navy:#103A5C;
+    --navy-ink:#0B2A44;
+    --terra:#B85C3D;
+    --terra-ink:#8A4329;
+    --terra-soft:#F4E3DA;
+    --graphite:#1B1E23;
+    --white:#FFFFFF;
+    --off-white:#F7F8F8;
+    --light-rule:#D8DDE2;
+    --muted:#5D6670;
+  }
+
+  @page { size: Letter; margin: 0.5in; }
+
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family: Inter, Arial, sans-serif;
+    color: var(--graphite);
+    background: var(--white);
+    font-size: 10.25pt;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page{ width: 7.5in; margin: 0 auto; padding: 0; }
+
+  /* HEADER */
+  .doc-header{
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 8px; margin-bottom: 12px;
+  }
+  .mono{
+    width:38px; height:38px; border-radius:8px;
+    background:var(--navy); color:var(--white);
+    font-weight:700; font-size:15pt;
+    display:flex; align-items:center; justify-content:center;
+    letter-spacing:0.02em;
+  }
+  .doc-header .meta{
+    text-align:right; font-size:8.25pt; color:var(--muted);
+    letter-spacing:0.12em; text-transform:uppercase; font-weight:600;
+  }
+  .doc-header .meta strong{ color:var(--navy); font-weight:700; }
+
+  .eyebrow{
+    color: var(--terra); font-size: 8pt; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px;
+  }
+
+  h1{
+    font-size: 18pt; line-height: 1.18; font-weight: 700;
+    color: var(--navy-ink); margin: 0 0 6px 0; letter-spacing:-0.005em;
+  }
+  .subtitle{
+    font-size: 10pt; color: var(--graphite);
+    margin: 0 0 10px 0; max-width: 7in;
+  }
+  .rule{ width: 3.2rem; height: 3px; background: var(--terra); border-radius: 999px; margin: 0 0 14px 0; }
+
+  .meta-row{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    background: var(--off-white); border: 1px solid var(--light-rule);
+    padding: 8px 12px; margin: 0 0 14px 0;
+  }
+  .meta-row .cell .k{
+    font-size: 7.5pt; color: var(--navy);
+    letter-spacing:0.12em; text-transform:uppercase; font-weight:700; margin-bottom:2px;
+  }
+  .meta-row .cell .v{ font-size: 9pt; color: var(--graphite); line-height: 1.35; }
+
+  h2{
+    font-size: 11pt; font-weight: 700;
+    color: var(--navy-ink); margin: 14px 0 6px 0;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--light-rule); padding-bottom: 3px;
+  }
+  h2 .accent{ color: var(--terra); }
+  h3{
+    font-size: 9.75pt; font-weight: 700;
+    color: var(--navy-ink); margin: 10px 0 4px 0;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  p{ margin: 4px 0 8px 0; }
+  ul{ margin: 4px 0 8px 0; padding-left: 18px; }
+  li{ margin-bottom: 3px; }
+
+  /* ==== Vertical Before / After diagram ==== */
+  .ba-vert{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 6px 0 14px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .ba-col{
+    background: var(--white);
+    border: 1px solid var(--light-rule);
+    display:flex; flex-direction:column;
+  }
+  .ba-head{
+    padding: 8px 12px;
+    font-weight:700; font-size: 9pt;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .ba-head .count{ font-size: 8pt; opacity: 0.85; letter-spacing: 0.08em; }
+  .ba-col.before .ba-head{ background: var(--graphite); color: var(--white); }
+  .ba-col.after  .ba-head{ background: var(--terra); color: var(--white); }
+
+  .ba-steps{ padding: 8px 12px 4px 12px; flex: 1 1 auto; }
+  .ba-step{
+    position: relative;
+    padding: 4px 0 4px 24px;
+    border-bottom: 1px dashed var(--light-rule);
+    font-size: 8.75pt; line-height: 1.3;
+  }
+  .ba-step:last-of-type{ border-bottom: 0; }
+  .ba-step .n{
+    position:absolute; left:0; top:4px;
+    width:17px; height:17px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 7pt; font-weight:700;
+  }
+  .ba-col.before .ba-step .n{ background: var(--graphite); color: var(--white); }
+  .ba-col.after  .ba-step .n{ background: var(--terra); color: var(--white); }
+  .ba-step .label{ font-weight:700; color: var(--navy-ink); display:block; font-size: 8.75pt; }
+  .ba-step .det{ color: var(--muted); font-size: 8pt; }
+
+  .ba-total{
+    padding: 8px 12px; border-top: 2px solid var(--light-rule);
+    display:flex; justify-content:space-between; align-items:baseline;
+    background: var(--off-white);
+  }
+  .ba-total .t-k{
+    font-size: 7.5pt; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 700; color: var(--muted);
+  }
+  .ba-total .t-v{
+    font-size: 14pt; font-weight: 700; color: var(--navy-ink);
+    line-height: 1;
+  }
+  .ba-col.after .ba-total .t-v{ color: var(--terra); }
+
+  .ba-delta{
+    grid-column: 1 / -1;
+    display:flex; justify-content:center; align-items:center; gap: 14px;
+    padding: 8px 12px;
+    background: var(--terra-soft);
+    border: 1px solid var(--terra);
+    border-radius: 4px;
+    margin-top: 4px;
+    font-size: 9pt;
+  }
+  .ba-delta .d-k{
+    color: var(--terra-ink); font-weight:700;
+    letter-spacing: 0.1em; text-transform: uppercase; font-size: 8pt;
+  }
+  .ba-delta .d-v{ color: var(--navy-ink); font-weight: 700; font-size: 11pt; }
+
+  /* ==== Impact hero (compact, page 1) ==== */
+  .impact-lite{
+    display:grid;
+    grid-template-columns: 1.3fr 2.2fr;
+    gap: 12px;
+    background: var(--navy); color: var(--white);
+    padding: 10px 14px;
+    margin: 4px 0 8px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .impact-lite .big{
+    font-size: 24pt; font-weight: 700;
+    line-height: 1; letter-spacing: -0.01em;
+    color: var(--white);
+  }
+  .impact-lite .big .sub{
+    display:block; font-size: 7.75pt;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 600; opacity: 0.85; margin-top: 6px; color: var(--white);
+  }
+  .impact-lite .stats{
+    display:grid; grid-template-columns: repeat(2, 1fr);
+    gap: 6px 18px; align-content:center;
+  }
+  .impact-lite .stat .v{
+    font-size: 14pt; font-weight: 700; color: var(--white);
+    line-height: 1;
+  }
+  .impact-lite .stat .k{
+    font-size: 7.5pt; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 600;
+    opacity: 0.85; margin-top: 3px;
+  }
+
+  /* ==== Impact callout (detail page) ==== */
+  .impact{
+    background: var(--navy); color: var(--white);
+    padding: 12px 16px;
+    display:grid; grid-template-columns: 1.1fr 2fr;
+    gap: 16px; margin: 6px 0 12px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .impact .big{ font-size: 24pt; font-weight: 700; line-height: 1; letter-spacing: -0.01em; }
+  .impact .lbl{
+    font-size: 7.75pt; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 600; opacity: 0.85; margin-top: 6px;
+  }
+  .impact ul{ margin:0; padding-left: 16px; font-size: 9pt; }
+  .impact li{ margin-bottom: 3px; }
+  .impact li::marker{ color: var(--terra-soft); }
+
+  /* ==== Image galleries ==== */
+  .mobile-gallery{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 6px 0 10px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .mobile-gallery figure{ margin: 0; break-inside: avoid; }
+  .mobile-gallery figure img{
+    width: 100%; max-height: 3.0in; object-fit: contain;
+    border: 1px solid var(--light-rule); background: var(--white);
+    display: block;
+  }
+  .mobile-gallery figcaption{
+    font-size: 8pt; color: var(--muted);
+    margin-top: 4px; line-height: 1.3; text-align: center;
+  }
+  .mobile-gallery figcaption .tag{
+    display:inline-block; color: var(--terra);
+    font-weight:700; letter-spacing: 0.1em; text-transform: uppercase;
+    font-size: 7.5pt; margin-right: 4px;
+  }
+
+  figure{ margin: 8px 0 10px 0; break-inside: avoid; page-break-inside: avoid; }
+  figure img{
+    max-width: 100%; height: auto; display:block;
+    border: 1px solid var(--light-rule); background: var(--white);
+  }
+  figcaption{
+    font-size: 8.25pt; color: var(--muted);
+    margin-top: 5px; line-height: 1.4;
+    break-before: avoid; page-break-before: avoid;
+  }
+  figcaption .tag{
+    color: var(--terra); font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-right: 6px;
+  }
+  figcaption .tag.navy{ color: var(--navy); }
+
+  /* ==== AI in the Build section ==== */
+  .ai-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 6px 0 10px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .ai-card{
+    border: 1px solid var(--light-rule);
+    border-top: 3px solid var(--terra);
+    padding: 10px 12px;
+    background: var(--white);
+  }
+  .ai-card .tool{
+    font-size: 7.75pt; color: var(--terra);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 4px;
+  }
+  .ai-card .title{
+    font-size: 10pt; font-weight: 700;
+    color: var(--navy-ink); margin-bottom: 4px;
+  }
+  .ai-card .body{ font-size: 8.75pt; line-height: 1.4; color: var(--graphite); }
+
+  /* Metrics row */
+  .metrics{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    margin: 2px 0 10px 0;
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .metrics .m{
+    border: 1px solid var(--light-rule);
+    border-left: 3px solid var(--terra);
+    padding: 9px 12px; background: var(--white);
+  }
+  .metrics .m .v{ font-size: 15pt; font-weight: 700; color: var(--navy-ink); line-height: 1; }
+  .metrics .m .k{
+    font-size: 7.5pt; color: var(--muted);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600; margin-top: 5px;
+  }
+
+  /* break helpers */
+  figure, .impact, .impact-lite, .metrics, .ba-vert, .ai-grid, .mobile-gallery{
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  h2, h3 { break-after: avoid; page-break-after: avoid; }
+  p { orphans: 3; widows: 3; }
+  .new-page { break-before: page; page-break-before: always; }
+
+  /* Footer */
+  .doc-footer{
+    margin-top: 20px; padding-top: 8px;
+    border-top: 1px solid var(--light-rule);
+    display:flex; justify-content:space-between;
+    font-size: 7.75pt; color: var(--muted);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  .small{ font-size: 8.5pt; color: var(--muted); }
+  .callout{
+    background: var(--terra-soft);
+    border-left: 3px solid var(--terra);
+    padding: 8px 12px;
+    margin: 6px 0 10px 0;
+    font-size: 9pt; color: var(--navy-ink);
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .callout strong{ color: var(--terra-ink); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============ PAGE 1: HOOK + DELTA + IMPACT ============ -->
+<header class="doc-header">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="mono">MM</div>
+    <div>
+      <div style="font-size:7.75pt;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;color:var(--navy);">AI Case Study</div>
+      <div style="font-size:8.25pt;color:var(--muted);">Mark Melanson &middot; Finance &amp; Operations</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div><strong>Case 02</strong></div>
+    <div>Labor Capture &middot; ETL &middot; Intercompany Billing</div>
+  </div>
+</header>
+
+<div class="eyebrow">Implementation Proof &middot; Solo AI Build</div>
+<h1>Field-to-GL: An AI-Built Mobile Labor Capture and Intercompany Billing Pipeline</h1>
+<div class="rule"></div>
+<p class="subtitle">Replaced a paper-timesheet and Excel-transcription process at RJK with a mobile web app (built with Replit Agent), an AI review layer (Shortcut.AI Skill), and a Power Query/Pivot ETL that produces a Yardi-ready intercompany labor payable file across 70+ property entities and 50+ active job-cost projects.</p>
+
+<div class="meta-row">
+  <div class="cell"><div class="k">Role</div><div class="v">End-to-end design &amp; build; rollout lead; monthly pipeline operator</div></div>
+  <div class="cell"><div class="k">Users</div><div class="v">20+ field staff; 3 property managers; 3 construction PMs</div></div>
+  <div class="cell"><div class="k">Scope</div><div class="v">70+ property entities; 50+ job-cost projects; 12k+ entries</div></div>
+  <div class="cell"><div class="k">Stack</div><div class="v">Replit Agent &middot; Shortcut.AI Skill &middot; Power Query/Pivot &middot; Yardi</div></div>
+</div>
+
+<h2>Before <span class="accent">&rsaquo;</span> After</h2>
+<div class="ba-vert">
+  <div class="ba-col before">
+    <div class="ba-head"><span>Before</span><span class="count">7 steps</span></div>
+    <div class="ba-steps">
+      <div class="ba-step"><span class="n">1</span><span class="label">Paper / ad-hoc digital timesheets</span><span class="det">Field staff logged hours by hand or in scattered templates.</span></div>
+      <div class="ba-step"><span class="n">2</span><span class="label">Monday submission lag</span><span class="det">Hours arrived a week late, detached from context.</span></div>
+      <div class="ba-step"><span class="n">3</span><span class="label">Jr. accounting re-keying</span><span class="det">20&ndash;30 hrs/mo transcribing into Excel; notes lost.</span></div>
+      <div class="ba-step"><span class="n">4</span><span class="label">PM separate payroll pass</span><span class="det">Property managers re-transcribed ~2 hrs/wk each.</span></div>
+      <div class="ba-step"><span class="n">5</span><span class="label">Monthly template consolidation</span><span class="det">Manual roll-up across 70+ entities, 50+ projects.</span></div>
+      <div class="ba-step"><span class="n">6</span><span class="label">Rate &amp; allocation math by hand</span><span class="det">PMA escalators and charge types applied per-property.</span></div>
+      <div class="ba-step"><span class="n">7</span><span class="label">Sr. accounting review &amp; Yardi entry</span><span class="det">~8 hrs senior effort to close monthly billing.</span></div>
+    </div>
+    <div class="ba-total"><span class="t-k">Monthly Cost</span><span class="t-v">~30&ndash;38 hrs</span></div>
+  </div>
+
+  <div class="ba-col after">
+    <div class="ba-head"><span>After</span><span class="count">4 steps</span></div>
+    <div class="ba-steps">
+      <div class="ba-step"><span class="n">1</span><span class="label">Mobile capture at point-of-work</span><span class="det">Property, work type, detail, hours, notes &mdash; structured on submit.</span></div>
+      <div class="ba-step"><span class="n">2</span><span class="label">Weekly PM approval</span><span class="det">Same-week review; approved entries feed payroll and billing from one source.</span></div>
+      <div class="ba-step"><span class="n">3</span><span class="label">AI review + deterministic ETL</span><span class="det">Shortcut.AI Skill flags inconsistencies; Power Query maps rates &amp; allocations.</span></div>
+      <div class="ba-step"><span class="n">4</span><span class="label">Yardi-ready CSV import</span><span class="det">Intercompany payable file with entity routing &amp; GL accounts, one-shot import.</span></div>
+    </div>
+    <div class="ba-total"><span class="t-k">Monthly Cost</span><span class="t-v">~50&ndash;65 min</span></div>
+  </div>
+
+  <div class="ba-delta">
+    <span class="d-k">Net delta</span>
+    <span class="d-v">~97% monthly time reduction &middot; 3 fewer process steps &middot; single source for payroll + billing</span>
+  </div>
+</div>
+
+<div class="impact-lite">
+  <div>
+    <div class="big">~$103K<span class="sub">Estimated Annual Overhead Savings</span></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="v">20+</div><div class="k">Field Staff Users</div></div>
+    <div class="stat"><div class="v">70+</div><div class="k">Property Entities</div></div>
+    <div class="stat"><div class="v">50+</div><div class="k">Job-Cost Projects</div></div>
+    <div class="stat"><div class="v">12k+</div><div class="k">Entries Processed</div></div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2: WHAT I BUILT + CAPTURE ============ -->
+
+<h2>What I Built</h2>
+<ul>
+  <li><strong>Mobile web app</strong> for labor time capture, engineered end-to-end with Replit Agent using deliberate prompt &amp; context engineering. Structured inputs: property, work type (Maintenance / Construction), detail category (Common Area, Tenant Specific, Vacant Space, or active Project), hours, and free-text notes.</li>
+  <li><strong>Approval layer</strong> for property and construction project managers to review weekly entries and submit payroll-ready reports.</li>
+  <li><strong>AI review layer</strong> &mdash; a custom Shortcut.AI Skill that autonomously flags inconsistent entries using keyword rules and semantic mismatch against entry metadata.</li>
+  <li><strong>ETL pipeline</strong> in Power Query / Power Pivot for validation, rate mapping (by role and PMA escalator), charge-type allocation, and last-mile Excel formulas to produce a Yardi-importable CSV.</li>
+  <li><strong>Controls</strong>: required fields at capture, weekly PM approvals, monthly AI-assisted review, hour-total reconciliation, and a blended-rate sanity check on total billings.</li>
+</ul>
+
+<h2>Capture <span class="accent">&mdash; Mobile-First Field Entry</span></h2>
+<div class="mobile-gallery">
+  <figure>
+    <img src="assets/mobile_entry_1.png" alt="Mobile landing screen showing date auto-set, property selector, and the start of a new time entry.">
+    <figcaption><span class="tag">Step 1</span>Date auto-set, property selector.</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/mobile_entry_2.png" alt="Mobile work-type and detail selector: Maintenance vs Construction, with drill-down into Common Area / Tenant Specific / Vacant Space or active project.">
+    <figcaption><span class="tag">Step 2</span>Work type &amp; detail category.</figcaption>
+  </figure>
+  <figure>
+    <img src="assets/mobile_entry_3.png" alt="Mobile entry submit screen with hours, notes field, and billable/PTO flags visible.">
+    <figcaption><span class="tag">Step 3</span>Hours, notes, submit.</figcaption>
+  </figure>
+</div>
+<p class="small" style="text-align:center;">Synthetic sample data. All three flows submit into a single structured record preserved through the GL package.</p>
+
+<h2>Review <span class="accent">&mdash; Desktop Entry Point</span></h2>
+<figure>
+  <img src="assets/homepage_desktop.png" alt="Desktop login / welcome screen with branded login panel and a positioning panel listing quick time entry, offline support, simple project selection, and easy note taking." style="max-height:2.4in; width:100%; object-fit:contain;">
+  <figcaption><span class="tag">Welcome</span>Desktop entry point &mdash; same authenticated user / PM flow as mobile. PMs approve weekly entries here; the same approved-entry set feeds both weekly payroll submissions and the monthly intercompany billing pipeline.</figcaption>
+</figure>
+
+<!-- ============ PAGE 3: TRANSFORM + AI BUILD ============ -->
+
+<h2>Transform <span class="accent">&mdash; Deterministic ETL</span></h2>
+<h3>Inputs</h3>
+<p>Date (auto), property, work type, detail category (or active project for construction), hours, billable flag, PTO/holiday, and notes. Project managers maintain the active-project list per property directly in-app.</p>
+<h3>Processing Logic</h3>
+<p>Power Query normalizes the app export and joins a rate table (per role; adjustable for role changes and PMA inflation escalators). Power Pivot aggregates by property &times; charge type (Common Area, Tenant Specific, Vacant Space, Project) and routes to the correct JV entity. Last-mile Excel formulas produce a Yardi import layout: payee, invoice date/#, post month, entity, amount, GL / A/P accounts, notes.</p>
+<h3>Output</h3>
+<p>A weekly payroll-submission report reviewed by property and construction PMs; and a monthly Yardi-ready intercompany payable CSV from the operator entity to each JV property entity, with job-cost project and cost-code detail preserved on construction entries.</p>
+
+<figure>
+  <img src="assets/billing_csv_output.png" alt="Yardi-ready intercompany payable CSV import screen showing columns for number of payable screens, payee, invoice date, post month, invoice number, entity, amount, account, A/P account, and notes populated with monthly RJK labor allocations." style="max-height:2.3in; width:100%; object-fit:contain;">
+  <figcaption><span class="tag">Output</span>Yardi-ready intercompany payable CSV &mdash; the final artifact the ETL produces. Each row is a property-entity payable from the operator entity, with GL account, A/P account, and notes populated for a one-shot monthly import.</figcaption>
+</figure>
+
+<h2>AI <span class="accent">in the Build</span></h2>
+<p>AI is used as leverage at three specific seams. Durable transformation logic sits in deterministic Power Query / Power Pivot; AI accelerates build, review, and codification.</p>
+<div class="ai-grid">
+  <div class="ai-card">
+    <div class="tool">Replit Agent</div>
+    <div class="title">Spec-to-app in hours</div>
+    <div class="body">Prompt- and context-engineered the full-stack web app: schema, auth, routing, entry form, PM approval surface, admin. Solo build, no engineering team.</div>
+  </div>
+  <div class="ai-card">
+    <div class="tool">Shortcut.AI Skill</div>
+    <div class="title">Autonomous review layer</div>
+    <div class="body">Custom Agent Skill developed with examples of inconsistent entries. Flags keyword and semantic mismatches between notes and metadata before senior review.</div>
+  </div>
+  <div class="ai-card">
+    <div class="tool">Power Query / Pivot</div>
+    <div class="title">AI-assisted ETL design</div>
+    <div class="body">Rate mapping, PMA escalator math, charge-type routing, and blended-rate sanity check logic drafted with AI, then hardened into deterministic M-code and DAX.</div>
+  </div>
+</div>
+
+<div class="callout"><strong>Personal AI capability on display:</strong> spec-writing for agentic builders, custom skill training, prompt-driven ETL design, and the judgment to keep the <em>posting</em> path human-gated &mdash; AI for leverage, deterministic code for audit integrity.</div>
+
+<!-- ============ PAGE 4: DETAILED IMPACT + RELEVANCE ============ -->
+
+<h2>Business Impact <span class="accent">&mdash; Detail</span></h2>
+<div class="impact">
+  <div>
+    <div class="big">~$103K</div>
+    <div class="lbl">Estimated Annual Overhead Savings</div>
+  </div>
+  <div>
+    <ul>
+      <li>Sr. accounting monthly close effort for labor billing: ~8 hrs &rarr; ~30&ndash;45 min.</li>
+      <li>Jr. accounting transcription eliminated (~20&ndash;30 hrs/month).</li>
+      <li>Property manager timesheet transcription: ~2 hrs/week &rarr; ~20 min/week review.</li>
+      <li>Source: <em>OverHead Savings Calculation.xlsx</em> (internal, headcount &times; loaded hourly rate &times; hours saved).</li>
+    </ul>
+  </div>
+</div>
+
+<div class="metrics">
+  <div class="m"><div class="v">20+</div><div class="k">Field Staff Users</div></div>
+  <div class="m"><div class="v">70+</div><div class="k">Property Entities Billed</div></div>
+  <div class="m"><div class="v">50+</div><div class="k">Active Job-Cost Projects</div></div>
+  <div class="m"><div class="v">12k+</div><div class="k">Time Entries Processed</div></div>
+</div>
+
+<h3>Qualitative Impact</h3>
+<ul>
+  <li><strong>Cleaner billing:</strong> standardized charge-type routing and blended-rate sanity checks replaced ad-hoc spreadsheet work.</li>
+  <li><strong>Faster close support:</strong> end-to-end monthly billing collapses to under an hour of senior review.</li>
+  <li><strong>Richer entry data:</strong> per-entry notes from the field are preserved into the GL package &mdash; previously lost in manual re-keying.</li>
+  <li><strong>Better accountability:</strong> weekly PM approval and AI-assisted inconsistency flagging sit in front of monthly billing.</li>
+</ul>
+
+<h3>Adoption &amp; Continuity</h3>
+<ul>
+  <li>Rolled out to the field, property, and construction teams; in continuous monthly use for 10+ months with no reported downtime.</li>
+  <li>Operator ran the monthly pipeline personally; process remained in place at RJK after departure.</li>
+  <li>Reused as both the payroll submission source and the monthly intercompany billing source from a single dataset.</li>
+</ul>
+
+<h2>Transferable Relevance</h2>
+<ul>
+  <li><strong>End-to-end implementation judgment:</strong> field capture, review, ETL, and ERP integration designed as one system &mdash; not a point tool bolted on.</li>
+  <li><strong>Business-process understanding:</strong> deliberate design of inputs, approvals, reconciliation, and audit-friendly outputs for finance, property, and construction stakeholders.</li>
+  <li><strong>AI / tooling fluency:</strong> agentic build tools and custom skills used where they pay; deterministic code where audit integrity matters.</li>
+  <li><strong>Finance-ops relevance:</strong> eliminates manual re-keying, tightens close, and feeds ERP postings with structured, audit-defensible data.</li>
+</ul>
+
+<h2>Limitations &amp; Controls Acknowledged</h2>
+<ul>
+  <li>Monthly human review is required before posting; the AI review layer flags, it does not auto-correct.</li>
+  <li>Rate tables and PMA escalators are maintained manually; changes flow through a single rate source.</li>
+  <li>Yardi posting step is a controlled import &mdash; intentionally human-gated, not automated end-to-end.</li>
+</ul>
+
+<!-- ============ PAGE 5: APPENDIX ============ -->
+
+<h2>Appendix <span class="accent">&mdash; Supporting Evidence</span></h2>
+
+<figure>
+  <img src="assets/overhead_savings.png" alt="Overhead savings calculator table with role, headcount, annual salary, load factor, loaded salary, hours saved per month, loaded hourly rate, monthly savings, and annual savings columns, totaling approximately $103K annual savings." style="max-height:3.2in; width:100%; object-fit:contain;">
+  <figcaption><span class="tag">Impact math</span>Overhead Savings Calculator &mdash; headcount &times; loaded hourly rate &times; hours saved per month, rolled to annual (~$103K). Source workbook: internal; synthetic loading factors shown.</figcaption>
+</figure>
+
+<figure>
+  <img src="assets/billing_pivot.png" alt="Billing workbook pivot table showing per-property billing amounts and adjusted hours broken out by charge type (Common Area, Vacant Space) with synthetic property names." style="max-height:3.0in; width:100%; object-fit:contain;">
+  <figcaption><span class="tag">Review surface</span>Pivot view used during monthly review &mdash; per-property billing and hours by charge type, used as the blended-rate sanity check before Yardi import (synthetic sample data).</figcaption>
+</figure>
+
+<footer class="doc-footer">
+  <div>Mark Melanson &middot; AI Case Study 02</div>
+  <div>Appendix &middot; Source-grounded &middot; Synthetic sample data</div>
+</footer>
+</div>
+
+</body>
+</html>
