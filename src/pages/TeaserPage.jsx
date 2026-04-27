@@ -108,6 +108,10 @@ const landingImages = {
       alt: "Workflow control room desk showing documents, approvals, and exception queues",
     },
   ],
+  service: {
+    src: "/landing-images/operator-review-desk.png",
+    alt: "Operator reviewing invoices, checklists, and exception notes before turning messy work into a reliable workflow",
+  },
 };
 
 function InstallDetails() {
@@ -410,6 +414,11 @@ function TeaserPage() {
             The work starts where the process already leaks time: intake, cleanup,
             review, routing, reporting, and exception handling.
           </p>
+          <img
+            className="landing-service-image landing-motion-image"
+            src={landingImages.service.src}
+            alt={landingImages.service.alt}
+          />
         </div>
         <div className="landing-offer-grid">
           <article className="landing-card landing-card-lead">
