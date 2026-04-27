@@ -13,14 +13,14 @@ const skillPackDownload = "/downloads/cowork-metaprompt.zip";
 const primaryCtaLabel = "Get the free launch pack";
 
 const landingCopy = {
-  title: "Automate the work your team repeats.",
+  title: "Find and fix the workflows quietly draining your bottom line",
   description:
-    "Hands-on AI automation consulting for small and mid-size businesses with recurring intake, reporting, document review, field notes, and spreadsheet-heavy workflows.",
+    "Practical AI automation for small and mid-size businesses. We audit your highest-friction workflow, build the fix, and keep it running.",
   readiness:
-    "Start with one high-friction workflow and turn it into a measurable process your team can trust every week.",
-  ctaTitle: primaryCtaLabel,
+    "No sales talk. We streamline the workflow, prove the outcome, and expand from there.",
+  ctaTitle: "Private launch pack access",
   ctaBody:
-    "Get the starter workflow pack, then use it to identify the first process worth automating.",
+    "Enter your email to get the launch pack and first-look access to AI audits, workflow builds, and managed-agent openings as they roll out.",
 };
 
 const offerCards = [
@@ -46,17 +46,20 @@ const offerCards = [
 
 const packItems = [
   {
-    title: "Workflow audit",
-    body: "Find the recurring work, handoffs, and exceptions worth automating first.",
+    title: "AI Audit",
+    body:
+      "A structured review of your team's recurring work to identify where AI creates real leverage. You leave with a prioritized roadmap and a defined first build.",
     action: "signup",
   },
   {
-    title: "AI review loops",
-    body: "Speed document, spreadsheet, and reporting checks without removing judgment.",
+    title: "Workflow Solutions",
+    body:
+      "An engineered automation built around a single measurable outcome. Designed to integrate with your existing tools and your team.",
   },
   {
-    title: "Team handoff",
-    body: "Prompts, checklists, validation steps, and habits your team can keep running.",
+    title: "Managed Agents",
+    body:
+      "Operational ownership of your AI systems. We monitor performance, refine the work, and adapt as your business evolves.",
   },
 ];
 
@@ -164,7 +167,7 @@ function SignupForm() {
     } catch {
       setStatus("error");
       setMessage(
-        "Signup did not complete. Download the pack directly, or email Mark for the next workflow notes.",
+        "Signup did not complete. Email Mark to request launch pack access.",
       );
     }
   }
@@ -173,25 +176,17 @@ function SignupForm() {
     return (
       <div className="landing-signup landing-signup-fallback" role="status">
         <p className="landing-form-note landing-form-note-success">
-          Download-first access is open now. Direct email is the fastest way to
-          request the next workflow notes.
+          Email Mark to request the launch pack and early access to the first AI
+          audit openings.
         </p>
         <div className="landing-action-row">
           <a
             className="landing-download-button"
-            href={skillPackDownload}
-            download="cowork-metaprompt.zip"
-          >
-            {primaryCtaLabel}
-          </a>
-          <a
-            className="landing-secondary-link"
             href={`mailto:${siteMeta.contact.email}?subject=markbuilds.ai launch pack`}
           >
-            Email Mark directly
+            Request launch pack access
           </a>
         </div>
-        <InstallDetails />
       </div>
     );
   }
@@ -231,15 +226,12 @@ function SignupForm() {
         </button>
       </div>
       <p className={`landing-form-note landing-form-note-${status}`} aria-live="polite">
-        {message || "Join the list and get the launch pack after submit."}
+        {message || "Enter your email to unlock the launch pack and early access notes."}
       </p>
       {status === "error" ? (
         <div className="landing-form-recovery">
-          <a href={skillPackDownload} download="cowork-metaprompt.zip">
-            Download the launch pack directly
-          </a>
           <a href={`mailto:${siteMeta.contact.email}?subject=markbuilds.ai launch pack`}>
-            Email Mark
+            Email Mark for access
           </a>
         </div>
       ) : null}
@@ -319,18 +311,7 @@ function TeaserPage() {
         );
       });
 
-      const media = gsap.matchMedia();
-      media.add("(min-width: 981px) and (prefers-reduced-motion: no-preference)", () => {
-        ScrollTrigger.create({
-          trigger: ".landing-service-model",
-          start: "top 108px",
-          end: "bottom bottom",
-          pin: ".landing-service-copy",
-          pinSpacing: false,
-        });
-      });
-
-      return () => media.revert();
+      return undefined;
     },
     { scope: pageRef },
   );
@@ -367,7 +348,7 @@ function TeaserPage() {
 
       <section className="teaser-hero landing-reveal">
         <div className="landing-hero-copy">
-          <p className="landing-kicker">Small-business AI automation consulting</p>
+          <p className="landing-kicker">Practical AI automation for SMBs</p>
           <h1>{landingCopy.title}</h1>
           <p className="landing-description">{landingCopy.description}</p>
           <p className="landing-readiness">{landingCopy.readiness}</p>
@@ -405,7 +386,7 @@ function TeaserPage() {
               <a className="landing-primary-button" href="/#launch-pack" onClick={highlightLaunchPack}>
                 {primaryCtaLabel}
               </a>
-              <p>One practical skill pack now, with deeper prompt and workflow notes linked in.</p>
+              <p>Email unlock only. Early access spots stay limited while each offer is built with operators.</p>
             </div>
           </div>
         </div>
@@ -436,7 +417,7 @@ function TeaserPage() {
         </div>
         <div className="landing-offer-grid">
           <article className="landing-card landing-card-lead">
-            <h3>Most teams need one painful workflow made measurable, repeatable, and easier to run.</h3>
+            <h3>One workflow. Measurable lift.</h3>
             <p>
               The goal is not another AI strategy deck. It is a usable system the
               operator trusts enough to run every week.
