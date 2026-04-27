@@ -86,7 +86,6 @@
 .landing-nav a,
 .landing-footer a,
 .landing-pack-card,
-.landing-proof-card,
 .landing-secondary-link,
 .landing-form-recovery a {
   color: var(--landing-ink);
@@ -274,8 +273,11 @@
   border: 1px solid var(--landing-border);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.72);
+  color: var(--landing-ink);
   font: inherit;
   text-align: left;
+  text-decoration: none;
+  appearance: none;
   cursor: pointer;
   transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
@@ -657,8 +659,7 @@
   line-height: 1;
 }
 
-.landing-card:hover,
-.landing-proof-card:hover {
+.landing-card:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   transform: translateY(-2px);
 }
@@ -710,7 +711,6 @@
   padding: clamp(22px, 3vw, 34px);
   border-width: 0 1px 0 0;
   border-radius: 0;
-  transition: box-shadow 200ms ease, transform 200ms ease;
 }
 
 .landing-proof-card:last-child {
@@ -810,6 +810,12 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 14px;
+}
+
+.landing-footer span {
+  color: var(--landing-muted);
+  font-size: 0.86rem;
+  font-weight: 720;
 }
 
 .landing-reveal {

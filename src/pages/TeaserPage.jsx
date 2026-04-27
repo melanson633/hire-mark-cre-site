@@ -2,7 +2,6 @@ import { useEffect, useId, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Link } from "react-router-dom";
 import { siteMeta } from "../content/siteMeta";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import "../styles/teaser.css";
@@ -53,37 +52,32 @@ const packItems = [
   },
   {
     title: "Prompt library",
-    body: "Browse document, spreadsheet, and workflow analysis prompts.",
-    href: "/prompts",
+    body: "Document, spreadsheet, and workflow prompts follow the pack.",
   },
   {
     title: "Weekly notes",
-    body: "Read practical small-business AI automation patterns as they ship.",
-    href: "/newsletter",
+    body: "Practical small-business AI automation notes as they ship.",
   },
 ];
 
-const proofLinks = [
+const proofItems = [
   {
     label: "Projects",
     title: "Proof-of-capability artifacts",
     body:
       "Review public builds across automation, financial modeling, and operating workflows.",
-    href: "/projects",
   },
   {
     label: "Prompts",
     title: "Reusable analysis systems",
     body:
       "Inspect production-oriented prompts for document review, research, and structured output.",
-    href: "/prompts",
   },
   {
     label: "Tools",
     title: "Operator utilities",
     body:
       "Use calculators and quick-reference tools shaped around recurring finance workflows.",
-    href: "/tools",
   },
 ];
 
@@ -384,10 +378,15 @@ function TeaserPage() {
                   <span>{item.body}</span>
                 </a>
               ) : (
-                <Link className="landing-pack-card" key={item.title} to={item.href}>
+                <button
+                  className="landing-pack-card"
+                  key={item.title}
+                  type="button"
+                  onClick={highlightLaunchPack}
+                >
                   <strong>{item.title}</strong>
                   <span>{item.body}</span>
-                </Link>
+                </button>
               ),
             )}
           </div>
@@ -457,12 +456,12 @@ function TeaserPage() {
           </p>
         </div>
         <div className="landing-proof-grid">
-          {proofLinks.map((item) => (
-            <Link className="landing-proof-card" to={item.href} key={item.title}>
+          {proofItems.map((item) => (
+            <article className="landing-proof-card" key={item.title}>
               <p>{item.label}</p>
               <h3>{item.title}</h3>
               <span>{item.body}</span>
-            </Link>
+            </article>
           ))}
         </div>
       </section>
@@ -493,10 +492,7 @@ function TeaserPage() {
       <footer className="landing-footer" aria-label="Footer">
         <img src="/brand/markbuilds-logo-header.svg" alt="markbuilds.ai" />
         <nav aria-label="Footer navigation">
-          <Link to="/projects">Projects</Link>
-          <Link to="/prompts">Prompts</Link>
-          <Link to="/tools">Tools</Link>
-          <Link to="/about">About</Link>
+          <span>Full site coming soon</span>
           <a href={`mailto:${siteMeta.contact.email}`}>Contact</a>
         </nav>
       </footer>
