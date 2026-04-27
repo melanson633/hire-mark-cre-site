@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="markbuildsIconTitle">
+  <title id="markbuildsIconTitle">markbuilds.ai icon</title>
+  <rect width="512" height="512" rx="108" fill="#10110f"/>
+  <path d="M130 317V190c0-34 21-55 55-55 25 0 43 10 54 29 12-19 32-29 60-29 52 0 83 31 83 83v99h-54v-96c0-24-13-38-36-38-24 0-38 15-38 41v93h-54v-96c0-24-13-38-35-38-24 0-37 15-37 41v93h-58Z" fill="#f8f6ef"/>
+  <path d="M325 184c22-32 74-24 88 14 4 11 6 23 6 39v80h-54v-78c0-23-10-36-30-38-14-1-25 4-33 15l-29 45v-52l52-25Z" fill="#b58a3f"/>
+  <circle cx="386" cy="147" r="14" fill="#b58a3f"/>
+</svg>

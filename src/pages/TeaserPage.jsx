@@ -1,20 +1,27 @@
-import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { importedCaseStudyArtifacts } from "../content/caseStudies";
+import { useEffect, useId, useRef, useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
+import { siteMeta } from "../content/siteMeta";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import "../styles/teaser.css";
 
-const signupEndpoint = import.meta.env.VITE_NEWSLETTER_ENDPOINT || "";
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+const signupEndpoint = (import.meta.env.VITE_NEWSLETTER_ENDPOINT || "").trim();
 const skillPackDownload = "/downloads/cowork-metaprompt.zip";
+const primaryCtaLabel = "Get the free launch pack";
 
 const landingCopy = {
-  title: "Automate the SMB work stuck in inboxes, spreadsheets, and PDFs.",
+  title: "Turn busywork into systems.",
   description:
-    "Forward-deployed AI and process automation consulting for SMB teams buried in inboxes, spreadsheets, PDFs, field notes, and recurring reporting work.",
-  comingSoon:
-    "Full site coming soon. There is no official target date for the full rollout.",
-  ctaTitle: "Get the free launch pack",
+    "Hands-on AI automation consulting for small-business teams with recurring reporting, document intake, field notes, and spreadsheet review loops.",
+  readiness:
+    "Launch pack available now for operators who want practical AI leverage before another large platform.",
+  ctaTitle: primaryCtaLabel,
   ctaBody:
-    "Enter your email and grab the Cowork-Metaprompt skill — a drop-in prompt rewriter for Cowork and Claude Code. More prompt library and weekly operator notes follow as the library comes online.",
+    "Start with one useful skill pack. Deeper prompt and workflow notes follow.",
 };
 
 const offerCards = [
@@ -39,13 +46,49 @@ const offerCards = [
 ];
 
 const packItems = [
-  "Cowork-Metaprompt skill: rewrites raw prompts into Claude-best-practice form",
-  "Prompt library for document, spreadsheet, and workflow analysis",
-  "Weekly notes on practical SMB AI automation patterns",
+  {
+    title: "Cowork-Metaprompt skill",
+    body: "Rewrite raw prompts into Claude-best-practice form.",
+    action: "signup",
+  },
+  {
+    title: "Prompt library",
+    body: "Browse document, spreadsheet, and workflow analysis prompts.",
+    href: "/prompts",
+  },
+  {
+    title: "Weekly notes",
+    body: "Read practical small-business AI automation patterns as they ship.",
+    href: "/newsletter",
+  },
+];
+
+const proofLinks = [
+  {
+    label: "Projects",
+    title: "Proof-of-capability artifacts",
+    body:
+      "Review public builds across automation, financial modeling, and operating workflows.",
+    href: "/projects",
+  },
+  {
+    label: "Prompts",
+    title: "Reusable analysis systems",
+    body:
+      "Inspect production-oriented prompts for document review, research, and structured output.",
+    href: "/prompts",
+  },
+  {
+    label: "Tools",
+    title: "Operator utilities",
+    body:
+      "Use calculators and quick-reference tools shaped around recurring finance workflows.",
+    href: "/tools",
+  },
 ];
 
 const audienceSignals = [
-  "Owner-led SMBs with messy but valuable operating knowledge",
+  "Owner-led small businesses with messy but valuable operating knowledge",
   "Finance, operations, construction, field service, and back-office teams",
   "Leaders who need leverage before they need another large software platform",
 ];
@@ -72,7 +115,21 @@ const landingImages = {
   ],
 };
 
-function SignupForm({ compact = false }) {
+function InstallDetails() {
+  return (
+    <details className="landing-install-details">
+      <summary>Installation notes for Claude and Cowork users</summary>
+      <p>
+        Unzip the pack to a <code>cowork-metaprompt/</code> folder and place it in{" "}
+        <code>~/.claude/skills/</code> on macOS/Linux or{" "}
+        <code>%APPDATA%\Claude\skills\</code> on Windows. It includes SKILL.md,
+        reference playbooks, and an eval set.
+      </p>
+    </details>
+  );
+}
+
+function SignupForm() {
   const emailId = useId();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
@@ -84,14 +141,6 @@ function SignupForm({ compact = false }) {
     if (!email.trim()) {
       setStatus("error");
       setMessage("Enter an email address to request the launch pack.");
-      return;
-    }
-
-    if (!signupEndpoint) {
-      setStatus("preview");
-      setMessage(
-        "Preview mode: the email provider is not connected yet, but your skill pack is ready below.",
-      );
       return;
     }
 
@@ -115,47 +164,62 @@ function SignupForm({ compact = false }) {
 
       setStatus("success");
       setMessage(
-        "You are on the launch list. Grab the skill pack now and watch your inbox for the next drop.",
+        "You are on the launch list. Download the skill pack now and watch your inbox for the next drop.",
       );
       setEmail("");
     } catch {
       setStatus("error");
-      setMessage("Signup did not complete. Try again after the launch form is connected.");
+      setMessage(
+        "Signup did not complete. Download the pack directly, or email Mark for the next workflow notes.",
+      );
     }
   }
 
-  const submitted = status === "success" || status === "preview";
-
-  if (submitted) {
+  if (!signupEndpoint) {
     return (
-      <div
-        className={
-          compact
-            ? "landing-signup landing-signup-compact landing-signup-submitted"
-            : "landing-signup landing-signup-submitted"
-        }
-        aria-live="polite"
-      >
-        <p className={`landing-form-note landing-form-note-${status}`}>{message}</p>
+      <div className="landing-signup landing-signup-fallback" role="status">
+        <p className="landing-form-note landing-form-note-success">
+          Download-first access is open now. Direct email is the fastest way to
+          request the next workflow notes.
+        </p>
+        <div className="landing-action-row">
+          <a
+            className="landing-download-button"
+            href={skillPackDownload}
+            download="cowork-metaprompt.zip"
+          >
+            {primaryCtaLabel}
+          </a>
+          <a
+            className="landing-secondary-link"
+            href={`mailto:${siteMeta.contact.email}?subject=markbuilds.ai launch pack`}
+          >
+            Email Mark directly
+          </a>
+        </div>
+        <InstallDetails />
+      </div>
+    );
+  }
+
+  if (status === "success") {
+    return (
+      <div className="landing-signup landing-signup-submitted" aria-live="polite">
+        <p className="landing-form-note landing-form-note-success">{message}</p>
         <a
           className="landing-download-button"
           href={skillPackDownload}
           download="cowork-metaprompt.zip"
         >
-          Download the Cowork-Metaprompt skill pack
+          Download the launch pack
         </a>
-        <p className="landing-form-note">
-          Unzips to a <code>cowork-metaprompt/</code> folder — drop it into{" "}
-          <code>~/.claude/skills/</code> (macOS / Linux) or{" "}
-          <code>%APPDATA%\Claude\skills\</code> (Windows). Includes SKILL.md, seven
-          reference playbooks, and a 10-case eval set.
-        </p>
+        <InstallDetails />
       </div>
     );
   }
 
   return (
-    <form className={compact ? "landing-signup landing-signup-compact" : "landing-signup"} onSubmit={handleSubmit}>
+    <form className="landing-signup" onSubmit={handleSubmit}>
       <label htmlFor={emailId}>Email address</label>
       <div className="landing-signup-row">
         <input
@@ -169,109 +233,180 @@ function SignupForm({ compact = false }) {
           required
         />
         <button type="submit" disabled={status === "loading"}>
-          Send me the pack
+          {status === "loading" ? "Sending..." : primaryCtaLabel}
         </button>
       </div>
       <p className={`landing-form-note landing-form-note-${status}`} aria-live="polite">
-        {message ||
-          "Free Cowork-Metaprompt skill download after submit. Newsletter access follows."}
+        {message || "Join the list and get the launch pack after submit."}
       </p>
+      {status === "error" ? (
+        <div className="landing-form-recovery">
+          <a href={skillPackDownload} download="cowork-metaprompt.zip">
+            Download the launch pack directly
+          </a>
+          <a href={`mailto:${siteMeta.contact.email}?subject=markbuilds.ai launch pack`}>
+            Email Mark
+          </a>
+        </div>
+      ) : null}
     </form>
   );
 }
 
 function TeaserPage() {
-  const revealRoot = useRef(null);
-  const heroSignupRef = useRef(null);
+  const pageRef = useRef(null);
+  const launchSignupRef = useRef(null);
+  const pulseTimeoutRef = useRef(null);
+  const [signupPulse, setSignupPulse] = useState(false);
 
   useDocumentTitle("markbuilds.ai", landingCopy.description);
 
-  const patternCards = useMemo(
-    () => [
-      {
-        title: "Documents become structured work",
-        body:
-          "Contracts, invoices, PDFs, and source packets can become reviewable fields, exception queues, and decision-ready summaries.",
-        source: importedCaseStudyArtifacts[0]?.category,
-      },
-      {
-        title: "Field data reaches the back office cleanly",
-        body:
-          "Crew notes, time, materials, approvals, and job details can move through a controlled workflow instead of another manual cleanup loop.",
-        source: importedCaseStudyArtifacts[1]?.category,
-      },
-      {
-        title: "Spreadsheet logic gets guardrails",
-        body:
-          "Recurring workbooks, operating reports, estimates, and model refreshes need validation checks, audit trails, and clear owner handoffs.",
-        source: importedCaseStudyArtifacts[3]?.category,
-      },
-    ],
+  useEffect(
+    () => {
+      const root = pageRef.current;
+      if (!root) return undefined;
+
+      const targets = root.querySelectorAll(".landing-reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("landing-revealed");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.14 },
+      );
+
+      targets.forEach((target) => observer.observe(target));
+
+      return () => observer.disconnect();
+    },
     [],
   );
 
-  useEffect(() => {
-    const root = revealRoot.current;
-    if (!root) return undefined;
+  useEffect(
+    () => () => {
+      if (pulseTimeoutRef.current) {
+        window.clearTimeout(pulseTimeoutRef.current);
+      }
+    },
+    [],
+  );
 
-    const targets = root.querySelectorAll(".landing-reveal");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("landing-revealed");
-            observer.unobserve(entry.target);
-          }
+  useGSAP(
+    () => {
+      const root = pageRef.current;
+      if (!root) return undefined;
+
+      const motionImages = gsap.utils.toArray(".landing-motion-image", root);
+      motionImages.forEach((image) => {
+        gsap.fromTo(
+          image,
+          { autoAlpha: 0.78, scale: 0.94 },
+          {
+            autoAlpha: 1,
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: image,
+              start: "top 88%",
+              end: "bottom 42%",
+              scrub: true,
+            },
+          },
+        );
+      });
+
+      const media = gsap.matchMedia();
+      media.add("(min-width: 981px) and (prefers-reduced-motion: no-preference)", () => {
+        ScrollTrigger.create({
+          trigger: ".landing-service-model",
+          start: "top 108px",
+          end: "bottom bottom",
+          pin: ".landing-service-copy",
+          pinSpacing: false,
         });
-      },
-      { threshold: 0.16 },
-    );
+      });
 
-    targets.forEach((target) => observer.observe(target));
-    return () => observer.disconnect();
-  }, []);
+      return () => media.revert();
+    },
+    { scope: pageRef },
+  );
 
-  function focusSignup() {
-    const input = heroSignupRef.current?.querySelector("input");
-    input?.focus();
+  function highlightLaunchPack() {
+    const section = launchSignupRef.current;
+    if (!section) return;
+
+    setSignupPulse(true);
+
+    if (pulseTimeoutRef.current) {
+      window.clearTimeout(pulseTimeoutRef.current);
+    }
+
+    pulseTimeoutRef.current = window.setTimeout(() => {
+      const input = section.querySelector("input");
+      input?.focus({ preventScroll: true });
+      setSignupPulse(false);
+    }, 720);
   }
 
   return (
-    <div className="teaser-page" ref={revealRoot}>
-      <header className="landing-nav" aria-label="Launch page status">
-        <div>
+    <div className="teaser-page" id="top" ref={pageRef}>
+      <header className="landing-nav" aria-label="Primary">
+        <a className="landing-logo-link" href="/" aria-label="markbuilds.ai home">
           <img
             className="landing-logo"
-            src="/brand/markbuilds-logo-header.png"
+            src="/brand/markbuilds-logo-header.svg"
             alt="markbuilds.ai"
           />
-        </div>
+        </a>
+        <p className="landing-nav-status">Coming soon</p>
       </header>
 
       <section className="teaser-hero landing-reveal">
         <div className="landing-hero-copy">
-          <p className="landing-kicker">SMB AI and process automation consulting</p>
-          <h1>
-            Automate the SMB work stuck in inboxes, spreadsheets, and PDFs.
-          </h1>
+          <p className="landing-kicker">Small-business AI automation consulting</p>
+          <h1>{landingCopy.title}</h1>
           <p className="landing-description">{landingCopy.description}</p>
-          <p className="landing-coming-soon">{landingCopy.comingSoon}</p>
+          <p className="landing-readiness">{landingCopy.readiness}</p>
           <div className="landing-pack-strip" aria-label="Free launch pack includes">
-            {packItems.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
+            {packItems.map((item) =>
+              item.action === "signup" ? (
+                <a
+                  className="landing-pack-card"
+                  key={item.title}
+                  href="/#launch-pack"
+                  onClick={highlightLaunchPack}
+                >
+                  <strong>{item.title}</strong>
+                  <span>{item.body}</span>
+                </a>
+              ) : (
+                <Link className="landing-pack-card" key={item.title} to={item.href}>
+                  <strong>{item.title}</strong>
+                  <span>{item.body}</span>
+                </Link>
+              ),
+            )}
           </div>
-          <div className="landing-cta-panel" ref={heroSignupRef}>
+          <div className="landing-cta-panel">
             <div>
               <p className="landing-panel-label">{landingCopy.ctaTitle}</p>
               <p>{landingCopy.ctaBody}</p>
             </div>
-            <SignupForm compact />
+            <div className="landing-hero-actions">
+              <a className="landing-primary-button" href="/#launch-pack" onClick={highlightLaunchPack}>
+                {primaryCtaLabel}
+              </a>
+              <p>One practical skill pack now, with deeper prompt and workflow notes linked in.</p>
+            </div>
           </div>
         </div>
 
         <aside className="landing-visual" aria-label="AI automation operating system preview">
-          <div className="landing-image-frame">
+          <div className="landing-image-frame landing-motion-image">
             <img
               src={landingImages.hero.src}
               alt={landingImages.hero.alt}
@@ -279,23 +414,27 @@ function TeaserPage() {
           </div>
           <div className="landing-image-strip" aria-label="Supporting automation image concepts">
             {landingImages.support.map((image) => (
-              <img src={image.src} alt={image.alt} key={image.src} />
+              <img className="landing-motion-image" src={image.src} alt={image.alt} key={image.src} />
             ))}
-            <p>Workflow map, exception triage, and reporting desk.</p>
           </div>
         </aside>
       </section>
 
-      <section className="landing-section landing-reveal" aria-label="Service model">
-        <div className="landing-section-heading">
-          <p className="landing-kicker">Forward deployed services</p>
-          <h2>Not strategy theater. Practical builds in the actual operating layer.</h2>
+      <section className="landing-section landing-service-model landing-reveal" aria-label="Service model">
+        <div className="landing-service-copy landing-section-heading">
+          <p className="landing-kicker">Hands-on service model</p>
+          <h2>Practical builds in the actual operating layer.</h2>
+          <p>
+            The work starts where the process already leaks time: intake, cleanup,
+            review, routing, reporting, and exception handling.
+          </p>
         </div>
         <div className="landing-offer-grid">
           <article className="landing-card landing-card-lead">
-            <h3>Most teams do not need a bigger AI vision. They need one painful workflow made measurable, repeatable, and easier to run.</h3>
+            <h3>Most teams need one painful workflow made measurable, repeatable, and easier to run.</h3>
             <p>
-              The work starts where the process already leaks time: intake, cleanup, review, routing, reporting, and exception handling.
+              The goal is not another AI strategy deck. It is a usable system the
+              operator trusts enough to run every week.
             </p>
           </article>
           {offerCards.map((card) => (
@@ -308,31 +447,34 @@ function TeaserPage() {
         </div>
       </section>
 
-      <section className="landing-section landing-split landing-reveal" aria-label="Work patterns">
-        <div>
-          <p className="landing-kicker">Patterns behind the offer</p>
-          <h2>Useful AI work usually starts with the same business problems.</h2>
+      <section className="landing-section landing-proof-section landing-reveal" aria-labelledby="evidence-heading">
+        <div className="landing-section-heading">
+          <p className="landing-kicker">Evidence you can inspect</p>
+          <h2 id="evidence-heading">Real artifacts behind the offer.</h2>
           <p>
-            The public case-study artifacts are grounding material, not a narrow service menu.
-            The larger pattern is turning scattered operational context into repeatable systems
-            that people trust enough to use every week.
+            No fake logos or borrowed trust. The strongest proof is public work
+            that shows how Mark thinks through prompts, tools, and operating systems.
           </p>
-          <button className="landing-text-button" type="button" onClick={focusSignup}>
-            Send me the launch pack
-          </button>
         </div>
-        <div className="landing-pattern-list">
-          {patternCards.map((card) => (
-            <article className="landing-pattern" key={card.title}>
-              <p>{card.source || "Operating workflow"}</p>
-              <h3>{card.title}</h3>
-              <span>{card.body}</span>
-            </article>
+        <div className="landing-proof-grid">
+          {proofLinks.map((item) => (
+            <Link className="landing-proof-card" to={item.href} key={item.title}>
+              <p>{item.label}</p>
+              <h3>{item.title}</h3>
+              <span>{item.body}</span>
+            </Link>
           ))}
         </div>
       </section>
 
-      <section className="landing-section landing-bottom landing-reveal" aria-label="Audience and launch status">
+      <section
+        className={`landing-section landing-bottom landing-reveal ${
+          signupPulse ? "landing-bottom-highlight" : ""
+        }`}
+        aria-label="Audience and launch pack"
+        id="launch-pack"
+        ref={launchSignupRef}
+      >
         <div className="landing-audience">
           <p className="landing-kicker">Built for</p>
           <ul>
@@ -342,11 +484,22 @@ function TeaserPage() {
           </ul>
         </div>
         <div className="landing-final-cta">
-          <p className="landing-panel-label">Coming soon, no public date</p>
-          <h2>Join the list before the full site rolls out.</h2>
+          <p className="landing-panel-label">Launch pack access</p>
+          <h2>Get the workflow pack and practical AI notes.</h2>
           <SignupForm />
         </div>
       </section>
+
+      <footer className="landing-footer" aria-label="Footer">
+        <img src="/brand/markbuilds-logo-header.svg" alt="markbuilds.ai" />
+        <nav aria-label="Footer navigation">
+          <Link to="/projects">Projects</Link>
+          <Link to="/prompts">Prompts</Link>
+          <Link to="/tools">Tools</Link>
+          <Link to="/about">About</Link>
+          <a href={`mailto:${siteMeta.contact.email}`}>Contact</a>
+        </nav>
+      </footer>
     </div>
   );
 }
