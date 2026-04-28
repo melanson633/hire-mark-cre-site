@@ -38,6 +38,13 @@ async function runSmokeChecks() {
   await page.waitForSelector(".teaser-page");
   const teaserHeading = await page.locator(".teaser-hero h1").first().textContent();
   assert(Boolean(teaserHeading?.trim()), "Teaser route did not render a heading.");
+  await page.locator("#launch-pack").scrollIntoViewIfNeeded();
+  await page.getByRole("button", { name: "Request launch pack access" }).click();
+  await page.waitForSelector('#launch-pack input[type="email"]');
+  const launchPackMailtoLinks = await page
+    .locator('a[href^="mailto:"][href*="launch%20pack"], a[href^="mailto:"][href*="launch pack"]')
+    .count();
+  assert(launchPackMailtoLinks === 0, "Teaser launch pack still renders a mailto fallback.");
 
   await page.goto(`${BASE_URL}/home`, { waitUntil: "networkidle" });
   await page.waitForSelector("#contact");

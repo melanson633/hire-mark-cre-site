@@ -2,15 +2,16 @@ import { useEffect, useId, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { siteMeta } from "../content/siteMeta";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import "../styles/teaser.css";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const signupEndpoint = (import.meta.env.VITE_NEWSLETTER_ENDPOINT || "").trim();
+const launchPackRequestEndpoint = "/api/launch-pack-request";
 const skillPackDownload = "/downloads/cowork-metaprompt.zip";
 const primaryCtaLabel = "Get the free launch pack";
+const launchPackCtaLabel = "Request launch pack access";
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const landingCopy = {
   title: "Automate the workflows draining your bottom line",
@@ -131,86 +132,85 @@ function InstallDetails() {
 function SignupForm() {
   const emailId = useId();
   const [email, setEmail] = useState("");
+  const [isExpanded, setIsExpanded] = useState(false);
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
 
+  function handleReveal() {
+    setIsExpanded(true);
+    setStatus("idle");
+    setMessage("");
+    window.requestAnimationFrame(() => {
+      document.getElementById(emailId)?.focus();
+    });
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
+    const normalizedEmail = email.trim().toLowerCase();
 
-    if (!email.trim()) {
+    if (!normalizedEmail || !emailPattern.test(normalizedEmail)) {
       setStatus("error");
-      setMessage("Enter an email address to request the launch pack.");
+      setMessage("Enter a valid email address to request the launch pack.");
       return;
     }
 
     setStatus("loading");
-    setMessage("Submitting...");
+    setMessage("Sending the launch pack request...");
 
     try {
-      const response = await fetch(signupEndpoint, {
+      const response = await fetch(launchPackRequestEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email,
-          source: "linkedin-site-launch",
-          requested: ["cowork-metaprompt-skill", "prompt-library", "weekly-newsletter"],
+          email: normalizedEmail,
+          source: "teaser-launch-pack",
         }),
       });
 
       if (!response.ok) {
-        throw new Error(`Signup failed with ${response.status}`);
+        const payload = await response.json().catch(() => ({}));
+        throw new Error(payload.error || `Request failed with ${response.status}`);
       }
 
       setStatus("success");
       setMessage(
-        "You are on the launch list. Download the skill pack now and watch your inbox for the next drop.",
+        "Request received. The launch pack link is on its way to your inbox.",
       );
       setEmail("");
-    } catch {
+    } catch (error) {
       setStatus("error");
-      setMessage(
-        "Signup did not complete. Email Mark to request launch pack access.",
-      );
+      setMessage(error.message || "The request did not complete. Try again in a moment.");
     }
-  }
-
-  if (!signupEndpoint) {
-    return (
-      <div className="landing-signup landing-signup-fallback" role="status">
-        <p className="landing-form-note landing-form-note-success">
-          Email Mark to request the launch pack and early access to the first AI
-          audit openings.
-        </p>
-        <div className="landing-action-row">
-          <a
-            className="landing-download-button"
-            href={`mailto:${siteMeta.contact.email}?subject=markbuilds.ai launch pack`}
-          >
-            Request launch pack access
-          </a>
-        </div>
-      </div>
-    );
   }
 
   if (status === "success") {
     return (
       <div className="landing-signup landing-signup-submitted" aria-live="polite">
         <p className="landing-form-note landing-form-note-success">{message}</p>
-        <a
-          className="landing-download-button"
-          href={skillPackDownload}
-          download="cowork-metaprompt.zip"
-        >
-          Download the launch pack
-        </a>
+        <p className="landing-form-note">
+          The email includes the download link for <code>{skillPackDownload}</code>.
+        </p>
         <InstallDetails />
       </div>
     );
   }
 
+  if (!isExpanded) {
+    return (
+      <div className="landing-signup landing-signup-prompt">
+        <p className="landing-form-note">
+          Enter your email to request the launch pack and early access to the first AI audit openings.
+        </p>
+        <button className="landing-download-button" type="button" onClick={handleReveal}>
+          {launchPackCtaLabel}
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <form className="landing-signup" onSubmit={handleSubmit}>
+    <form className="landing-signup" onSubmit={handleSubmit} noValidate>
       <label htmlFor={emailId}>Email address</label>
       <div className="landing-signup-row">
         <input
@@ -218,25 +218,30 @@ function SignupForm() {
           name="email"
           type="email"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={(event) => {
+            setEmail(event.target.value);
+            if (status === "error") {
+              setStatus("idle");
+              setMessage("");
+            }
+          }}
           placeholder="you@company.com"
           autoComplete="email"
+          aria-describedby={`${emailId}-note`}
+          aria-invalid={status === "error" ? "true" : "false"}
           required
         />
         <button type="submit" disabled={status === "loading"}>
-          {status === "loading" ? "Sending..." : primaryCtaLabel}
+          {status === "loading" ? "Sending..." : "Send launch pack"}
         </button>
       </div>
-      <p className={`landing-form-note landing-form-note-${status}`} aria-live="polite">
+      <p
+        className={`landing-form-note landing-form-note-${status}`}
+        id={`${emailId}-note`}
+        aria-live="polite"
+      >
         {message || "Enter your email to unlock the launch pack and early access notes."}
       </p>
-      {status === "error" ? (
-        <div className="landing-form-recovery">
-          <a href={`mailto:${siteMeta.contact.email}?subject=markbuilds.ai launch pack`}>
-            Email Mark for access
-          </a>
-        </div>
-      ) : null}
     </form>
   );
 }
@@ -329,8 +334,8 @@ function TeaserPage() {
     }
 
     pulseTimeoutRef.current = window.setTimeout(() => {
-      const input = section.querySelector("input");
-      input?.focus({ preventScroll: true });
+      const focusTarget = section.querySelector("input, button");
+      focusTarget?.focus({ preventScroll: true });
       setSignupPulse(false);
     }, 720);
   }

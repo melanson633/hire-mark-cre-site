@@ -69,8 +69,7 @@
 .landing-nav a,
 .landing-footer a,
 .landing-pack-card,
-.landing-secondary-link,
-.landing-form-recovery a {
+.landing-secondary-link {
   color: var(--landing-ink);
   text-decoration: none;
 }
@@ -107,8 +106,7 @@
 .landing-signup button:focus-visible,
 .landing-download-button:focus-visible,
 .landing-secondary-link:focus-visible,
-.landing-text-button:focus-visible,
-.landing-form-recovery a:focus-visible {
+.landing-text-button:focus-visible {
   outline: 3px solid rgba(181, 138, 63, 0.34);
   outline-offset: 3px;
 }
@@ -412,18 +410,6 @@
   gap: 14px;
 }
 
-.landing-signup-fallback {
-  gap: 14px;
-}
-
-.landing-action-row,
-.landing-form-recovery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-
 .landing-download-button {
   display: inline-flex;
   align-items: center;
@@ -434,8 +420,11 @@
   border-radius: 6px;
   background: var(--landing-ink);
   color: #ffffff;
+  cursor: pointer;
+  font: inherit;
   font-weight: 750;
   text-decoration: none;
+  appearance: none;
   transition: background-color 180ms ease, transform 180ms ease;
 }
 
@@ -447,8 +436,7 @@
   transform: scale(0.98);
 }
 
-.landing-secondary-link,
-.landing-form-recovery a {
+.landing-secondary-link {
   display: inline-flex;
   align-items: center;
   min-height: 42px;
@@ -461,8 +449,7 @@
   transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.landing-secondary-link:hover,
-.landing-form-recovery a:hover {
+.landing-secondary-link:hover {
   border-color: rgba(181, 138, 63, 0.4);
   color: var(--landing-ink);
 }
@@ -508,10 +495,6 @@
 
 .landing-form-note-error {
   color: var(--landing-red-text);
-}
-
-.landing-form-recovery {
-  margin-top: 2px;
 }
 
 .landing-visual {
@@ -1033,7 +1016,6 @@
     min-height: 48px;
   }
 
-  .landing-form-recovery a,
   .landing-install-details summary,
   .landing-footer a {
     min-height: 44px;
