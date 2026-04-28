@@ -25,13 +25,11 @@ How to install
 --------------
 
 Cowork:
-  1. Drop the entire `cowork-metaprompt/` folder into your Cowork skills directory.
-     On macOS / Linux:
-       ~/.claude/skills/
-     On Windows:
-       %APPDATA%\Claude\skills\
-  2. Restart your Cowork session. The skill loads automatically when you ask
-     it to "rewrite this prompt", "improve this prompt for Cowork", or
+  1. Open Claude Cowork.
+  2. Go to Customize > Skills.
+  3. Choose Create skill, then Upload a skill.
+  4. Select the cowork-metaprompt ZIP file and toggle the skill on after upload.
+  5. Ask Cowork to "rewrite this prompt", "improve this prompt for Cowork", or
      similar — see SKILL.md for the full trigger surface.
 
 Claude Code:

@@ -28,18 +28,80 @@ function isConfigured() {
 function buildEmailHtml(launchPackUrl) {
   return `
     <div style="font-family: Arial, sans-serif; color: #111111; line-height: 1.6;">
-      <p>Your markbuilds.ai launch pack is ready.</p>
+      <p>You're on the markbuilds.ai early-access list.</p>
+
       <p>
-        Download it here:
-        <a href="${launchPackUrl}">${launchPackUrl}</a>
+        I'm Mark Melanson. I'm building markbuilds.ai as an AI implementation
+        partner for companies that want practical systems, not AI theater.
+        Company AI Audit openings will be offered to early-access partners in
+        the coming weeks.
       </p>
+
+      <p>Your first early-access asset is ready:</p>
+
       <p>
-        It includes the Cowork metaprompt skill pack and practical notes for using
-        AI in operator workflows.
+        <a href="${launchPackUrl}">Download the Cowork Metaprompt Skill</a>
       </p>
+
+      <p>
+        I'm starting with meta-prompting because better prompts are the most
+        reliable first step toward getting better work out of AI systems.
+      </p>
+
+      <p>This Claude Cowork Skill helps rewrite prompts with:</p>
+
+      <ul>
+        <li>project, file, and tool context when you point Cowork toward it</li>
+        <li>clearer scope and deliverables</li>
+        <li>better clarification gates before work begins</li>
+        <li>TodoWrite + verification structure</li>
+        <li>skill, MCP, and connector routing</li>
+        <li>subagent delegation when the task needs more context</li>
+      </ul>
+
+      <p>
+        To install it in Claude Cowork: open <strong>Customize</strong> &gt;
+        <strong>Skills</strong> &gt; <strong>Create skill</strong> &gt;
+        <strong>Upload a skill</strong>. Select the ZIP file, then toggle it on.
+      </p>
+
+      <p>
+        More Cowork Skill files and implementation assets will follow for
+        early-access members.
+      </p>
+
+      <p>Reply with any questions or feedback.</p>
+
       <p>- Mark</p>
     </div>
   `;
+}
+
+function buildEmailText(launchPackUrl) {
+  return `You're on the markbuilds.ai early-access list.
+
+I'm Mark Melanson. I'm building markbuilds.ai as an AI implementation partner for companies that want practical systems, not AI theater. Company AI Audit openings will be offered to early-access partners in the coming weeks.
+
+Your first early-access asset is ready:
+${launchPackUrl}
+
+I'm starting with meta-prompting because better prompts are the most reliable first step toward getting better work out of AI systems.
+
+This Claude Cowork Skill helps rewrite prompts with:
+- project, file, and tool context when you point Cowork toward it
+- clearer scope and deliverables
+- better clarification gates before work begins
+- TodoWrite + verification structure
+- skill, MCP, and connector routing
+- subagent delegation when the task needs more context
+
+To install it in Claude Cowork: open Customize > Skills > Create skill > Upload a skill. Select the ZIP file, then toggle it on.
+
+More Cowork Skill files and implementation assets will follow for early-access members.
+
+Reply with any questions or feedback.
+
+- Mark`;
 }
 
 export default async function handler(request, response) {
@@ -99,8 +161,10 @@ export default async function handler(request, response) {
     const result = await resend.emails.send({
       from: fromEmail,
       to: email,
-      subject: "Your markbuilds.ai launch pack",
+      replyTo: fromEmail,
+      subject: "Your first early-access Cowork Skill",
       html: buildEmailHtml(launchPackUrl),
+      text: buildEmailText(launchPackUrl),
     });
 
     if (result.error) {
