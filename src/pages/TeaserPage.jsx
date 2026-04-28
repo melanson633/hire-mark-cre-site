@@ -32,12 +32,12 @@ const accessItems = [
 function InstallDetails() {
   return (
     <details className="landing-install-details">
-      <summary>Installation notes for Claude and Cowork users</summary>
+      <summary>Installation notes for Claude Cowork</summary>
       <p>
-        Unzip the pack to a <code>cowork-metaprompt/</code> folder and place it in{" "}
-        <code>~/.claude/skills/</code> on macOS/Linux or{" "}
-        <code>%APPDATA%\Claude\skills\</code> on Windows. It includes SKILL.md,
-        reference playbooks, and an eval set.
+        In Claude Cowork, add the skill through the app interface: open{" "}
+        <strong>Customize</strong>, go to <strong>Skills</strong>, choose{" "}
+        <strong>Create skill</strong>, then <strong>Upload a skill</strong> and
+        select the ZIP file. Toggle the skill on after upload.
       </p>
     </details>
   );
@@ -79,7 +79,7 @@ function SignupForm() {
 
       setStatus("success");
       setMessage(
-        "You are on the early-access list. The launch pack link is on its way to your inbox.",
+        "You are on the early-access list. The Claude Cowork Skill link is on its way to your inbox.",
       );
       setEmail("");
     } catch (error) {
@@ -93,7 +93,7 @@ function SignupForm() {
       <div className="landing-signup landing-signup-submitted" aria-live="polite">
         <p className="landing-form-note landing-form-note-success">{message}</p>
         <p className="landing-form-note">
-          The email includes the download link for <code>{skillPackDownload}</code>.
+          The email includes the skill download link for <code>{skillPackDownload}</code>.
         </p>
         <InstallDetails />
       </div>
