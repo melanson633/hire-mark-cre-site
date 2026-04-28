@@ -2,7 +2,7 @@ import { neon } from "@neondatabase/serverless";
 import { Resend } from "resend";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const defaultFromEmail = "mark@markbuilds.ai";
+const defaultFromEmail = "Mark at markbuilds.ai <launch@send.markbuilds.ai>";
 const launchPackPath = "/downloads/cowork-metaprompt.zip";
 
 function sendJson(response, statusCode, payload) {
@@ -129,6 +129,7 @@ export default async function handler(request, response) {
   const sql = neon(process.env.DATABASE_URL);
   const resend = new Resend(process.env.RESEND_API_KEY);
   const fromEmail = process.env.RESEND_FROM_EMAIL || defaultFromEmail;
+  const replyToEmail = process.env.RESEND_REPLY_TO_EMAIL || fromEmail;
   const launchPackUrl = getLaunchPackUrl();
 
   try {
@@ -161,7 +162,7 @@ export default async function handler(request, response) {
     const result = await resend.emails.send({
       from: fromEmail,
       to: email,
-      replyTo: fromEmail,
+      replyTo: replyToEmail,
       subject: "Your first early-access Cowork Skill",
       html: buildEmailHtml(launchPackUrl),
       text: buildEmailText(launchPackUrl),
