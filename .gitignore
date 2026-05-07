@@ -12,6 +12,6 @@ output/
 
 .vercel
 
-# Generated skill pack zip (rebuilt by scripts/build-skill-pack.mjs).
+# Legacy generated skill pack zip.
 # Source of truth lives in scripts/skill-pack-src/cowork-metaprompt/.
 public/downloads/cowork-metaprompt.zip

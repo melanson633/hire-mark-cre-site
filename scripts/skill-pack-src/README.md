@@ -1,6 +1,6 @@
 # skill-pack-src
 
-Vendored source for skills shipped via the landing-page launch pack.
+Vendored source for the archived cowork-metaprompt skill package.
 
 ## Layout
 
@@ -13,21 +13,19 @@ skill-pack-src/
     README.txt             <- end-user instructions (ships inside the zip)
 ```
 
-## Build flow
+## Legacy build flow
 
 `scripts/build-skill-pack.mjs` zips this folder into
 `public/downloads/cowork-metaprompt.zip`. The zip is a build artifact and is
 gitignored.
 
-The build script auto-runs as a `prebuild` step, so:
+The current teaser signup no longer uses this ZIP, and normal local/Vercel
+builds do not regenerate it.
 
-- Local: `npm run build` regenerates the zip and builds the site
-- Vercel: same — `npm install && npm run build` produces a deploy with the zip
-
-To rebuild only the zip without doing a full Vite build:
+To regenerate the legacy ZIP manually:
 
 ```
-npm run build:skill-pack
+node .\scripts\build-skill-pack.mjs
 ```
 
 ## Upstream

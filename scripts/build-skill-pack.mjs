@@ -3,15 +3,16 @@
  * build-skill-pack.mjs
  *
  * Zips the source under scripts/skill-pack-src/cowork-metaprompt/ into
- * public/downloads/cowork-metaprompt.zip so the landing page's "Get the
- * free pack" CTA can serve it.
+ * public/downloads/cowork-metaprompt.zip.
  *
- * Runs automatically as a `prebuild` step (so Vercel deploys pick up
- * fresh source on each build). Run manually after editing source via:
+ * Legacy helper retained for the archived cowork-metaprompt source. The
+ * teaser signup no longer uses this ZIP, and production builds do not run
+ * this script automatically. Run manually only if you intentionally need to
+ * regenerate the old ZIP:
  *
- *   npm run build:skill-pack
+ *   node ./scripts/build-skill-pack.mjs
  *
- * The zip is treated as a build artifact (gitignored). The canonical
+ * The ZIP is treated as a build artifact (gitignored). The canonical
  * source of truth is scripts/skill-pack-src/cowork-metaprompt/.
  */
 

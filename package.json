@@ -5,14 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run build:skill-pack",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint src/",
     "validate:content": "node ./scripts/validate-content.mjs",
     "smoke": "node ./scripts/smoke.mjs",
-    "verify": "node ./scripts/verify.mjs",
-    "build:skill-pack": "node ./scripts/build-skill-pack.mjs"
+    "verify": "node ./scripts/verify.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

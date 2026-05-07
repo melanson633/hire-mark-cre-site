@@ -8,7 +8,7 @@ import "../styles/teaser-test.css";
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const launchPackRequestEndpoint = "/api/launch-pack-request";
-const skillPackDownload = "/downloads/cowork-metaprompt.zip";
+const launchPackDownload = "/downloads/OM%20to%20Excel%20UW%20Model%20Prompt.md";
 const primaryCtaLabel = "Get the free launch pack";
 const launchPackCtaLabel = "Request launch pack access";
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -118,12 +118,10 @@ const landingImages = {
 function InstallDetails() {
   return (
     <details className="landing-install-details">
-      <summary>Installation notes for Claude and Cowork users</summary>
+      <summary>How to use the prompt</summary>
       <p>
-        Unzip the pack to a <code>cowork-metaprompt/</code> folder and place it in{" "}
-        <code>~/.claude/skills/</code> on macOS/Linux or{" "}
-        <code>%APPDATA%\Claude\skills\</code> on Windows. It includes SKILL.md,
-        reference playbooks, and an eval set.
+        Open the prompt, add the OM file path where indicated, and run it in
+        your AI coding/workbook environment.
       </p>
     </details>
   );
@@ -175,7 +173,7 @@ function SignupForm() {
 
       setStatus("success");
       setMessage(
-        "Request received. The launch pack link is on its way to your inbox.",
+        "Request received. The OM to Excel UW Model Prompt link is on its way to your inbox.",
       );
       setEmail("");
     } catch (error) {
@@ -189,7 +187,7 @@ function SignupForm() {
       <div className="landing-signup landing-signup-submitted" aria-live="polite">
         <p className="landing-form-note landing-form-note-success">{message}</p>
         <p className="landing-form-note">
-          The email includes the download link for <code>{skillPackDownload}</code>.
+          The email includes the public download link for <code>{launchPackDownload}</code>.
         </p>
         <InstallDetails />
       </div>

@@ -3,7 +3,7 @@ import useDocumentTitle from "../hooks/useDocumentTitle";
 import "../styles/teaser.css";
 
 const launchPackRequestEndpoint = "/api/launch-pack-request";
-const skillPackDownload = "/downloads/cowork-metaprompt.zip";
+const launchPackDownload = "/downloads/OM%20to%20Excel%20UW%20Model%20Prompt.md";
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const accessItems = [
@@ -17,31 +17,17 @@ const accessItems = [
   },
   {
     title: "Weekly Cowork Skill files",
-    body: "New Claude Cowork Skill files or comparable implementation assets sent by email each week.",
+    body: "New Cowork Skill files, prompts, templates, workflow notes, or comparable implementation assets sent by email.",
   },
   {
     title: "Rollout notifications",
     body: "Early notice as the full platform and product releases come online.",
   },
   {
-    title: "Immediate Claude Cowork Skill delivery",
-    body: "The current Claude Cowork Skill is emailed right after signup.",
+    title: "Immediate underwriting prompt delivery",
+    body: "The OM to Excel UW Model Prompt is emailed right after signup.",
   },
 ];
-
-function InstallDetails() {
-  return (
-    <details className="landing-install-details">
-      <summary>Installation notes for Claude Cowork</summary>
-      <p>
-        In Claude Cowork, add the skill through the app interface: open{" "}
-        <strong>Customize</strong>, go to <strong>Skills</strong>, choose{" "}
-        <strong>Create skill</strong>, then <strong>Upload a skill</strong> and
-        select the ZIP file. Toggle the skill on after upload.
-      </p>
-    </details>
-  );
-}
 
 function SignupForm() {
   const emailId = useId();
@@ -79,7 +65,7 @@ function SignupForm() {
 
       setStatus("success");
       setMessage(
-        "You are on the early-access list. The Claude Cowork Skill link is on its way to your inbox.",
+        "You are on the early-access list. The OM to Excel UW Model Prompt link is on its way to your inbox.",
       );
       setEmail("");
     } catch (error) {
@@ -93,9 +79,8 @@ function SignupForm() {
       <div className="landing-signup landing-signup-submitted" aria-live="polite">
         <p className="landing-form-note landing-form-note-success">{message}</p>
         <p className="landing-form-note">
-          The email includes the skill download link for <code>{skillPackDownload}</code>.
+          The email includes the public download link for <code>{launchPackDownload}</code>.
         </p>
-        <InstallDetails />
       </div>
     );
   }
@@ -132,7 +117,7 @@ function SignupForm() {
         aria-live="polite"
       >
         {message ||
-          "The current Claude Cowork Skill is sent immediately. Weekly skill files follow by email."}
+          "The OM to Excel UW Model Prompt is sent immediately. Additional implementation assets follow by email."}
       </p>
     </form>
   );
@@ -174,13 +159,13 @@ function TeaserPage() {
           <p className="landing-positioning">
             The full platform is in its final buildout. Join the private list for
             discounted AI audit priority, beta product access, weekly Cowork Skill
-            files, rollout alerts, and the current Claude Cowork Skill delivered now.
+            files, rollout alerts, and the OM to Excel UW Model Prompt delivered now.
           </p>
         </div>
 
         <div className="landing-access-panel" aria-label="Early access signup">
           <p className="landing-panel-label">Private launch list</p>
-          <h2>Join once. Get the current skill now and weekly implementation assets after.</h2>
+          <h2>Join once. Get the underwriting prompt now and weekly Cowork Skill files after.</h2>
           <SignupForm />
         </div>
       </section>

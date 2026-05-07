@@ -3,7 +3,7 @@ import { Resend } from "resend";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const defaultFromEmail = "Mark at markbuilds.ai <launch@send.markbuilds.ai>";
-const launchPackPath = "/downloads/cowork-metaprompt.zip";
+const launchPackPath = "/downloads/OM%20to%20Excel%20UW%20Model%20Prompt.md";
 
 function sendJson(response, statusCode, payload) {
   response.status(statusCode).json(payload);
@@ -38,7 +38,7 @@ function buildEmailHtml(launchPackUrl) {
                     markbuilds.ai early access
                   </div>
                   <h1 style="margin:18px 0 0; color:#fbf4e8; font-size:30px; line-height:1.12; font-weight:800;">
-                    Your first Cowork Skill is ready.
+                    Your OM to Excel UW Model Prompt is ready.
                   </h1>
                   <p style="margin:16px 0 0; color:#dfd4c3; font-size:16px; line-height:1.6;">
                     You're on the early-access list. I'm Mark Melanson, and I'm
@@ -57,7 +57,7 @@ function buildEmailHtml(launchPackUrl) {
                     <tr>
                       <td style="border-radius:6px; background:#caa25d;">
                         <a href="${launchPackUrl}" style="display:inline-block; padding:14px 18px; color:#1c160d; font-size:15px; font-weight:800; text-decoration:none;">
-                          Download the Cowork Metaprompt Skill
+                          Download the OM to Excel UW Model Prompt
                         </a>
                       </td>
                     </tr>
@@ -70,20 +70,21 @@ function buildEmailHtml(launchPackUrl) {
                     <tr>
                       <td style="padding:24px;">
                         <p style="margin:0; color:#fbf4e8; font-size:16px; line-height:1.6;">
-                          I'm starting with meta-prompting because better prompts
-                          are the most reliable first step toward getting better
-                          work out of AI systems.
+                          This prompt is designed to turn an offering memorandum
+                          into a dynamic commercial real estate underwriting model
+                          with auditable assumptions, extracted OM data, model
+                          outputs, waterfall logic, and executive-level summary views.
                         </p>
                         <p style="margin:18px 0 10px; color:#caa25d; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;">
-                          This skill helps rewrite prompts with
+                          The prompt asks the agent to build
                         </p>
                         <ul style="margin:0; padding-left:20px; color:#dfd4c3; font-size:15px; line-height:1.7;">
-                          <li>project, file, and tool context when you point Cowork toward it</li>
-                          <li>clearer scope and deliverables</li>
-                          <li>better clarification gates before work begins</li>
-                          <li>TodoWrite + verification structure</li>
-                          <li>skill, MCP, and connector routing</li>
-                          <li>subagent delegation when the task needs more context</li>
+                          <li>a 5-7 sheet CRE acquisition underwriting workbook</li>
+                          <li>clear OM extraction with citations</li>
+                          <li>dynamic master inputs for purchase, debt, leasing, capex, opex, hold, and exit assumptions</li>
+                          <li>monthly model outputs through levered cash flow</li>
+                          <li>GP/LP waterfall, executive summary, and check sheets</li>
+                          <li>conventional investment-banking workbook formatting</li>
                         </ul>
                       </td>
                     </tr>
@@ -93,13 +94,12 @@ function buildEmailHtml(launchPackUrl) {
               <tr>
                 <td style="padding:0 34px 36px; font-family:Arial, Helvetica, sans-serif;">
                   <p style="margin:0; color:#dfd4c3; font-size:15px; line-height:1.7;">
-                    <strong style="color:#fbf4e8;">Install in Claude Cowork:</strong>
-                    open Customize &gt; Skills &gt; Create skill &gt; Upload a
-                    skill. Select the ZIP file, then toggle it on.
+                    Open the prompt, add the OM file path where indicated, and run
+                    it in your AI coding/workbook environment.
                   </p>
                   <p style="margin:16px 0 0; color:#dfd4c3; font-size:15px; line-height:1.7;">
-                    More Cowork Skill files and implementation assets will follow
-                    for early-access members.
+                    More practical prompts, templates, workflow notes, and
+                    implementation assets will follow for early-access members.
                   </p>
                   <p style="margin:16px 0 0; color:#dfd4c3; font-size:15px; line-height:1.7;">
                     Reply with any questions or feedback.
@@ -125,19 +125,19 @@ I'm Mark Melanson. I'm building markbuilds.ai as an AI implementation partner fo
 Your first early-access asset is ready:
 ${launchPackUrl}
 
-I'm starting with meta-prompting because better prompts are the most reliable first step toward getting better work out of AI systems.
+This prompt is designed to turn an offering memorandum into a dynamic commercial real estate underwriting model with auditable assumptions, extracted OM data, model outputs, waterfall logic, and executive-level summary views.
 
-This Claude Cowork Skill helps rewrite prompts with:
-- project, file, and tool context when you point Cowork toward it
-- clearer scope and deliverables
-- better clarification gates before work begins
-- TodoWrite + verification structure
-- skill, MCP, and connector routing
-- subagent delegation when the task needs more context
+The prompt asks the agent to build:
+- a 5-7 sheet CRE acquisition underwriting workbook
+- clear OM extraction with citations
+- dynamic master inputs for purchase, debt, leasing, capex, opex, hold, and exit assumptions
+- monthly model outputs through levered cash flow
+- GP/LP waterfall, executive summary, and check sheets
+- conventional investment-banking workbook formatting
 
-To install it in Claude Cowork: open Customize > Skills > Create skill > Upload a skill. Select the ZIP file, then toggle it on.
+Open the prompt, add the OM file path where indicated, and run it in your AI coding/workbook environment.
 
-More Cowork Skill files and implementation assets will follow for early-access members.
+More practical prompts, templates, workflow notes, and implementation assets will follow for early-access members.
 
 Reply with any questions or feedback.
 
@@ -203,7 +203,7 @@ export default async function handler(request, response) {
       from: fromEmail,
       to: email,
       replyTo: replyToEmail,
-      subject: "Your first early-access Cowork Skill",
+      subject: "Your OM to Excel UW Model Prompt",
       html: buildEmailHtml(launchPackUrl),
       text: buildEmailText(launchPackUrl),
     });
