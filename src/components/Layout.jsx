@@ -13,12 +13,9 @@ function NavLink({ item, isActive }) {
 
 function Layout() {
   const location = useLocation();
-  const isContentHome =
-    location.pathname === "/home" || location.pathname === "/home-preview";
   const isTeaserHome = location.pathname === "/";
-  const isTeaserShell = isTeaserHome;
 
-  if (isTeaserShell) {
+  if (isTeaserHome) {
     return (
       <div className="teaser-layout">
         <ScrollToTop />
@@ -38,9 +35,7 @@ function Layout() {
         </Link>
         <nav className="site-nav" aria-label="Primary">
           {siteMeta.navigation.map((item) => {
-            const isHash = item.href.startsWith("#");
-            if (isHash && !isContentHome) return null;
-            const isActive = item.href.startsWith("/") && location.pathname.startsWith(item.href);
+            const isActive = location.pathname.startsWith(item.href);
             return <NavLink key={item.href} item={item} isActive={isActive} />;
           })}
         </nav>

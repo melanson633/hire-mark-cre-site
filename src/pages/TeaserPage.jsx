@@ -16,8 +16,8 @@ const accessItems = [
     body: "Early invitations to practical tools, templates, and workflow experiments.",
   },
   {
-    title: "Weekly Cowork Skill files",
-    body: "New Cowork Skill files, prompts, templates, workflow notes, or comparable implementation assets sent by email.",
+    title: "Weekly workflow assets",
+    body: "New prompts, templates, workflow notes, mini-tools, or comparable implementation assets sent by email.",
   },
   {
     title: "Rollout notifications",
@@ -128,7 +128,7 @@ function TeaserPage() {
 
   useDocumentTitle(
     "markbuilds.ai early access",
-    "The full platform is in final buildout. Join early access for audit priority, beta releases, weekly Cowork Skill files, and rollout notes.",
+    "The full platform is in final buildout. Join early access for audit priority, beta releases, weekly workflow assets, and rollout notes.",
   );
 
   function focusSignup(event) {
@@ -158,14 +158,14 @@ function TeaserPage() {
           <h1>Early access is opening.</h1>
           <p className="landing-positioning">
             The full platform is in its final buildout. Join the private list for
-            discounted AI audit priority, beta product access, weekly Cowork Skill
-            files, rollout alerts, and the OM to Excel UW Model Prompt delivered now.
+            discounted AI audit priority, beta product access, weekly workflow
+            assets, rollout alerts, and the OM to Excel UW Model Prompt delivered now.
           </p>
         </div>
 
         <div className="landing-access-panel" aria-label="Early access signup">
           <p className="landing-panel-label">Private launch list</p>
-          <h2>Join once. Get the underwriting prompt now and weekly Cowork Skill files after.</h2>
+          <h2>Join once. Get the underwriting prompt now and practical workflow assets after.</h2>
           <SignupForm />
         </div>
       </section>

@@ -1,25 +1,27 @@
 export const siteMeta = {
-  title: "Mark Melanson | CRE Finance Tools, AI Workflows, and Research",
+  title: "markbuilds.ai | CRE AI Audit and Implementation",
   description:
-    "Mark Melanson builds commercial real estate finance tools, Excel models, AI workflows, and practical research products.",
+    "CRE AI audits, workflow implementation, tools, templates, and research from Mark Melanson.",
   wordmark: {
-    main: "mark",
-    accent: "melanson",
+    main: "markbuilds",
+    accent: ".ai",
   },
   navigation: [
-    { label: "Projects", href: "/projects" },
-    { label: "Prompts", href: "/prompts" },
+    { label: "Audit", href: "/home" },
+    { label: "Proof", href: "/proof" },
     { label: "Tools", href: "/tools" },
+    { label: "Library", href: "/library" },
     { label: "About", href: "/about" },
-    { label: "Work", href: "#work" },
-    { label: "Research", href: "#research" },
-    { label: "Contact", href: "#contact" },
   ],
   contact: {
     email: "melanson633@gmail.com",
     phoneHref: "tel:7814846804",
     phoneLabel: "(781) 484-6804",
     linkedin: "https://www.linkedin.com/in/markmelanson633/",
-    location: "Burlington / Boston Metro, MA",
+    location: "Greater Boston / Southern NH",
+    auditSubject: "CRE AI Audit inquiry",
+  },
+  publicInterfaces: {
+    memberAccessEndpoint: "/api/launch-pack-request",
   },
 };

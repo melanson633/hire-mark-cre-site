@@ -4,7 +4,7 @@ import RevealSection from "../components/RevealSection";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 
 function AboutPage() {
-  useDocumentTitle("About", "Mark Melanson builds CRE finance tools, Excel models, and AI workflows.");
+  useDocumentTitle("About", "Mark Melanson is a CRE finance operator-builder.");
   return (
     <RevealSection
       id="about"
@@ -28,11 +28,14 @@ function AboutPage() {
         ))}
 
         <div className="about-block about-contact">
-          <h3>Get in touch</h3>
+          <h3>Start with an audit conversation</h3>
           <p>{about.contact.text}</p>
           <div className="about-links">
-            <a href={`mailto:${siteMeta.contact.email}`} className="button-primary">
-              {siteMeta.contact.email}
+            <a
+              href={`mailto:${siteMeta.contact.email}?subject=CRE%20AI%20Audit%20inquiry`}
+              className="button-primary"
+            >
+              Request an AI audit
             </a>
             <a href={siteMeta.contact.linkedin} className="button-secondary" target="_blank" rel="noopener noreferrer">
               LinkedIn

@@ -9,6 +9,10 @@ output/
 !.env.example
 *.log
 .DS_Store
+.codex/
+.agents/skills/teaser-test1/
+teaser-*.png
+verify-*.png
 
 .vercel
 

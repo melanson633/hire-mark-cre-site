@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { siteMeta } from "../content/siteMeta";
 
 export default function useDocumentTitle(title, description) {
   useEffect(() => {
@@ -6,7 +7,7 @@ export default function useDocumentTitle(title, description) {
       ? "markbuilds.ai"
       : title
         ? `${title} | Mark Melanson`
-        : "Mark Melanson | CRE Finance Tools, AI Workflows, and Research";
+        : siteMeta.title;
     if (description) {
       const meta = document.querySelector('meta[name="description"]');
       if (meta) meta.setAttribute("content", description);

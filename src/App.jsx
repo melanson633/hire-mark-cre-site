@@ -1,44 +1,28 @@
-import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import TeaserPage from "./pages/TeaserPage";
-import ProjectsPage from "./pages/ProjectsPage";
-import ProjectDetailPage from "./pages/ProjectDetailPage";
-import PromptsPage from "./pages/PromptsPage";
+import ProofPage from "./pages/ProofPage";
 import AboutPage from "./pages/AboutPage";
-import NewsletterPage from "./pages/NewsletterPage";
+import LibraryPage from "./pages/LibraryPage";
 import ToolsPage from "./pages/ToolsPage";
 import NotFoundPage from "./pages/NotFoundPage";
-
-const devRoutes = [];
-
-if (import.meta.env.DEV) {
-  const TeaserTestPage = lazy(() => import("./pages/TeaserTestPage"));
-
-  devRoutes.push({
-    path: "/teaser-test",
-    element: (
-      <Suspense fallback={null}>
-        <TeaserTestPage />
-      </Suspense>
-    ),
-  });
-}
+import RedirectTo from "./components/RedirectTo";
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       { path: "/", element: <TeaserPage /> },
-      ...devRoutes,
       { path: "/home", element: <HomePage /> },
       { path: "/home-preview", element: <HomePage /> },
-      { path: "/projects", element: <ProjectsPage /> },
-      { path: "/projects/:slug", element: <ProjectDetailPage /> },
-      { path: "/prompts", element: <PromptsPage /> },
+      { path: "/proof", element: <ProofPage /> },
+      { path: "/projects", element: <RedirectTo to="/proof" /> },
+      { path: "/projects/:slug", element: <RedirectTo to="/proof" /> },
+      { path: "/prompts", element: <RedirectTo to="/library" /> },
       { path: "/about", element: <AboutPage /> },
-      { path: "/newsletter", element: <NewsletterPage /> },
+      { path: "/newsletter", element: <RedirectTo to="/library" /> },
+      { path: "/library", element: <LibraryPage /> },
       { path: "/tools", element: <ToolsPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],

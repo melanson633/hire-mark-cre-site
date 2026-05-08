@@ -1,12 +1,12 @@
 export const about = {
   eyebrow: "About",
-  title: "Operator first. Builder second.",
+  title: "CRE finance operator-builder.",
   intro:
-    "Most of what I build starts the same way: something in the workflow breaks, slows down, or just doesn't exist yet. I fix it with whatever works — Python, Excel, AI, or a better process.",
+    "I sit at the intersection of CRE finance operations, practical AI workflows, templates, and small product builds.",
   sections: [
     {
       heading: "Background",
-      text: "I work in commercial real estate operations — the side of the business where lease abstracts, lien waivers, advance requests, and utility reconciliations actually get done. Over the past several years I've built systems that compress hours of manual work into minutes, using AI extraction pipelines, Excel financial models, and Python automation scripts. Every tool on this site was built to solve a real problem on a real project.",
+      text: "I work close to the operating layer of commercial real estate: lease abstracts, lien waivers, advance requests, utility reconciliations, draw packages, reporting, and finance workflows. The site is built around that practical context.",
     },
     {
       heading: "What I do",
@@ -19,10 +19,10 @@ export const about = {
     },
     {
       heading: "How I work",
-      text: "I don't build tools looking for problems. I find the bottleneck first, understand why it exists, and then build the simplest thing that eliminates it. The lien waiver system started because a construction project needed 40+ waivers generated from three mismatched data sources. The lease extraction prompts started because reading a 200-page lease amendment stack was taking days instead of hours. Every project here has that same origin — a real constraint that needed a real solution.",
+      text: "I start with the bottleneck, then decide whether the answer is a process change, spreadsheet control, prompt workflow, small app, or no build. That keeps the implementation tied to measurable operating friction.",
     },
   ],
   contact: {
-    text: "I take on AI-automation consulting engagements — workflow audits, cross-system reconciliation builds, and field-team digitization with audit trail. I am also open to selective full-time roles in CRE operations or finance. If something here resonates, reach out.",
+    text: "I take on CRE AI audit and implementation conversations where there is a real workflow owner, a painful manual process, and a practical path to better review, reporting, or handoff quality.",
   },
 };
